@@ -63,7 +63,7 @@ print(f"target 명: {iris.target_names}")  # label 명 출력
 
 - 출력 결과
 
-  ![001](../assets/images/001.png)
+![001](../assets/images/001.png)
 
 ```python
 iris_df = pd.DataFrame(data=iris_data, columns=iris.feature_names)  # DataFrame으로 변환
@@ -74,7 +74,7 @@ print(iris_df.head())  # 붓꽃(iris) 데이터 확인
 
 - 출력 결과
 
-  ![002](../assets/images/002.png)
+![002](../assets/images/002.png)
 
 ### 🥑 학습 데이터와 테스트 데이터 셋으로 분리
 
@@ -111,4 +111,4 @@ print(f"예측 정확도: {accuracy_score(y_test, pred)}")  # 예측 정확도 �
 
 - 출력 결과
 
-  ![003](../assets/images/003.png)
+![003](../assets/images/003.png)
