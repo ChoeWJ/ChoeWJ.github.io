@@ -5,7 +5,7 @@ categories: machine_learning
 tag: [python, ML, Data]
 author_profile: false
 # sidebar:
-#   nav: "docs"
+#   nav: "counts"
 # search: false
 # redirect_from:
 #   - /coding/first-posting
