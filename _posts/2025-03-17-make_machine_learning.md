@@ -1,5 +1,5 @@
 ---
-layout: simgle
+layout: single
 title: "첫 머신러닝 모델"
 typora-root-url: ../
 ---

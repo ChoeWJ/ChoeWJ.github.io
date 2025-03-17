@@ -1,6 +1,9 @@
 require "json"
 
-package_json = JSON.parse(File.read("package.json"))
+package_json_path = File.expand_path("../package.json", __dir__)
+
+# package.json 파일이 있는지 확인하고 없으면 오류 방지
+package_json = File.exist?(package_json_path) ? JSON.parse(File.read(package_json_path)) : { "version" => "4.24.0" }
 
 Gem::Specification.new do |spec|
   spec.name                    = "minimal-mistakes-jekyll"
