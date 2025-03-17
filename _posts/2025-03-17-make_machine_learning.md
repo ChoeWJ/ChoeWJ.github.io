@@ -7,11 +7,14 @@ author_profile: false
 # sidebar:
 #   nav: "docs"
 # search: false
+# redirect_from:
+#   - /coding/first-posting
+use_math: true
 ---
 
-[공식문서 바로가기](https://scikit-learn.org/stable/){: .btn .btn--danger}
-
 # 👑 사이킷런(Scikit-learn)이란?
+
+[공식문서 바로가기](https://scikit-learn.org/stable/){: .btn .btn--danger}
 
 - **_파이썬 기반의 머신러닝 라이브러리_**
 - 다양한 머신러닝 알고리즘과 데이터 전처리, 모델 평가 기능을 제공하는 오픈소스 라이브러리
@@ -68,7 +71,7 @@ print(f"target 명: {iris.target_names}")  # label 명 출력
 
 - 출력 결과
 
-![001](../assets/images/001.png)
+![001]({{site.url}}/images/2025-03-17-make_machine_learning/001.png)
 
 ```python
 iris_df = pd.DataFrame(data=iris_data, columns=iris.feature_names)  # DataFrame으로 변환
@@ -79,7 +82,7 @@ print(iris_df.head())  # 붓꽃(iris) 데이터 확인
 
 - 출력 결과
 
-![002](../assets/images/002.png)
+![002]({{site.url}}/images/2025-03-17-make_machine_learning/002.png)
 
 ### 🥑 학습 데이터와 테스트 데이터 셋으로 분리
 
@@ -116,4 +119,4 @@ print(f"예측 정확도: {accuracy_score(y_test, pred)}")  # 예측 정확도 �
 
 - 출력 결과
 
-![003](../assets/images/003.png)
+![003]({{site.url}}/images/2025-03-17-make_machine_learning/003.png)
