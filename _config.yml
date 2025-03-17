@@ -12,15 +12,15 @@
 
 # theme                  : "minimal-mistakes-jekyll"
 # remote_theme           : "mmistakes/minimal-mistakes"
-minimal_mistakes_skin: "dirt" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+minimal_mistakes_skin: "dark" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
 locale: "ko-KR"
 rtl: # true, false (default) # turns direction of the page into right to left for RTL languages
-title: "DevWriter"
+title: "DeVlog"
 title_separator: "|"
 subtitle: "Leisurely but efficiently"
-name: "ChoeWJ"
+name: "DevWriter"
 description: "데브라이터의 블로그 입니다."
 url: "https://ChoeWJ.github.io"
 baseurl: # the subpath of your site, e.g. "/blog"
@@ -112,9 +112,9 @@ analytics:
 
 # Site Author
 author:
-  name: "ChoeWJ"
+  name: "DevWriter"
   avatar: # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio: "WJ의 블로그 입니다."
+  bio: "ChoeWJ의 블로그 입니다."
   location: "South Korea"
   email:
   links:
@@ -151,7 +151,7 @@ footer:
       # url:
     - label: "GitLab"
       icon: "fab fa-fw fa-gitlab"
-      # url:
+      url: "https://github.com/ChoeWJ/project"
     - label: "Bitbucket"
       icon: "fab fa-fw fa-bitbucket"
       # url:
@@ -221,7 +221,7 @@ sass:
 
 # Outputting
 permalink: /:categories/:title/
-timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+timezone: Asia/Seoul # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 # Pagination with jekyll-paginate
 paginate: 5 # amount of posts to show
@@ -281,16 +281,16 @@ tag_archive:
   type: liquid
   path: /tags/
 # https://github.com/jekyll/jekyll-archives
-# jekyll-archives:
-#   enabled:
-#     - categories
-#     - tags
-#   layouts:
-#     category: archive-taxonomy
-#     tag: archive-taxonomy
-#   permalinks:
-#     category: /categories/:name/
-#     tag: /tags/:name/
+jekyll-archives:
+  enabled:
+    - categories
+    - tags
+  layouts:
+    category: archive-taxonomy
+    tag: archive-taxonomy
+  permalinks:
+    category: /categories/:name/
+    tag: /tags/:name/
 
 # HTML Compression
 # - https://jch.penibelst.de/

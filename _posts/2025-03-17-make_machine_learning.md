@@ -1,8 +1,9 @@
 ---
 layout: single
 title: "첫 머신러닝 모델"
-comments: true
-typora-root-url: ../
+categories: machine_learning
+tag: [python, ML, Data]
+toc: true
 ---
 
 # 👑 사이킷런(Scikit-learn)이란?
