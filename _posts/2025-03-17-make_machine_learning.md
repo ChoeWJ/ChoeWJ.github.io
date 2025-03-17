@@ -1,6 +1,7 @@
 ---
 layout: single
 title: "첫 머신러닝 모델"
+comments: true
 typora-root-url: ../
 ---
 
