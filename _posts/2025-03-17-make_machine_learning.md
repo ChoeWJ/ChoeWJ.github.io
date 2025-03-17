@@ -3,27 +3,13 @@ layout: single
 title: "첫 머신러닝 모델"
 categories: machine_learning
 tag: [python, ML, Data]
-toc: true
 author_profile: false
-sidebar:
-  nav: "docs"
+# sidebar:
+#   nav: "docs"
 # search: false
 ---
 
-<!-- **[공지사항]** [깃험 블로그 시작입니다](https://choewj.github.io/)
-{: .notice--danger} -->
-<div class="notice--success">
-<h4>공지 사항</h4>
-<ul>
-    <li>1번</li>
-    <li>2번</li>
-    <li>3번</li>
-</ul>
-</div>
-
-[버튼클릭](http://google.com){: .btn .btn--danger}
-
-{% include video id="q0P3TSoVNDM?si=NwIWMx3QdLg7TO1_" provider="youtube" %}
+[공식문서 바로가기](https://scikit-learn.org/stable/){: .btn .btn--danger}
 
 # 👑 사이킷런(Scikit-learn)이란?
 

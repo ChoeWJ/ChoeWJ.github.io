@@ -112,9 +112,9 @@ analytics:
 
 # Site Author
 author:
-  name: "DevWriter"
-  avatar: # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio: "ChoeWJ의 블로그 입니다."
+  name: "ChoeWJ"
+  avatar: "/images/DeVlog.jpg"
+  bio: #  "ChoeWJ의 블로그 입니다."
   location: "South Korea"
   email:
   links:
@@ -148,10 +148,10 @@ footer:
       # url:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      # url:
+      url: "https://github.com/ChoeWJ/project"
     - label: "GitLab"
       icon: "fab fa-fw fa-gitlab"
-      url: "https://github.com/ChoeWJ/project"
+      # url: "https://github.com/ChoeWJ/project"
     - label: "Bitbucket"
       icon: "fab fa-fw fa-bitbucket"
       # url:
@@ -313,5 +313,9 @@ defaults:
       share: true
       related: true
       show_date: true
+      toc: true
+      toc_sticky: true
+      toc_label: "목차"
+      toc_icon: "fa-solid fa-hexagon-nodes"
 
 date_format: "%Y-%m-%d"
