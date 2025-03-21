@@ -51,7 +51,7 @@ layout: default
         {% endif %}
         {{ content }}
         {% if site.comments.provider and page.comments %}
-        {% if jekyll.environment == 'production' %}
+          {% if jekyll.environment == 'production' %}
             {% include comments.html %}
           {% else %}
             <p>
@@ -59,6 +59,13 @@ layout: default
               but are disabled in non-production environments.
             </p>
           {% endif %}
+        {% endif %}
+              {% comment %}<!-- only show related on a post page when `related: true` -->{% endcomment %}
+        {% if page.id and page.related and site.related_posts.size > 0 %}
+          {% include page__related.html posts=site.related_posts %}
+        {% comment %}<!-- otherwise show recent posts if no related when `related: true` -->{% endcomment %}
+        {% elsif page.id and page.related %}
+          {% include page__related.html posts=site.posts %}
         {% endif %}
         {% if page.link %}<div><a href="{{ page.link }}" class="btn btn--primary">{{ site.data.ui-text[site.locale].ext_link_label | default: "Direct Link" }}</a></div>{% endif %}
       </section>
@@ -79,11 +86,5 @@ layout: default
     
   </article>
 
-  {% comment %}<!-- only show related on a post page when `related: true` -->{% endcomment %}
-  {% if page.id and page.related and site.related_posts.size > 0 %}
-    {% include page__related.html posts=site.related_posts %}
-  {% comment %}<!-- otherwise show recent posts if no related when `related: true` -->{% endcomment %}
-  {% elsif page.id and page.related %}
-    {% include page__related.html posts=site.posts %}
-  {% endif %}
+  
 </div>
