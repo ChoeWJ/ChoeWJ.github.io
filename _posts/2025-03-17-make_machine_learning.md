@@ -4,8 +4,8 @@ title: "첫 머신러닝 모델"
 categories: machine_learning
 tag: [python, ML, Data]
 author_profile: false
-# sidebar:
-#   nav: "counts"
+sidebar:
+  nav: "counts"
 # search: false
 # redirect_from:
 #   - /coding/first-posting

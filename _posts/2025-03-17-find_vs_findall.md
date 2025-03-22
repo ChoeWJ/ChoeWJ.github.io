@@ -4,8 +4,8 @@ title: "find() vs find_all()"
 categories: web_crawling
 tag: [python, automation, web_crawling]
 author_profile: false
-# sidebar:
-#   nav: "counts"
+sidebar:
+  nav: "counts"
 # search: false
 # redirect_from:
 #   - /coding/first-posting

@@ -4,8 +4,8 @@ title: "사이킷런의 내장데이터"
 categories: machine_learning
 tag: [python, ML, Data]
 author_profile: false
-# sidebar:
-#   nav: "counts"
+sidebar:
+  nav: "counts"
 # search: false
 # redirect_from:
 #   - /coding/first-posting

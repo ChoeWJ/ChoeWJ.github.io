@@ -4,8 +4,8 @@ title: "자식, 자손, 형제, 부모"
 categories: web_crawling
 tag: [python, automation, web_crawling]
 author_profile: false
-# sidebar:
-#   nav: "counts"
+sidebar:
+  nav: "counts"
 # search: false
 # redirect_from:
 #   - /coding/first-posting
