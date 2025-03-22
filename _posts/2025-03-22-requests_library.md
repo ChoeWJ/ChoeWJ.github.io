@@ -1,23 +1,32 @@
-# requests 라이브러리
+---
+layout: single
+title: "requests 라이브러리"
+categories: web_crawling
+tag: [python, automation, web_crawling]
+author_profile: false
+# sidebar:
+#   nav: "counts"
+# search: false
+# redirect_from:
+#   - /coding/first-posting
+use_math: true
+---
 
-## 1. 설치
+# 👑 requests
+
+## 🌟 설치
+
 ```sh
 pip install requests
 ```
 
-
-
-## 2. 라이브러리 임포트
-
+## 🌟 라이브러리 임포트
 
 ```python
 import requests
 ```
 
-
-
-## 2. GET 요청 (데이터 가져오기)
-
+## 🌟 GET 요청 (데이터 가져오기)
 
 ```python
 url = "https://jsonplaceholder.typicode.com/posts/1"  # API 엔드포인트 설정
@@ -29,21 +38,18 @@ print(response.json())  # JSON 형식의 응답 데이터를 파이썬 딕셔너
 ```
 
     상태 코드: 200
-    
-    응답 데이터: 
+
+    응답 데이터:
     {
       "userId": 1,
       "id": 1,
       "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
       "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
     }
-    
+
     {'userId': 1, 'id': 1, 'title': 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit', 'body': 'quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto'}
 
-
-
-## 3. POST 요청 (데이터 전송)
-
+## 🌟 POST 요청 (데이터 전송)
 
 ```python
 url = "https://jsonplaceholder.typicode.com/posts"  # 데이터 전송할 API 엔드포인트 설정
@@ -56,22 +62,19 @@ print(response.json())  # 응답 데이터를 JSON 형태로 변환하여 출력
 ```
 
     상태 코드: 201
-    
+
     {'title': 'Hello', 'body': 'World', 'userId': 1, 'id': 101}
 
-
-
-## 4. headers 추가
+## 🌟 headers 추가
 
 - HTTP 요청에서 헤더(headers)는 클라이언트(브라우저, 앱 등)와 서버 간의 추가 정보를 전달하는 역할
 - 웹사이트나 API는 요청을 보낸 기기의 정보(브라우저, 운영체제)를 확인하는데 일부 웹사이트는 특정 브라우저에서만 동작하거나, 봇 요청을 차단하기도 함
 - 따라서 현재 내가 사용중인 추가 정보를 전달해서 차단을 방지하는 역할을 함
-- 헤더정보는 다음과 같이 찾으면 됨
+- 헤더정보는 사이트의 개발자 도구 (Ctrl + F12 or CMD + F12)의 Network > Headers
 
-![스크린샷 2025-03-22 17.43.45]({{site.url}}/images/2025-03-22-requests_library/스크린샷 2025-03-22 17.43.45.png)
+![스크린샷 2025-03-22 17.43.45]({{site.url}}/images/2025-03-22-requests_library/001.png)
 
-![스크린샷 2025-03-22 17.44.18]({{site.url}}/images/2025-03-22-requests_library/스크린샷 2025-03-22 17.44.18.png)
-
+![스크린샷 2025-03-22 17.44.18]({{site.url}}/images/2025-03-22-requests_library/002.png)
 
 ```python
 headers = {
@@ -84,14 +87,13 @@ print(response.status_code)  # 응답을 JSON 형식으로 출력
 
     200
 
-
-
-## 5. 파라미터 추가 (쿼리 스트링)
+## 🌟 파라미터 추가 (쿼리 스트링)
 
 - 파라미터 정보가 너무 복잡할 때 쿼리스트링의 정보만 따로 파라미터 정보로 보내서 크롤링
+- 개발자 도구 (Ctrl + F12 or CMD + F12)의 Network > Payload
+- 상세 페이지와 같이 사이트 내부에 쿼리로 깊숙히 들어갈 때 생성되는 것이므로 모든 사이트에 존재하는 것은 아님
 
-![스크린샷 2025-03-22 17.59.33]({{site.url}}/ChoeWJ.github.io/images/2025-03-22-requests_library/스크린샷 2025-03-22 17.59.33.png)
-
+![스크린샷 2025-03-22 17.59.33]({{site.url}}/images/2025-03-22-requests_library/003.png)
 
 ```python
 params = {
@@ -111,78 +113,31 @@ print(response.status_code)
 
     200
 
-
-## 6. 타임아웃 설정
-
+## 🌟 타임아웃 설정
 
 ```python
 response = requests.get("https://httpbin.org/delay/5", timeout=3)  # 3초 안에 응답이 없으면 예외 발생
 ```
 
-
+```sh
     ---------------------------------------------------------------------------
-    
+
     TimeoutError                              Traceback (most recent call last)
-    
+
     File ~/Desktop/personal/lib/python3.12/site-packages/urllib3/connectionpool.py:534, in HTTPConnectionPool._make_request(self, conn, method, url, body, headers, retries, timeout, chunked, response_conn, preload_content, decode_content, enforce_content_length)
         533 try:
     --> 534     response = conn.getresponse()
         535 except (BaseSSLError, OSError) as e:
 
-
-    File ~/Desktop/personal/lib/python3.12/site-packages/urllib3/connection.py:516, in HTTPConnection.getresponse(self)
-        515 # Get the response from http.client.HTTPConnection
-    --> 516 httplib_response = super().getresponse()
-        518 try:
-
-
-    File /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/http/client.py:1428, in HTTPConnection.getresponse(self)
-       1427 try:
-    -> 1428     response.begin()
-       1429 except ConnectionError:
-
-
-    File /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/http/client.py:331, in HTTPResponse.begin(self)
-        330 while True:
-    --> 331     version, status, reason = self._read_status()
-        332     if status != CONTINUE:
-
-
-    File /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/http/client.py:292, in HTTPResponse._read_status(self)
-        291 def _read_status(self):
-    --> 292     line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
-        293     if len(line) > _MAXLINE:
-
-
-    File /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/socket.py:720, in SocketIO.readinto(self, b)
-        719 try:
-    --> 720     return self._sock.recv_into(b)
-        721 except timeout:
-
-
-    File /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/ssl.py:1251, in SSLSocket.recv_into(self, buffer, nbytes, flags)
-       1248         raise ValueError(
-       1249           "non-zero flags not allowed in calls to recv_into() on %s" %
-       1250           self.__class__)
-    -> 1251     return self.read(nbytes, buffer)
-       1252 else:
-
-
-    File /Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/ssl.py:1103, in SSLSocket.read(self, len, buffer)
-       1102 if buffer is not None:
-    -> 1103     return self._sslobj.read(len, buffer)
-       1104 else:
-
+    ==============================<중략>==============================
 
     TimeoutError: The read operation timed out
 
-
-​    
-    The above exception was the direct cause of the following exception:
-
+​
+ The above exception was the direct cause of the following exception:
 
     ReadTimeoutError                          Traceback (most recent call last)
-    
+
     File ~/Desktop/personal/lib/python3.12/site-packages/requests/adapters.py:667, in HTTPAdapter.send(self, request, stream, timeout, verify, cert, proxies)
         666 try:
     --> 667     resp = conn.urlopen(
@@ -201,68 +156,13 @@ response = requests.get("https://httpbin.org/delay/5", timeout=3)  # 3초 안에
         681 except (ProtocolError, OSError) as err:
 
 
-    File ~/Desktop/personal/lib/python3.12/site-packages/urllib3/connectionpool.py:841, in HTTPConnectionPool.urlopen(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, preload_content, decode_content, **response_kw)
-        839     new_e = ProtocolError("Connection aborted.", new_e)
-    --> 841 retries = retries.increment(
-        842     method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
-        843 )
-        844 retries.sleep()
+    ==============================<중략>==============================
 
-
-    File ~/Desktop/personal/lib/python3.12/site-packages/urllib3/util/retry.py:474, in Retry.increment(self, method, url, response, error, _pool, _stacktrace)
-        473 if read is False or method is None or not self._is_method_retryable(method):
-    --> 474     raise reraise(type(error), error, _stacktrace)
-        475 elif read is not None:
-
-
-    File ~/Desktop/personal/lib/python3.12/site-packages/urllib3/util/util.py:39, in reraise(tp, value, tb)
-         38         raise value.with_traceback(tb)
-    ---> 39     raise value
-         40 finally:
-
-
-    File ~/Desktop/personal/lib/python3.12/site-packages/urllib3/connectionpool.py:787, in HTTPConnectionPool.urlopen(self, method, url, body, headers, retries, redirect, assert_same_host, timeout, pool_timeout, release_conn, chunked, body_pos, preload_content, decode_content, **response_kw)
-        786 # Make the request on the HTTPConnection object
-    --> 787 response = self._make_request(
-        788     conn,
-        789     method,
-        790     url,
-        791     timeout=timeout_obj,
-        792     body=body,
-        793     headers=headers,
-        794     chunked=chunked,
-        795     retries=retries,
-        796     response_conn=response_conn,
-        797     preload_content=preload_content,
-        798     decode_content=decode_content,
-        799     **response_kw,
-        800 )
-        802 # Everything went great!
-
-
-    File ~/Desktop/personal/lib/python3.12/site-packages/urllib3/connectionpool.py:536, in HTTPConnectionPool._make_request(self, conn, method, url, body, headers, retries, timeout, chunked, response_conn, preload_content, decode_content, enforce_content_length)
-        535 except (BaseSSLError, OSError) as e:
-    --> 536     self._raise_timeout(err=e, url=url, timeout_value=read_timeout)
-        537     raise
-
-
-    File ~/Desktop/personal/lib/python3.12/site-packages/urllib3/connectionpool.py:367, in HTTPConnectionPool._raise_timeout(self, err, url, timeout_value)
-        366 if isinstance(err, SocketTimeout):
-    --> 367     raise ReadTimeoutError(
-        368         self, url, f"Read timed out. (read timeout={timeout_value})"
-        369     ) from err
-        371 # See the above comment about EAGAIN in Python 3.
-
-
-    ReadTimeoutError: HTTPSConnectionPool(host='httpbin.org', port=443): Read timed out. (read timeout=3)
-
-
-​    
-    During handling of the above exception, another exception occurred:
-
+​
+ During handling of the above exception, another exception occurred:
 
     ReadTimeout                               Traceback (most recent call last)
-    
+
     Cell In[12], line 1
     ----> 1 response = requests.get("https://httpbin.org/delay/5", timeout=3)  # 3초 안에 응답이 없으면 예외 발생
 
@@ -270,50 +170,20 @@ response = requests.get("https://httpbin.org/delay/5", timeout=3)  # 3초 안에
     File ~/Desktop/personal/lib/python3.12/site-packages/requests/api.py:73, in get(url, params, **kwargs)
          62 def get(url, params=None, **kwargs):
          63     r"""Sends a GET request.
-         64 
+         64
          65     :param url: URL for the new :class:`Request` object.
        (...)     70     :rtype: requests.Response
          71     """
     ---> 73     return request("get", url, params=params, **kwargs)
 
 
-    File ~/Desktop/personal/lib/python3.12/site-packages/requests/api.py:59, in request(method, url, **kwargs)
-         55 # By using the 'with' statement we are sure the session is closed, thus we
-         56 # avoid leaving sockets open which can trigger a ResourceWarning in some
-         57 # cases, and look like a memory leak in others.
-         58 with sessions.Session() as session:
-    ---> 59     return session.request(method=method, url=url, **kwargs)
-
-
-    File ~/Desktop/personal/lib/python3.12/site-packages/requests/sessions.py:589, in Session.request(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)
-        584 send_kwargs = {
-        585     "timeout": timeout,
-        586     "allow_redirects": allow_redirects,
-        587 }
-        588 send_kwargs.update(settings)
-    --> 589 resp = self.send(prep, **send_kwargs)
-        591 return resp
-
-
-    File ~/Desktop/personal/lib/python3.12/site-packages/requests/sessions.py:703, in Session.send(self, request, **kwargs)
-        700 start = preferred_clock()
-        702 # Send the request
-    --> 703 r = adapter.send(request, **kwargs)
-        705 # Total elapsed time of the request (approximately)
-        706 elapsed = preferred_clock() - start
-
-
-    File ~/Desktop/personal/lib/python3.12/site-packages/requests/adapters.py:713, in HTTPAdapter.send(self, request, stream, timeout, verify, cert, proxies)
-        711     raise SSLError(e, request=request)
-        712 elif isinstance(e, ReadTimeoutError):
-    --> 713     raise ReadTimeout(e, request=request)
-        714 elif isinstance(e, _InvalidHeader):
-        715     raise InvalidHeader(e, request=request)
+    ==============================<중략>==============================
 
 
     ReadTimeout: HTTPSConnectionPool(host='httpbin.org', port=443): Read timed out. (read timeout=3)
+```
 
-
+## 🌟 타임아웃 설정 (예외 처리)
 
 ```python
 try:
@@ -326,9 +196,7 @@ except requests.exceptions.RequestException as e:  # 모든 예외를 처리
 
     {'userId': 1, 'id': 1, 'title': 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit', 'body': 'quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto'}
 
-
-## 7. 세션 유지
-
+## 🌟 세션 유지
 
 ```python
 session = requests.Session()  # 세션 객체 생성 (쿠키 및 상태 유지)
@@ -338,9 +206,3 @@ print(response.json())  # 응답 데이터 출력 (세션 쿠키 값 확인 가�
 ```
 
     {'cookies': {'sessioncookie': '123456'}}
-
-
-
-```python
-
-```
