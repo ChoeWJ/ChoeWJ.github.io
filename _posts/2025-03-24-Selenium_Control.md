@@ -5,7 +5,7 @@ categories:
   - docs
   - Web_Crawling
   - Selenium
-tag: [python, automation, web_crawling]
+tag: [python, automation, web_crawling, Selenium]
 author_profile: false
 sidebar:
   nav: "counts"
@@ -136,4 +136,34 @@ driver.close()
 ```python
 # 모든 창을 닫고 웹드라이버 세션 종료
 driver.quit()
+```
+
+```python
+# 현재 열려있는 창(탭) 확인
+driver.window_handles
+```
+
+```python
+# 새 창으로 전환
+driver.switch_to.window(driver.window_handles[2])
+```
+
+⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩<출력결과>⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩
+{: .text-center}
+
+```plaintext
+['3EA4EB5EE5BFAAE23054422AB1E344A5',
+ 'D61C6B48456D41E679F6F0C556E526E0',
+ 'A22E3AD1A46E2EA49548C6F2154CC3AC']
+```
+
+```python
+# 프레임 전환
+iframe = driver.find_element(By.CSS_SELECTOR, "CSS_SELECTOR")
+driver.switch_to.frame(iframe)
+```
+
+```python
+# 프레임 다시 전환
+driver.switch_to.default_content()
 ```

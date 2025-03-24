@@ -5,7 +5,7 @@ categories:
   - docs
   - Web_Crawling
   - Selenium
-tag: [python, automation, web_crawling]
+tag: [python, automation, web_crawling, Selenium]
 author_profile: false
 sidebar:
   nav: "counts"
