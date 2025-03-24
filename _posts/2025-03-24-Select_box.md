@@ -14,7 +14,7 @@ use_math: true
 
 # 👑 Select Box 컨트롤
 
-![공식문서](https://www.selenium.dev/selenium/docs/api/py/webdriver_support/selenium.webdriver.support.select.html#selenium.webdriver.support.select.Select.select_by_index){: .btn .btn--danger}
+[공식문서 바로가기](https://www.selenium.dev/selenium/docs/api/py/webdriver_support/selenium.webdriver.support.select.html){: .btn .btn--danger}
 
 ## 🏆 Select 클래스 주요 기능
 
