@@ -480,24 +480,28 @@
       }
       
       /* ✅ 서브 카테고리 앞에 칸 채우기 */
-      .nav__items li {
+      /* ✅ 이모지를 표시하도록 설정 */
+      .nav__items li,
+      .nav__sub-title {
         position: relative;
         padding-left: 1.5em; /* 들여쓰기 효과 */
       }
-      
-      .nav__items li::before {
-        content: "▪ "; /* 작은 원을 추가하여 구분 */
-        color: $gray;
+
+      /* ✅ 사용자 지정 이모지 적용 */
+      .nav__items li::before,
+      .nav__sub-title::before {
+        content: attr(data-icon); /* data-icon 속성 값 사용 */
+        color: inherit;
         position: absolute;
         left: 0;
-        font-size: 1rem;
-      }
-      
-      /* ✅ 원하는 이모지를 적용할 수 있도록 클래스 추가 */
-      .nav__items li[data-icon]::before {
-        content: attr(data-icon); /* data-icon 속성 값 사용 */
-        font-size: 1rem;
+        font-size: 1rem; /* 기본 크기 */
         margin-right: 0.5em;
+      }
+
+      /* ✅ 사용자 지정 폰트 크기 적용 */
+      .nav__items li,
+      .nav__sub-title {
+        font-size: attr(data-font-size, 16px); /* data-font-size 값 사용, 기본값 16px */
       }
   
   /*

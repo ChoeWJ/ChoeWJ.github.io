@@ -7,8 +7,8 @@
       {% endif %}
     {% endfor %}
     
-    <span class="nav__sub-title">
-      {{ category.title }} <span class="count">({{ category_count }})</span>
+    <span class="nav__sub-title" data-icon="📂" data-font-size="18px">
+      {{ category.title }} <span class="count">{{ category_count }}</span>
     </span> <!-- 메인 카테고리 -->
 
     <ul class="nav__items">
@@ -21,9 +21,9 @@
         {% endfor %}
 
         {% if item.subcategories %}
-          <li data-icon="📂"> <!-- 이모지 자동 적용 -->
+          <li data-icon="📁" data-font-size="14px"> <!-- 이모지 & 폰트 크기 변경 가능 -->
             <strong>
-              {{ item.title }} <span class="count">({{ item_count }})</span>
+              {{ item.title }} <span class="count">{{ item_count }}</span>
             </strong>
             <ul>
               {% for subitem in item.subcategories %}
@@ -33,18 +33,18 @@
                     {% assign subitem_count = subitem_count | plus: 1 %}
                   {% endif %}
                 {% endfor %}
-                <li data-icon="📄">
+                <li data-icon="📄" data-font-size="12px">
                   <a href="{{ subitem.url }}">
-                    {{ subitem.title }} <span class="count">({{ subitem_count }})</span>
+                    {{ subitem.title }} <span class="count">{{ subitem_count }}</span>
                   </a>
                 </li>
               {% endfor %}
             </ul>
           </li>
         {% else %}
-          <li data-icon="📌">
+          <li data-icon="📌" data-font-size="14px">
             <a href="{{ item.url }}">
-              {{ item.title }} <span class="count">({{ item_count }})</span>
+              {{ item.title }} <span class="count">{{ item_count }}</span>
             </a>
           </li>
         {% endif %}
