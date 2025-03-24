@@ -10,10 +10,20 @@ main:
     url: /search/
 
 docs:
-  - title: "카테고리"
+  - title: "웹크롤링"
     children:
       - title: "Category"
-        url: /categories/
+        url: /categories/#web_crawling
+  - title: "SQL"
+    children:
+      - title: "Category"
+        url: /categories/#web_crawling#sql
+      - title: "Category"
+        url: /categories/#web_crawling#db
+  - title: "ML/DL"
+    children:
+      - title: "Category"
+        url: /categories/#machine-learning
 
 counts:
   - title: "카테고리"
