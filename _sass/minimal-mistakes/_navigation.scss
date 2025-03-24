@@ -363,6 +363,7 @@
       
       /* ✅ 서브 카테고리 스타일 */
       .nav__items li {
+        position: relative;
         font-size: 1rem;
         padding-left: 1em;
         transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
@@ -370,36 +371,49 @@
       
       /* ✅ 서브 카테고리 hover 효과 */
       .nav__items li:hover {
-        background-color: rgba(0, 0, 0, 0.05); /* ✅ 더 연한 회색 배경 */
-        color: $primary-color; /* ✅ 메인 색상 적용 */
-        border-radius: 4px; /* ✅ 모서리 둥글게 */
+        background-color: rgba(0, 0, 0, 0.15); /* ✅ 기존보다 밝은 hover 배경 */
+        color: $primary-color; /* ✅ 글자 색 유지 */
+        border-radius: 4px;
       }
       
       /* ✅ 서브 카테고리 링크 스타일 */
       .nav__items li a {
+        display: inline-block;
         position: relative;
-        padding-left: 1.2em;
+        z-index: 10; /* ✅ 글자가 배경 위에 유지되도록 설정 */
+        padding: 0.3em;
         transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+      }
+      
+      /* ✅ 링크 hover 시 */
+      .nav__items li a:hover {
+        background-color: transparent; /* ✅ 링크에 배경색 적용하지 않음 */
+        color: $primary-color; /* ✅ 메인 색상 유지 */
+      }
+      
+      /* ✅ 숫자(갯수) 스타일 */
+      .nav__items li .taxonomy__count {
+        font-size: 12px;
+        color: gray;
+        margin-left: 5px;
+      }
+      
+      /* ✅ 서브 카테고리 앞에 색상 블록 추가 */
+      .nav__items li a {
+        position: relative;
+        padding-left: 1.2em; /* ✅ 글자 앞쪽에 공간 추가 */
       
         &::before {
           content: "";
           position: absolute;
           left: 0;
           top: 50%;
-          width: 8px;
+          width: 8px; /* ✅ 블록 크기 */
           height: 8px;
-          background-color: $border-color;
+          background-color: $border-color; /* ✅ 색상 조정 */
           transform: translateY(-50%);
-          border-radius: 2px;
+          border-radius: 2px; /* ✅ 약간 둥근 모서리 */
         }
-      }
-      
-      /* ✅ 서브 카테고리 내부 링크 hover 효과 */
-      .nav__items li a:hover {
-        background-color: rgba(0, 0, 0, 0.1); /* ✅ hover 시 연한 배경 */
-        color: $primary-color; /* ✅ 메인 색상 적용 */
-        border-radius: 4px;
-        padding: 0.3em;
       }
       
       /* ✅ 반응형 스타일 */
