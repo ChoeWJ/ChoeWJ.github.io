@@ -1,7 +1,10 @@
 ---
 layout: single
 title: "자식, 자손, 형제, 부모"
-categories: web_crawling
+categories:
+  - docs
+  - Web_Crawling
+  - BeautifulSoup
 tag: [python, automation, web_crawling]
 author_profile: false
 sidebar:

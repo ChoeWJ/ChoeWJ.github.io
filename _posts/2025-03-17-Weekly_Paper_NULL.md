@@ -1,7 +1,11 @@
 ---
 layout: single
 title: "NULL"
-categories: SQL
+categories:
+  - docs
+  - Weekly_Papers
+  - SQL
+  - Query
 tag: [DB, SQL, weekly_paper]
 author_profile: false
 sidebar:

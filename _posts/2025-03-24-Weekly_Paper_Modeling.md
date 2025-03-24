@@ -1,7 +1,11 @@
 ---
 layout: single
 title: "논리적 모델링"
-categories: DB
+categories:
+  - docs
+  - Weekly_Papers
+  - SQL
+  - DB
 tag: [DB, weekly_paper]
 author_profile: false
 sidebar:

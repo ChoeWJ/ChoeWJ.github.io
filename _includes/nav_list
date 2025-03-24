@@ -1,6 +1,6 @@
 <nav class="nav__list">
   {% for category in site.data.navigation.docs %}
-    <span class="nav__sub-title">{{ category.title }}</span> <!-- 메인 카테고리 -->
+    <span class="nav__sub-title" style="font-size: 18px; font-weight: bold;">{{ category.title }}</span> <!-- 메인 카테고리 -->
     <ul class="nav__items">
       {% for item in category.children %}
         {% if item.subcategories %}
@@ -9,14 +9,14 @@
             <ul>
               {% for subitem in item.subcategories %}
                 <li>
-                  <a href="{{ subitem.url }}">{{ subitem.title }}</a>
+                  <a href="{{ subitem.url }}" style="font-size: 14px;">{{ subitem.title }}</a>
                 </li>
               {% endfor %}
             </ul>
           </li>
         {% else %}
           <li>
-            <a href="{{ item.url }}">{{ item.title }}</a>
+            <a href="{{ item.url }}" style="font-size: 12px;">{{ item.title }}</a>
           </li>
         {% endif %}
       {% endfor %}

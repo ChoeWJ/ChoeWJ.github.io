@@ -1,7 +1,10 @@
 ---
 layout: single
 title: "Selenium Select Box 컨트롤"
-categories: web_crawling
+categories:
+  - docs
+  - Web_Crawling
+  - Selenium
 tag: [python, automation, web_crawling]
 author_profile: false
 sidebar:

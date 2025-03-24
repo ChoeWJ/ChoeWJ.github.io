@@ -29,6 +29,15 @@ docs:
       - title: "Selenium"
         url: /docs/Web_Crawling/Selenium/
 
+  - title: "Weekly_Papers"
+    children:
+      - title: "SQL"
+        subcategories:
+          - title: "Query"
+            url: /docs/Weekly_Papers/SQL/Query/
+          - title: "DB"
+            url: /docs/Weekly_Papers/SQL/DB/
+
 counts:
   - title: "카테고리"
     use: true

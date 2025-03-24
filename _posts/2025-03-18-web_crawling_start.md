@@ -1,7 +1,10 @@
 ---
 layout: single
 title: "웹 크롤링 시작하기"
-categories: web_crawling
+categories:
+  - docs
+  - Web_Crawling
+  - BeautifulSoup
 tag: [python, automation, web_crawling]
 author_profile: false
 sidebar:

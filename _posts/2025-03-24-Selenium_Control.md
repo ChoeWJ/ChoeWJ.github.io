@@ -1,7 +1,10 @@
 ---
 layout: single
 title: "Selenium으로 브라우저 조작하기"
-categories: web_crawling
+categories:
+  - docs
+  - Web_Crawling
+  - Selenium
 tag: [python, automation, web_crawling]
 author_profile: false
 sidebar:

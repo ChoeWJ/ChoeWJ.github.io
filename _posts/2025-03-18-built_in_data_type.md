@@ -1,7 +1,10 @@
 ---
 layout: single
 title: "사이킷런의 내장데이터"
-categories: machine_learning
+categories:
+  - docs
+  - ML-DL
+  - ML
 tag: [python, ML, Data]
 author_profile: false
 sidebar:

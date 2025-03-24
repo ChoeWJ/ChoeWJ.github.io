@@ -1,7 +1,11 @@
 ---
 layout: single
 title: "데이터 베이스 정규화"
-categories: DB
+categories:
+  - docs
+  - Weekly_Papers
+  - SQL
+  - DB
 tag: [DB, weekly_paper]
 author_profile: false
 sidebar:

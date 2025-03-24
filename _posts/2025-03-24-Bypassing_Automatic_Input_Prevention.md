@@ -1,7 +1,10 @@
 ---
 layout: single
 title: "자동 입력 방지 우회하기"
-categories: web_crawling
+categories:
+  - docs
+  - Web_Crawling
+  - Selenium
 tag: [python, automation, web_crawling]
 author_profile: false
 sidebar:
