@@ -28,8 +28,6 @@ use_math: true
 | **Grid Layout**       | **그리드(행/열 구조)** 로 정렬        |
 | **Form Layout**       | 라벨과 입력 필드를 **폼 형태**로 정렬 |
 
----
-
 ## 🍒 간격 조절 (Spacers)
 
 위젯 간의 간격을 조정하는 요소입니다.
@@ -38,8 +36,6 @@ use_math: true
 | --------------------- | ---------------- |
 | **Horizontal Spacer** | 가로 공간을 조정 |
 | **Vertical Spacer**   | 세로 공간을 조정 |
-
----
 
 ## 🍒버튼 (Buttons)
 
@@ -54,8 +50,6 @@ use_math: true
 | **Command Link Button** | 링크 스타일 버튼 (Windows UI에서 사용)       |
 | **Dialog Button Box**   | 대화 상자에서 "확인 / 취소" 버튼을 자동 배치 |
 
----
-
 ## 🍒모델 기반 항목 뷰 (Item Views - Model-Based)
 
 모델 데이터를 기반으로 항목을 표시하는 위젯입니다.
@@ -68,8 +62,6 @@ use_math: true
 | **Column View** | 컬럼 구조로 데이터 표시            |
 | **Undo View**   | 실행 취소(Undo) 항목을 보여주는 뷰 |
 
----
-
 ## 🍒 항목 기반 위젯 (Item Widgets - Item-Based)
 
 모델을 사용하지 않고 직접 항목을 추가하는 위젯입니다.
@@ -79,8 +71,6 @@ use_math: true
 | **List Widget**  | 리스트 항목을 직접 추가    |
 | **Tree Widget**  | 트리 구조 항목을 직접 추가 |
 | **Table Widget** | 테이블 항목을 직접 추가    |
-
----
 
 ## 🍒 컨테이너 (Containers)
 
@@ -96,8 +86,6 @@ use_math: true
 | **Frame**          | 사각형 프레임을 제공               |
 | **Widget**         | 기본적인 위젯 컨테이너             |
 | **MDI Area**       | 멀티 문서 인터페이스 (MDI) 지원    |
-
----
 
 ## 🍒 입력 위젯 (Input Widgets)
 
@@ -122,8 +110,6 @@ use_math: true
 | **Vertical Slider**       | 세로 슬라이더 (값 조정)              |
 | **Key Sequence Edit**     | 키보드 단축키 입력                   |
 
----
-
 ## 🍒 표시 위젯 (Display Widgets)
 
 정보를 출력하는 역할을 하는 위젯입니다.
@@ -141,5 +127,3 @@ use_math: true
 | **OpenGL Widget**   | OpenGL을 사용하는 3D 그래픽 렌더링        |
 | **QQuickWidget**    | QML 기반 UI를 임베딩                      |
 | **QWebEngineView**  | 웹 페이지를 표시하는 위젯 (Chromium 기반) |
-
----

@@ -33,6 +33,11 @@ docs:
           - title: "DB"
             url: /docs/Weekly_Papers/SQL/DB/
 
+  - title: "PySide6"
+    children:
+      - title: "Widget"
+        url: /docs/PySide6/Widget/
+
 counts:
   - title: "카테고리"
     use: true
