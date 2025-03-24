@@ -1,22 +1,51 @@
 <nav class="nav__list">
   {% for category in site.data.navigation.docs %}
-    <span class="nav__sub-title" style="font-size: 18px; font-weight: bold;">{{ category.title }}</span> <!-- 메인 카테고리 -->
+    {% assign category_count = 0 %}
+    {% for post in site.posts %}
+      {% if post.categories contains category.title %}
+        {% assign category_count = category_count | plus: 1 %}
+      {% endif %}
+    {% endfor %}
+    
+    <span class="nav__sub-title" style="font-size: 18px; font-weight: bold;">
+      {{ category.title }} <span style="font-size: 14px; color: gray;">({{ category_count }})</span>
+    </span> <!-- 메인 카테고리 -->
+
     <ul class="nav__items">
       {% for item in category.children %}
+        {% assign item_count = 0 %}
+        {% for post in site.posts %}
+          {% if post.categories contains item.title %}
+            {% assign item_count = item_count | plus: 1 %}
+          {% endif %}
+        {% endfor %}
+
         {% if item.subcategories %}
           <li>
-            <strong>{{ item.title }}</strong> <!-- 서브 카테고리 -->
+            <strong>
+              {{ item.title }} <span style="font-size: 12px; color: gray;">({{ item_count }})</span>
+            </strong> <!-- 서브 카테고리 -->
             <ul>
               {% for subitem in item.subcategories %}
+                {% assign subitem_count = 0 %}
+                {% for post in site.posts %}
+                  {% if post.categories contains subitem.title %}
+                    {% assign subitem_count = subitem_count | plus: 1 %}
+                  {% endif %}
+                {% endfor %}
                 <li>
-                  <a href="{{ subitem.url }}" style="font-size: 14px;">{{ subitem.title }}</a>
+                  <a href="{{ subitem.url }}" style="font-size: 14px;">
+                    {{ subitem.title }} <span style="font-size: 12px; color: gray;">({{ subitem_count }})</span>
+                  </a>
                 </li>
               {% endfor %}
             </ul>
           </li>
         {% else %}
           <li>
-            <a href="{{ item.url }}" style="font-size: 12px;">{{ item.title }}</a>
+            <a href="{{ item.url }}" style="font-size: 12px;">
+              {{ item.title }} <span style="font-size: 12px; color: gray;">({{ item_count }})</span>
+            </a>
           </li>
         {% endif %}
       {% endfor %}
