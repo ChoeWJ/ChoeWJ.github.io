@@ -24,11 +24,6 @@ docs:
       - title: "DL"
         url: /docs/ML-DL/DL/
 
-  - title: "SQL"
-    children:
-      - title: "Selenium"
-        url: /docs/Web_Crawling/Selenium/
-
   - title: "Weekly_Papers"
     children:
       - title: "SQL"
