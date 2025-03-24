@@ -2,7 +2,7 @@
 layout: single
 title: "NULL"
 categories: SQL
-tag: [DB, SQL]
+tag: [DB, SQL, weekly_paper]
 author_profile: false
 sidebar:
   nav: "counts"
