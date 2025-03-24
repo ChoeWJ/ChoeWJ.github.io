@@ -12,6 +12,10 @@
     -webkit-animation-delay: 0.15s;
     animation-delay: 0.15s;
   
+    /* ✅ 공백 제거 */
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  
     @include breakpoint($x-large) {
       max-width: $max-width;
     }
@@ -39,28 +43,21 @@
       width: calc(100% - #{$right-sidebar-width-narrow});
       padding-inline-end: $right-sidebar-width;
     }
-  
-    .page__inner-wrap {
-      float: inline-start;
-      margin-top: 0; /* ✅ margin-top 수정 (공백 제거) */
-      margin-inline: 0;
-      width: 100%;
-      clear: both;
-  
-      .page__content,
-      .page__meta,
-      .page__share {
-        position: relative;
-        float: inline-start;
-        margin-inline: 0;
-        width: 100%;
-        clear: both;
-      }
-    }
   }
   
+  /* ✅ 페이지 내부 정렬 최적화 */
+  .page__inner-wrap {
+    float: inline-start;
+    margin-top: 0 !important; /* ✅ 기존 여백 제거 */
+    padding-top: 0 !important;
+    width: 100%;
+    clear: both;
+  }
+  
+  /* ✅ 제목과 본문 간격 조정 */
   .page__title {
-    margin-top: 0;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
     line-height: 1;
   
     a {
@@ -73,9 +70,12 @@
     }
   }
   
+  /* ✅ 본문(content)와 네비게이션의 간격 조정 */
   .page__content {
-    margin-bottom: 0; /* ✅ 아래쪽 공백 제거 */
-    
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    margin-bottom: 0 !important;
+  
     h2 {
       padding-bottom: 0.5em;
       border-bottom: 1px solid $border-color;
@@ -112,17 +112,34 @@
     }
   }
   
+  /* ✅ 네비게이션 사이드바의 간격 조정 */
+  .sidebar {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+  
   /* ✅ 불필요한 여백 제거 */
   .page__meta,
   .page__comments,
   .page__related {
-    margin-bottom: 0; /* ✅ 아래쪽 여백 최소화 */
-    padding-bottom: 0; /* ✅ padding 제거 */
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  
+  /* ✅ taxonomy (카테고리 목록) 공백 조정 */
+  .taxonomy__index {
+    display: grid;
+    grid-column-gap: 2em;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 0 !important;
+    padding: 0;
+    font-size: 0.75em;
+    list-style: none;
   }
   
   .page__hero {
     position: relative;
-    margin-bottom: 1em; /* ✅ 기존 2em → 1em로 줄임 */
+    margin-bottom: 1em;
     @include clearfix;
     -webkit-animation: $intro-transition;
     animation: $intro-transition;
@@ -130,7 +147,7 @@
   
   /* ✅ 하단 taxonomy 공백 제거 */
   .taxonomy__section {
-    margin-bottom: 1em; /* ✅ 기존 2em → 1em */
+    margin-bottom: 1em;
     padding-bottom: 1em;
   
     &:not(:last-child) {
@@ -156,7 +173,7 @@
     display: grid;
     grid-column-gap: 2em;
     grid-template-columns: repeat(2, 1fr);
-    margin: 1em 0; /* ✅ 기존 1.414em → 1em */
+    margin: 1em 0;
     padding: 0;
     font-size: 0.75em;
     list-style: none;
@@ -184,13 +201,13 @@
     text-transform: uppercase;
     text-align: end;
     text-decoration: none;
-    margin-bottom: 0.5em; /* ✅ 기존보다 줄임 */
+    margin-bottom: 0.5em;
   }
   
   /* ✅ Related Posts 공백 제거 */
   .page__related {
     float: inline-start;
-    margin-top: 1em; /* ✅ 기존 2em → 1em */
+    margin-top: 1em;
     padding-top: 1em;
     border-top: 1px solid $border-color;
   }

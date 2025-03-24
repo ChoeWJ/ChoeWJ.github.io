@@ -18,7 +18,7 @@ layout: default
   {% endunless %}
 {% endif %}
 
-<div id="main" role="main">
+<div id="main" role="main" style="padding-top: 0 !important; margin-top: 0 !important;">
   {% include sidebar.html %}
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork"{% if page.locale %} lang="{{ page.locale }}"{% endif %}>
@@ -35,12 +35,12 @@ layout: default
       <meta itemprop="dateModified" content="{{ page.last_modified_at | date_to_xmlschema }}">
     {% endif %}
 
-    <div class="page__inner-wrap">
+    <div class="page__inner-wrap" style="padding-top: 0 !important; margin-top: 0 !important;">
       <!-- 페이지 상단 배너 -->
       {% unless page.header.overlay_color or page.header.overlay_image %}
         <header class="page__header">
           {% if page.title -%}
-          <h1 id="page-title" class="page__title" itemprop="headline">
+          <h1 id="page-title" class="page__title" itemprop="headline" style="padding-top: 0 !important; margin-top: 0 !important;">
             <a href="{{ page.url | absolute_url }}" itemprop="url">{{ page.title | markdownify | remove: "<p>" | remove: "</p>" }}</a>
           </h1>
           {%- endif %}
