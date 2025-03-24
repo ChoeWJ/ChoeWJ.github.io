@@ -7,8 +7,8 @@
       {% endif %}
     {% endfor %}
     
-    <span class="nav__sub-title" data-icon="📂" data-font-size="18px">
-      {{ category.title }} <span class="count">{{ category_count }}</span>
+    <span class="nav__sub-title" style="font-size: 18px; font-weight: bold;">
+      {{ category.title }} <span style="font-size: 14px; color: gray;">({{ category_count }})</span>
     </span> <!-- 메인 카테고리 -->
 
     <ul class="nav__items">
@@ -21,10 +21,10 @@
         {% endfor %}
 
         {% if item.subcategories %}
-          <li data-icon="📁" data-font-size="14px"> <!-- 이모지 & 폰트 크기 변경 가능 -->
+          <li>
             <strong>
-              {{ item.title }} <span class="count">{{ item_count }}</span>
-            </strong>
+              {{ item.title }} <span style="font-size: 12px; color: gray;">({{ item_count }})</span>
+            </strong> <!-- 서브 카테고리 -->
             <ul>
               {% for subitem in item.subcategories %}
                 {% assign subitem_count = 0 %}
@@ -33,18 +33,18 @@
                     {% assign subitem_count = subitem_count | plus: 1 %}
                   {% endif %}
                 {% endfor %}
-                <li data-icon="📄" data-font-size="12px">
-                  <a href="{{ subitem.url }}">
-                    {{ subitem.title }} <span class="count">{{ subitem_count }}</span>
+                <li>
+                  <a href="{{ subitem.url }}" style="font-size: 14px;">
+                    {{ subitem.title }} <span style="font-size: 12px; color: gray;">({{ subitem_count }})</span>
                   </a>
                 </li>
               {% endfor %}
             </ul>
           </li>
         {% else %}
-          <li data-icon="📌" data-font-size="14px">
-            <a href="{{ item.url }}">
-              {{ item.title }} <span class="count">{{ item_count }}</span>
+          <li>
+            <a href="{{ item.url }}" style="font-size: 12px;">
+              {{ item.title }} <span style="font-size: 12px; color: gray;">({{ item_count }})</span>
             </a>
           </li>
         {% endif %}

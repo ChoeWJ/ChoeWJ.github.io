@@ -465,6 +465,7 @@
       }
       
       /* ✅ 카테고리 구분선을 3/4 크기로 줄이기 */
+      /* ✅ 카테고리 제목을 구분하는 hr (길이 3/4 조정) */
       .nav__sub-title {
         display: block;
         margin: 0.5rem 0;
@@ -474,34 +475,46 @@
         font-weight: bold;
         text-transform: uppercase;
         border-bottom: 1px solid $border-color;
-        width: 75%; /* 기존보다 줄여서 3/4 크기로 설정 */
-        margin-left: auto;
-        margin-right: auto;
+        width: 75%; /* ✅ 3/4 크기로 조정 */
       }
-      
-      /* ✅ 서브 카테고리 앞에 칸 채우기 */
-      /* ✅ 이모지를 표시하도록 설정 */
-      .nav__items li,
-      .nav__sub-title {
+
+      /* ✅ 서브 카테고리 앞에 색상 블록 추가 */
+      .nav__items li a {
         position: relative;
-        padding-left: 1.5em; /* 들여쓰기 효과 */
+        padding-left: 1.2em; /* ✅ 글자 앞쪽에 공간 추가 */
+
+        &::before {
+          content: "";
+          position: absolute;
+          left: 0;
+          top: 50%;
+          width: 8px; /* ✅ 블록 크기 */
+          height: 8px;
+          background-color: $border-color; /* ✅ 색상 조정 */
+          transform: translateY(-50%);
+          border-radius: 2px; /* ✅ 약간 둥근 모서리 */
+        }
       }
 
-      /* ✅ 사용자 지정 이모지 적용 */
-      .nav__items li::before,
+      /* ✅ 메인 카테고리는 블록 추가 X */
       .nav__sub-title::before {
-        content: attr(data-icon); /* data-icon 속성 값 사용 */
-        color: inherit;
-        position: absolute;
-        left: 0;
-        font-size: 1rem; /* 기본 크기 */
-        margin-right: 0.5em;
+        content: none;
       }
 
-      /* ✅ 사용자 지정 폰트 크기 적용 */
-      .nav__items li,
-      .nav__sub-title {
-        font-size: attr(data-font-size, 16px); /* data-font-size 값 사용, 기본값 16px */
+      /* ✅ 서브 카테고리의 글자 크기와 간격 조정 */
+      .nav__items li {
+        font-size: 1rem;
+        padding-left: 1em; /* ✅ 서브 카테고리를 들여쓰기 */
+      }
+
+      /* ✅ 네비게이션 리스트 스타일 */
+      .nav__list {
+        margin-bottom: 1.5em;
+      }
+
+      /* ✅ 카테고리 그룹 간격 조정 */
+      .nav__list ul {
+        margin-bottom: 1em;
       }
   
   /*
