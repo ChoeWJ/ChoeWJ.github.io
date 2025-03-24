@@ -48,17 +48,17 @@
   /* ✅ 페이지 내부 정렬 최적화 */
   .page__inner-wrap {
     float: inline-start;
-    margin-top: 0 !important; /* ✅ 기존 여백 제거 */
-    padding-top: 0 !important;
+    margin-top: 50 !important; /* ✅ 기존 여백 제거 */
+    padding-top: 50 !important;
     width: 100%;
     clear: both;
   }
   
   /* ✅ 제목과 본문 간격 조정 */
   .page__title {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-    line-height: 1;
+    padding-top: 50 !important;
+    margin-bottom: 0.5em; /* ✅ 제목과 날짜 사이 여백 추가 */
+    line-height: 2; /* ✅ 줄 간격을 약간 늘림 */
   
     a {
       color: $text-color;
@@ -67,14 +67,16 @@
   
     & + .page__meta {
       margin-top: -0.5em;
+      margin-bottom: 0.8em;
     }
   }
   
   /* ✅ 본문(content)와 네비게이션의 간격 조정 */
   .page__content {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-    margin-bottom: 0 !important;
+    margin-top: 1em !important;
+    padding-top: 50 !important;
+    margin-bottom: 50 !important;
+    line-height: 1.5; /* ✅ 줄 간격을 약간 늘림 */
   
     h2 {
       padding-bottom: 0.5em;

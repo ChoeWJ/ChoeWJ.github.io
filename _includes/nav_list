@@ -8,7 +8,7 @@
     {% endfor %}
     
     <!-- ✅ 메인 카테고리 (타이틀과 URL 연결) -->
-    <span class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: {{ site.fonts.body | default: 'sans-serif' }};">
+    <span class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: {{ site.fonts.body | default: 'Jua' }};">
       <a href="/categories/#{{ category.title | slugify }}" style="text-decoration: none; color: inherit;">
         {{ category.title }}
       </a>
@@ -27,7 +27,7 @@
         {% if item.subcategories %}
           <li>
             <!-- ✅ 서브 카테고리 (타이틀과 URL 연결) -->
-            <strong style="font-size: 14px; font-family: {{ site.fonts.body | default: 'sans-serif' }};">
+            <strong style="font-size: 14px; font-family: {{ site.fonts.body | default: 'Jua' }};">
               <a href="/categories/#{{ item.title | slugify }}" style="text-decoration: none; color: inherit;">
                 {{ item.title }}
               </a>
@@ -43,7 +43,7 @@
                 {% endfor %}
                 <li>
                   <!-- ✅ 마지막 하위 카테고리 (URL 연결) -->
-                  <a href="/categories/#{{ subitem.title | slugify }}" style="font-size: 12px; font-family: {{ site.fonts.body | default: 'sans-serif' }}; text-decoration: none; color: inherit;">
+                  <a href="/categories/#{{ subitem.title | slugify }}" style="font-size: 12px; font-family: {{ site.fonts.body | default: 'Jua' }}; text-decoration: none; color: inherit;">
                     {{ subitem.title }}
                   </a>
                   <span style="font-size: 12px; color: gray;">{{ subitem_count }}</span>
@@ -54,7 +54,7 @@
         {% else %}
           <li>
             <!-- ✅ 서브 카테고리가 없는 카테고리 -->
-            <a href="/categories/#{{ item.title | slugify }}" style="font-size: 12px; font-family: {{ site.fonts.body | default: 'sans-serif' }}; text-decoration: none; color: inherit;">
+            <a href="/categories/#{{ item.title | slugify }}" style="font-size: 12px; font-family: {{ site.fonts.body | default: 'Jua' }}; text-decoration: none; color: inherit;">
               {{ item.title }}
             </a>
             <span style="font-size: 12px; color: gray;">{{ item_count }}</span>

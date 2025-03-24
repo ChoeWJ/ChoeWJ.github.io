@@ -339,6 +339,7 @@
   
        .nav__list {
         margin-bottom: 1.5em;
+        max-width: 270px;
       }
       
       /* ✅ 메인 카테고리 (대제목) 스타일 */
@@ -346,12 +347,11 @@
         display: block;
         margin: 0.5rem 0;
         padding: 0.5rem;
-        font-family: $sans-serif-narrow;
         font-size: $type-size-6;
         font-weight: bold;
         text-transform: uppercase;
         border-bottom: 1px solid $border-color;
-        width: 65%; /* ✅ 카테고리 구분선을 3/4 크기로 조정 */
+        width: 100%; /* ✅ 카테고리 구분선을 3/4 크기로 조정 */
         transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
       }
       
@@ -463,6 +463,7 @@
       /* ✅ 카테고리 그룹 간격 조정 */
       .nav__list ul {
         margin-bottom: 1em;
+        max-width: 200px;
       }
       
       /* ✅ 드롭다운 네비게이션 스타일 */
