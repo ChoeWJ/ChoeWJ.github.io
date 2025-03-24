@@ -10,24 +10,29 @@ main:
     url: /search/
 
 docs:
-  - title: "웹크롤링"
+  - title: "Web_Crawling"
     children:
-      - title: "Category"
-        url: /categories/#web_crawling
+      - title: "BeautifulSoup"
+        url: /docs/Web_Crawling/BeautifulSoup/
+      - title: "Selenium"
+        url: /docs/Web_Crawling/Selenium/
+
+  - title: "ML-DL"
+    children:
+      - title: "ML"
+        url: /docs/ML-DL/ML/
+      - title: "DL"
+        url: /docs/ML-DL/DL/
+
   - title: "SQL"
     children:
-      - title: "Category"
-        url: /categories/#web_crawling#sql
-      - title: "Category"
-        url: /categories/#web_crawling#db
-  - title: "ML/DL"
-    children:
-      - title: "Category"
-        url: /categories/#machine-learning
+      - title: "Selenium"
+        url: /docs/Web_Crawling/Selenium/
 
 counts:
   - title: "카테고리"
     use: true
+
   # - title: "About"
   #   url: https://mmistakes.github.io/minimal-mistakes/about/
   # - title: "Sample Posts"

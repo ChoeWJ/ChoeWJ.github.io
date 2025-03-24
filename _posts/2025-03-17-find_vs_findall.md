@@ -1,7 +1,10 @@
 ---
 layout: single
 title: "find() vs find_all()"
-categories: web_crawling
+categories:
+  - docs
+  - Web_Crawling
+  - BeautifulSoup
 tag: [python, automation, web_crawling]
 author_profile: false
 sidebar:

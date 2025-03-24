@@ -1,7 +1,10 @@
 ---
 layout: single
 title: "첫 머신러닝 모델"
-categories: machine_learning
+categories:
+  - docs
+  - ML-DL
+  - ML
 tag: [python, ML, Data]
 author_profile: false
 sidebar:
