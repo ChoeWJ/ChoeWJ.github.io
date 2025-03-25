@@ -17,6 +17,9 @@ use_math: true
 
 # 👑 Y Combinator Series A 펀딩 가이드 요약
 
+[원문버전 다운로드]({{site.url}}/assets/files/Y-Combinator-Series-A-en.pdf){: .btn .btn--success}
+[한글번역본 다운로드]({{site.url}}/assets/files/Y-Combinator-Series-A-ko.pdf){: .btn .btn--info}
+
 ## 🏆 주요 내용 요약
 
 ### 🥑 Series A 펀딩이란?
