@@ -43,6 +43,11 @@ docs:
       - title: "Widget"
         url: /docs/PySide6/Widget/
 
+  - title: "Others"
+    children:
+      - title: "others"
+        url: /docs/Others/others/
+
 counts:
   - title: "카테고리"
     use: true
