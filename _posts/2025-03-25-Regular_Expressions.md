@@ -17,6 +17,8 @@ use_math: true
 
 # 👑 정규표현식
 
+![정규표현식]({{site.url}}/images/2025-03-25-Regular_Expressions/regular_expression.png)
+
 ## 🍑 정규 표현식의 개요 및 활용 사례
 
 - 정규 표현식(Regular Expression, regex)은 특정한 패턴을 정의하여 문자열을 탐색, 검증, 추출 또는 변경할 때 사용되는 매우 강력한 도구
