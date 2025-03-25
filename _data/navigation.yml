@@ -10,6 +10,11 @@ main:
     url: /search/
 
 docs:
+  - title: "Python"
+    children:
+      - title: "Regular_Expression"
+        url: /docs/Python/Regular_Expression/
+
   - title: "Web_Crawling"
     children:
       - title: "BeautifulSoup"
