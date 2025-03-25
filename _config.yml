@@ -220,7 +220,7 @@ sass:
   style: compressed # https://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
 
 # Outputting
-permalink: /:categories/:title/
+permalink: /:categories-grid/:title/
 timezone: Asia/Seoul # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 # Pagination with jekyll-paginate
@@ -278,21 +278,21 @@ whitelist:
 #  - <base_path>/my-awesome-category/index.html ~> path: /
 category_archive:
   type: liquid
-  path: /categories/
+  path: /categories-grid/
 tag_archive:
   type: liquid
-  path: /tags/
+  path: /tags-grid/
 # https://github.com/jekyll/jekyll-archives
 jekyll-archives:
   enabled:
-    - categories
-    - tags
+    - categories-grid
+    - tags-grid
   layouts:
     category: archive-taxonomy
     tag: archive-taxonomy
   permalinks:
-    category: /categories/:name/
-    tag: /tags/:name/
+    category: /categories-grid/:name/
+    tag: /tags-grid/:name/
 
 # HTML Compression
 # - https://jch.penibelst.de/
