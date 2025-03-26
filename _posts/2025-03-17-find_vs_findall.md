@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "find() vs find_all()"
+title: "[웹 크롤링] find() vs find_all()"
 categories:
   - docs
   - Web_Crawling

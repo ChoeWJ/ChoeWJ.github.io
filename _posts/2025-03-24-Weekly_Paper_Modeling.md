@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "논리적 모델링"
+title: "[SQL] 논리적 모델링"
 categories:
   - docs
   - Weekly_Papers

@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "정규 표현식"
+title: "[Python] 정규 표현식"
 categories:
   - docs
   - Python

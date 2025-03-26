@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "PySide6 위젯 총정리"
+title: "[PySide6] 위젯 총정리"
 categories:
   - docs
   - PySide6

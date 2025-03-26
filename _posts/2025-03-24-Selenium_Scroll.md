@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "Selenium 스크롤 조작"
+title: "[웹 크롤링] Selenium 스크롤 조작"
 categories:
   - docs
   - Web_Crawling

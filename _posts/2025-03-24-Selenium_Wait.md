@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "Implicit Wait vs Explicit Wait"
+title: "[웹 크롤링] Implicit Wait vs Explicit Wait"
 categories:
   - docs
   - Web_Crawling

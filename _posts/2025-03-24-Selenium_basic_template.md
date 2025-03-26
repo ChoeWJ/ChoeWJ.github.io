@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "Selenium 기본 사용 템플릿"
+title: "[웹 크롤링] Selenium 기본 사용 템플릿"
 categories:
   - docs
   - Web_Crawling

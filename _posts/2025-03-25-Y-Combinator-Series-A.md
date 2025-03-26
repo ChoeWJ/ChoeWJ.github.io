@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "Y Combinator Series A 펀딩 가이드"
+title: "[프로덕트 데이터 분석] Y Combinator Series A 펀딩 가이드"
 categories:
   - docs
   - Others

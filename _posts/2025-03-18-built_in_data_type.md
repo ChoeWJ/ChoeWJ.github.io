@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "사이킷런의 내장데이터"
+title: "[Machine Learning] 사이킷런의 내장데이터"
 categories:
   - docs
   - ML-DL

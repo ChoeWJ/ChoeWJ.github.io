@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "첫 머신러닝 모델"
+title: "[Machine Learning] 첫 머신러닝 모델"
 categories:
   - docs
   - ML-DL

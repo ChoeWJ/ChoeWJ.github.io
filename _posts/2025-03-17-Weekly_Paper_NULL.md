@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "NULL"
+title: "[SQL] NULL"
 categories:
   - docs
   - Weekly_Papers

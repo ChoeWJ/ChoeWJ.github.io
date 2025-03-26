@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "웹 크롤링 시작하기"
+title: "[웹 크롤링] 웹 크롤링 시작하기"
 categories:
   - docs
   - Web_Crawling

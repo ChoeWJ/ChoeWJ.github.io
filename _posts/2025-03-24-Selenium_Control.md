@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "Selenium으로 브라우저 조작하기"
+title: "[웹 크롤링] Selenium으로 브라우저 조작하기"
 categories:
   - docs
   - Web_Crawling

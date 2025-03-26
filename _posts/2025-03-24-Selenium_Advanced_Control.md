@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "Selenium 입력 컨트롤"
+title: "[웹 크롤링] Selenium 입력 컨트롤"
 categories:
   - docs
   - Web_Crawling

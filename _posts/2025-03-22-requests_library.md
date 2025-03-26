@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "requests 라이브러리"
+title: "[웹 크롤링] requests 라이브러리"
 categories:
   - docs
   - Web_Crawling
