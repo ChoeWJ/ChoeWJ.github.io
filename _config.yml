@@ -291,8 +291,8 @@ jekyll-archives:
     category: archive-taxonomy
     tag: archive-taxonomy
   permalinks:
-    category: /categories-grid/:name/
-    tag: /tags-grid/:name/
+    category: /categories/:name/
+    tag: /tags/:name/
 
 # HTML Compression
 # - https://jch.penibelst.de/

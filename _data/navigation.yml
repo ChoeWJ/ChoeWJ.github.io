@@ -1,11 +1,11 @@
 # main links
 main:
   - title: "Category"
-    url: /categories-grid/
+    url: /categories/
   - title: "Tag"
-    url: /tags-grid/
+    url: /tags/
   - title: "By Year"
-    url: /year-archive-grid/
+    url: /year-archive/
   - title: "Search"
     url: /search/
 
@@ -42,6 +42,16 @@ docs:
     children:
       - title: "Widget"
         url: /docs/PySide6/Widget/
+
+  - title: "Statistics"
+    children:
+      - title: "For_Data"
+        url: /docs/Statistics/For_Data/
+
+  - title: "PM"
+    children:
+      - title: "Data_Literacy"
+        url: /docs/PM/Data_Literacy/
 
   - title: "Others"
     children:
