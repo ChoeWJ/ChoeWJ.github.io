@@ -37,6 +37,7 @@ layout: default
 
     <div class="page__inner-wrap" style="padding-top: 0 !important; margin-top: 0 !important;">
       <!-- 페이지 상단 배너 -->
+      {% include password-protect.html %}
       {% unless page.header.overlay_color or page.header.overlay_image %}
         <header class="page__header">
           {% if page.title -%}
@@ -47,7 +48,7 @@ layout: default
           {% include page__meta.html %}
         </header>
       {% endunless %}
-
+      
       <section class="page__content" itemprop="text">
         {% if page.toc %}
           <aside class="sidebar__right {% if page.toc_sticky %}sticky{% endif %}">
@@ -62,7 +63,7 @@ layout: default
             </nav>
           </aside>
         {% endif %}
-
+        
         {{ content }}
 
         {% if site.comments.provider and page.comments %}
