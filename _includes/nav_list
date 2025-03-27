@@ -6,14 +6,15 @@
         {% assign category_count = category_count | plus: 1 %}
       {% endif %}
     {% endfor %}
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-{{ category.title | slugify }}" class="nav__toggle">
     
-    <!-- ✅ 메인 카테고리 (타이틀과 URL 연결) -->
-    <span class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: {{ site.fonts.body | default: 'Jua' }};">
-      <a href="/categories/#{{ category.title | slugify }}" style="text-decoration: none; color: inherit;">
-        {{ category.title }}
-      </a>
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-{{ category.title | slugify }}" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: {{ site.fonts.body | default: 'Jua' }};">
+      {{ category.title }}
       <span style="font-size: 14px; color: gray;">{{ category_count }}</span>
-    </span>
+    </label>
 
     <ul class="nav__items">
       {% for item in category.children %}

@@ -63,6 +63,9 @@
     a {
       color: $text-color;
       text-decoration: none;
+      margin-left: auto;
+      margin-right: auto;
+      display: table;
     }
   
     & + .page__meta {
@@ -112,6 +115,53 @@
       background: $code-background-color;
       border-radius: $border-radius;
     }
+  
+    /* ✅ 테이블 스타일 추가 시작 */
+    /* ✅ 테이블 스타일 추가 시작 */
+    table {
+      width: auto; /* ✅ 부모 너비에 맞춰 자동 확장 */
+      max-width: 100%;
+      table-layout: fixed; /* ✅ 셀 너비 균등 배분 */
+      border-collapse: collapse;
+      margin: 1.5em 0;
+      background-color: #f5f8fa; /* 산뜻한 배경 (다크 모드 대비용) */
+      color: #333;
+      font-size: 0.95em;
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      margin-left: auto;
+      margin-right: auto;
+      display: table;
+    }
+
+    table thead {
+      background-color: #d4eaff; /* 헤더 강조 */
+      color: #003366;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    table th,
+    table td {
+      border: 1px solid #ccc;
+      padding: 0.75em 1em;
+      text-align: left;
+
+      /* ✅ 내용 넘칠 때 줄바꿈 처리 */
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      white-space: normal;
+    }
+
+    table tr:nth-child(even) {
+      background-color: #eef6fb; /* 짝수 행 줄무늬 효과 */
+    }
+
+    table tr:hover {
+      background-color: #d9f0ff; /* 호버 시 하이라이트 */
+    }
+    /* ✅ 테이블 스타일 추가 끝 */
+    /* ✅ 테이블 스타일 추가 끝 */
   }
   
   /* ✅ 네비게이션 사이드바의 간격 조정 */
