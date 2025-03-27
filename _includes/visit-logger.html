@@ -1,0 +1,56 @@
+<script>
+    (async () => {
+      try {
+        const page_path = window.location.pathname;
+        const page_title = "{{ page.title | escape }}";
+        const source = navigator.geolocation ? "GPS" : "IP";
+    
+        const sendLog = async (geo = {}, lat = null, lon = null) => {
+          const now = new Date();
+          const kst = new Date(now.getTime() + (9 * 60 * 60 * 1000));
+          const visited_at = kst.toISOString().slice(0, 19).replace("T", " ");
+    
+          await fetch("https://atbgxpqvgtqkguucaoeh.supabase.co/rest/v1/page_visits", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "apikey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF0Ymd4cHF2Z3Rxa2d1dWNhb2VoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMwNTUxNTIsImV4cCI6MjA1ODYzMTE1Mn0.F7L7WDpICjIOL2ZcBwekTgSuqlWjZTX6gEn4QvVjceE",
+              "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF0Ymd4cHF2Z3Rxa2d1dWNhb2VoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMwNTUxNTIsImV4cCI6MjA1ODYzMTE1Mn0.F7L7WDpICjIOL2ZcBwekTgSuqlWjZTX6gEn4QvVjceE",
+              "Prefer": "return=representation"
+            },
+            body: JSON.stringify({
+              visited_at,
+              page_path,
+              page_title,
+              ip: geo.ip || null,
+              country: geo.country || null,
+              city: geo.city || null,
+              timezone: geo.timezone || null,
+              latitude: lat,
+              longitude: lon,
+              location_source: source
+            })
+          });
+        };
+    
+        // 위치 우선 GPS → fallback: ipinfo
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            async (pos) => {
+              const info = await fetch("https://ipinfo.io/json?token=4c589a64d00b3c").then(res => res.json());
+              sendLog(info, pos.coords.latitude, pos.coords.longitude);
+            },
+            async () => {
+              const info = await fetch("https://ipinfo.io/json?token=4c589a64d00b3c").then(res => res.json());
+              sendLog(info, null, null);
+            }
+          );
+        } else {
+          const info = await fetch("https://ipinfo.io/json?token=4c589a64d00b3c").then(res => res.json());
+          sendLog(info, null, null);
+        }
+      } catch (err) {
+        console.warn("📄 방문 로그 기록 실패:", err);
+      }
+    })();
+    </script>
