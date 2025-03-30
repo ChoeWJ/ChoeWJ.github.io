@@ -37,6 +37,10 @@ docs:
             url: /docs/Weekly_Papers/SQL/Query/
           - title: "DB"
             url: /docs/Weekly_Papers/SQL/DB/
+      - title: "PM"
+        subcategories:
+          - title: "지표분석"
+            url: /docs/Weekly_Papers/SQL/Query/
 
   - title: "PySide6"
     children:

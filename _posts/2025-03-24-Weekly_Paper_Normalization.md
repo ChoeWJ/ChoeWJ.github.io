@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "[SQL] 데이터 베이스 정규화"
+title: "[위클리 페이퍼] 데이터 베이스 정규화"
 categories:
   - docs
   - Weekly_Papers

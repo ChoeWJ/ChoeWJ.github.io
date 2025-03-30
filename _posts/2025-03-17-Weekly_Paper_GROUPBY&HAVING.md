@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "[SQL] GROUP BY vs HAVING"
+title: "[위클리 페이퍼] GROUP BY vs HAVING"
 categories:
   - docs
   - Weekly_Papers
