@@ -21,7 +21,7 @@ use_math: true
 - AARRR 프레임워크는 사용자의 전환 여정을 총 5단계로 나누어, 각 단계에서의 행동과 성과를 분석함으로써 **제품 성장 전략**을 수립하는 데 활용되는 대표적인 퍼널 프레임워크
 - 이는 500 Startups의 Dave McClure가 제안한 것으로, <a style="color: tomato;">Acquisition</a> → <a style="color: tomato;">Activation</a> → <a style="color: tomato;">Retention</a> → <a style="color: tomato;">Revenue</a> → <a style="color: tomato;">Referral</a> 순으로 고객을 이해하고 최적화할 수 있게 해준다.
 
-## 🔹 전체 구조 요약
+## 🍓 전체 구조 요약
 
 | 단계                                      | 핵심 질문                                    | 주요 지표 (Metrics)                               |
 | ----------------------------------------- | -------------------------------------------- | ------------------------------------------------- |
