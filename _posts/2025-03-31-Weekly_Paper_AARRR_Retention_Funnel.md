@@ -31,7 +31,7 @@ use_math: true
 | <a style="color: tomato;">Revenue</a>     | 고객은 비용을 지불하고 있는가?               | ARPU, ARPPU, 전환율, 장바구니 이탈율              |
 | <a style="color: tomato;">Referral</a>    | 고객은 다른 사람에게 우리 제품을 소개하는가? | NPS, 추천 코드 사용률, Viral Coefficient          |
 
-## 🍓 Acquisition (획득)
+## 🍓 <a style="color: tomato;">Acquisition</a> (획득)
 
 - 사용자가 처음 제품 또는 서비스와 접점을 형성하는 단계
 - 이 과정은 **트래픽 유입 채널**과 **초기 인지**를 다루게 되는데, 유료 광고(Google Ads, Meta Ads), 오가닉 검색(SEO), 콘텐츠 마케팅, SNS, 파트너십 등 매우 다양하다.
@@ -76,7 +76,7 @@ plt.show()
 
 ![acquisition_channels]({{ site.url }}/images/graphs/acquisition_channels.png)
 
-## 🍓 Activation (활성화)
+## 🍓 <a style="color: tomato;">Activation</a> (활성화)
 
 - 사용자가 서비스를 처음 이용하고, 그 가치를 인식하는 첫 순간의 단계
 - 흔히 '아하 모먼트(Aha Moment)'라고 불리는 이 시점은 제품이 유저의 문제를 해결할 수 있음을 직관적으로 느끼게 하는 지점이고, 대표적인 지표로는 첫 방문 후 특정 액션 완료율(예: 가입 후 3일 내 3개 기능 사용), NPS, Onboarding Completion Rate 등이 있다.
@@ -94,7 +94,7 @@ plt.show()
 - 세션 길이 / 이벤트 수
 - 아하 모먼트 도달 시간
 
-## 🍓 Retention (유지)
+## 🍓 <a style="color: tomato;">Retention</a> (유지)
 
 - 리텐션은 고객이 지속적으로 제품을 사용하거나 서비스를 반복 이용하는 비율 일간/주간/월간 리텐션(D1, D7, D30 Retention Rate)을 통해 초기 이탈율을 확인하고, 장기 고객 확보 가능성을 평가할 수 있다.
 - 리텐션은 LTV와 직결되며 제품 지속 가능성을 판단하는 핵심 지표
@@ -138,7 +138,7 @@ plt.show()
 
 ![cohort_retention]({{ site.url }}/images/graphs/cohort_retention.png)
 
-## 🍓 Revenue (수익 창출)
+## 🍓 <a style="color: tomato;">Revenue</a> (수익 창출)
 
 - 이 단계는 사용자가 실제로 제품에 대해 비용을 지불하기 시작하는 시점으로 이익 중심의 단계이며, 지속적인 수익 모델이 매우 중요
 - 유료 전환율, ARPU(Average Revenue Per User), ARPPU(Average Revenue Per Paying User), Conversion Rate, 장바구니 이탈율 등 수익과 직결되는 정량적 지표들이 포함된다.
@@ -152,7 +152,7 @@ plt.show()
 - 장바구니 이탈률
 - 업셀링 / 재구매율
 
-## 🍓 Referral (추천)
+## 🍓 <a style="color: tomato;">Referral</a> (추천)
 
 - 기존 고객이 새로운 고객을 자발적으로 유치하는 단계로, 제품의 바이럴 루프 형성 여부를 확인할 수 있다.
 - 지표로는 Viral Coefficient, Invite Conversion Rate, Net Promoter Score(NPS) 등이 있다.
