@@ -10,6 +10,17 @@ main:
     url: /search/
 
 docs:
+  - title: "FSDE"
+    children:
+      - title: "Data"
+        url: /docs/FSDE/Data/
+      - title: "Front"
+        url: /docs/FSDE/Front/
+      - title: "Back"
+        url: /docs/FSDE/Back/
+      - title: "Hack"
+        url: /docs/FSDE/Hack/
+
   - title: "Python"
     children:
       - title: "Regular_Expression"
