@@ -5,7 +5,7 @@ categories:
   - docs
   - Statistics
   - For_Data
-tag: [python, Statistics, Selenium]
+tag: [python, Statistics]
 author_profile: false
 sidebar:
   nav: "counts"
@@ -25,75 +25,74 @@ use_math: true
 - 측정하는 한 가지 방법은 편차들의 대표값을 추정하는 것
 - 편차 자체의 평균을 구하는 것은 바람직하지 않지만 간단하게 해결하는 방법으로는 <font color='skyblue'>평균절대 편차</font>를 구하는 것이다.
 - <font color='skyblue'>평균절대 편차</font>
+- $\$MAD = \frac{1}{n} \sum\_{i=1}^{n} \|x_i - \bar{x}\|$\$
 
-  $$\text{MAD} = \frac{1}{n} \sum_{i=1}^{n} |x_i - \bar{x}|$$
+- Python
+  ```python
+  def mean_absolute_deviation(data):
+      n = len(data)
+      mean = sum(data) / n  # 평균 계산
+      mad = sum(abs(x - mean) for x in data) / n  # 평균절대편차 계산
+      return mad
+  ```
+- Numpy
 
-  - Python
-    ```python
-    def mean_absolute_deviation(data):
-        n = len(data)
-        mean = sum(data) / n  # 평균 계산
-        mad = sum(abs(x - mean) for x in data) / n  # 평균절대편차 계산
-        return mad
-    ```
-  - Numpy
+  ```python
+  import numpy as np
 
-    ```python
-    import numpy as np
-
-    def mean_absolute_deviation_numpy(data):
-        return np.mean(np.abs(data - np.mean(data)))
-    ```
+  def mean_absolute_deviation_numpy(data):
+      return np.mean(np.abs(data - np.mean(data)))
+  ```
 
 - 가장 유명한 변이 추정 방법은 <font color='skyblue'>분산</font>과 <font color='skyblue'>표준편차</font>를 이용하는 것이다.
 - <font color='skyblue'>표본 분산</font>
 
-  $$s^2 = \frac{1}{n-1} \sum_{i=1}^{n} (x_i - \bar{x})^2$$
+$\$s^2 = \frac{1}{n-1} \sum_{i=1}^{n} (x_i - \bar{x})^2$\$
 
-  - python
-    ```python
-    def variance(data):
-        n = len(data)
-        if n < 2:
-            return 0  # 표본 분산은 n-1로 나누므로 n이 1 이하면 0 반환
-        mean = sum(data) / n
-        variance = sum((x - mean)  2 for x in data) / (n - 1)
-        return variance
-    ```
-  - Numpy
+- python
+  ```python
+  def variance(data):
+      n = len(data)
+      if n < 2:
+          return 0  # 표본 분산은 n-1로 나누므로 n이 1 이하면 0 반환
+      mean = sum(data) / n
+      variance = sum((x - mean)  2 for x in data) / (n - 1)
+      return variance
+  ```
+- Numpy
 
-    ```python
-    import numpy as np
+  ```python
+  import numpy as np
 
-    data = np.array([1, 2, 3, 4, 5])
-    var = np.var(data, ddof=1)  # ddof=1로 표본 분산 계산
-    print(f"Variance: {var}")
-    ```
+  data = np.array([1, 2, 3, 4, 5])
+  var = np.var(data, ddof=1)  # ddof=1로 표본 분산 계산
+  print(f"Variance: {var}")
+  ```
 
 - <font color='skyblue'>표본 표준편차</font>
 
-  $$s = \sqrt{\frac{1}{n-1} \sum_{i=1}^{n} (x_i - \bar{x})^2}$$
+$\$s = \sqrt{\frac{1}{n-1} \sum_{i=1}^{n} (x_i - \bar{x})^2}$\$
 
-  - python
-    ```python
-    def standard_deviation(data):
-        n = len(data)
-        if n < 2:
-            return 0
-        mean = sum(data) / n
-        variance = sum((x - mean)  2 for x in data) / (n - 1)
-        std_dev = variance  0.5  # 제곱근
-        return std_dev
-    ```
-  - Numpy
+- python
+  ```python
+  def standard_deviation(data):
+      n = len(data)
+      if n < 2:
+          return 0
+      mean = sum(data) / n
+      variance = sum((x - mean)  2 for x in data) / (n - 1)
+      std_dev = variance  0.5  # 제곱근
+      return std_dev
+  ```
+- Numpy
 
-    ```python
-    import numpy as np
+  ```python
+  import numpy as np
 
-    data = np.array([1, 2, 3, 4, 5])
-    std = np.std(data, ddof=1)  # ddof=1로 표본 표준편차 계산
-    print(f"Standard Deviation: {std}")
-    ```
+  data = np.array([1, 2, 3, 4, 5])
+  std = np.std(data, ddof=1)  # ddof=1로 표본 표준편차 계산
+  print(f"Standard Deviation: {std}")
+  ```
 
 분모가 $n$이 아니라 $n-1$인 이유?
 => [자유도 개념 알아보러 가기](https://choewj.github.io/docs/statistics/for_data-grid/degrees_of_freedom/){: .btn .btn--primary}
