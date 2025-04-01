@@ -101,7 +101,7 @@ use_math: true
     ```
 
 분모가 $n$이 아니라 $n-1$인 이유?
-=> [자유도 개념 알아보러 가기](){: .btn .btn--primary}
+=> [자유도 개념 알아보러 가기](https://choewj.github.io/docs/statistics/for_data-grid/degrees_of_freedom/){: .btn .btn--primary}
 {: .text-center}
 
 ## 사분위범위 (IQR)
