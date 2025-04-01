@@ -2,21 +2,16 @@
 layout: single
 title: "[데이터 분석을 위한 통계학] 변이(valiablity) 추정"
 categories:
-
-- docs
-- Statistics
-- For_Data
-  tag: [python, Statistics, Selenium]
-  author_profile: false
-  sidebar:
+  - docs
+  - Statistics
+  - For_Data
+tag: [python, Statistics, Selenium]
+author_profile: false
+sidebar:
   nav: "counts"
-
 # search: false
-
 # redirect_from:
-
-# - /coding/first-posting
-
+#   - /coding/first-posting
 use_math: true
 ---
 
