@@ -3,8 +3,8 @@ layout: single
 title: "[웹 보안 기초] SQL Injection 이해와 방어 기법"
 categories:
   - docs
-  - FSDE
-  - Hack
+  - Security
+  - Security
 tag: [Web Security, SQL Injection, OWASP, Database Security]
 author_profile: false
 sidebar:

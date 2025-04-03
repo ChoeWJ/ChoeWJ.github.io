@@ -3,8 +3,8 @@ layout: single
 title: "[웹 보안 기초] OWASP Top 10과 주요 취약점 이해하기"
 categories:
   - docs
-  - FSDE
-  - Hack
+  - Security
+  - Security
 tag: [Web Security, OWASP, SQL Injection, XSS]
 author_profile: false
 sidebar:

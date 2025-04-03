@@ -3,9 +3,8 @@ layout: single
 title: "[위클리 페이퍼] GROUP BY vs HAVING"
 categories:
   - docs
-  - Weekly_Papers
   - SQL
-  - Query
+  - Basic
 tag: [DB, SQL, weekly_paper]
 author_profile: false
 sidebar:

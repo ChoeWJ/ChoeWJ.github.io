@@ -3,7 +3,7 @@ layout: single
 title: "[데이터 과학 기초] Python 제어문과 반복문"
 categories:
   - docs
-  - Data_Science
+  - Data
   - Python
 tag: [Python, Data Analysis]
 author_profile: false

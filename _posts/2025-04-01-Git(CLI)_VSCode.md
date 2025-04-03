@@ -3,8 +3,8 @@ layout: single
 title: "[버전 관리 기초] Git과 VSCode로 협업과 코드 관리 시작하기"
 categories:
   - docs
-  - FSDE
-  - Back
+  - Git
+  - Git
 tag: [Git, VSCode, Version Control, Collaboration]
 author_profile: false
 sidebar:

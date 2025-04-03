@@ -3,8 +3,8 @@ layout: single
 title: "[데이터 과학 기초] Python과 Jupyter Notebook으로 시작하는 데이터 분석 환경 구축"
 categories:
   - docs
-  - Data_Science
   - Python
+  - Basic
 tag: [Python, Jupyter Notebook, Anaconda, Data Analysis]
 author_profile: false
 sidebar:

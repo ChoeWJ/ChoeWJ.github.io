@@ -3,9 +3,9 @@ layout: single
 title: "[프로덕트 데이터 분석] Y Combinator Series A 펀딩 가이드"
 categories:
   - docs
-  - Others
-  - others
-tag: [others]
+  - PM
+  - Product_Data
+tag: [PM, PO, Product_Data]
 author_profile: false
 sidebar:
   nav: "counts"

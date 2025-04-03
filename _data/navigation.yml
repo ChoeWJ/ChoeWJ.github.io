@@ -10,21 +10,42 @@ main:
     url: /search/
 
 docs:
-  - title: "FSDE"
-    children:
-      - title: "Data"
-        url: /docs/FSDE/Data/
-      - title: "Front"
-        url: /docs/FSDE/Front/
-      - title: "Back"
-        url: /docs/FSDE/Back/
-      - title: "Hack"
-        url: /docs/FSDE/Hack/
-
   - title: "Python"
     children:
+      - title: "Basic"
+        url: /docs/Python/Basic/
+      - title: "Data"
+        url: /docs/Python/Data/
       - title: "Regular_Expression"
         url: /docs/Python/Regular_Expression/
+
+  - title: "SQL"
+    children:
+      - title: "Basic"
+        url: /docs/SQL/Basic/
+      - title: "Advanced"
+        url: /docs/SQL/Advanced/
+      - title: "Learning_SQL"
+        url: /docs/SQL/Learning_SQL/
+
+  - title: "Front"
+    children:
+      - title: "HTML_CSS"
+        url: /docs/Front/HTML_CSS/
+
+  - title: "Back"
+    children:
+      - title: "Rust"
+        url: /docs/Back/Rust/
+      - title: "JAVA"
+        url: /docs/Back/JAVA/
+      - title: "JavaScript"
+        url: /docs/Back/JavaScript/
+
+  - title: "Security"
+    children:
+      - title: "Security"
+        url: /docs/Security/Security/
 
   - title: "Web_Crawling"
     children:
@@ -40,19 +61,6 @@ docs:
       - title: "DL"
         url: /docs/ML-DL/DL/
 
-  - title: "Weekly_Papers"
-    children:
-      - title: "SQL"
-        subcategories:
-          - title: "Query"
-            url: /docs/Weekly_Papers/SQL/Query/
-          - title: "DB"
-            url: /docs/Weekly_Papers/SQL/DB/
-      - title: "PM"
-        subcategories:
-          - title: "지표분석"
-            url: /docs/Weekly_Papers/SQL/Query/
-
   - title: "PySide6"
     children:
       - title: "Widget"
@@ -67,11 +75,13 @@ docs:
     children:
       - title: "Data_Literacy"
         url: /docs/PM/Data_Literacy/
+      - title: "Product_Data"
+        url: /docs/PM/Product_Data/
 
-  - title: "Others"
+  - title: "Git"
     children:
-      - title: "others"
-        url: /docs/Others/others/
+      - title: "Git"
+        url: /docs/Git/Git/
 
 counts:
   - title: "카테고리"
