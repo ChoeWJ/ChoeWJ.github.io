@@ -19,7 +19,7 @@ use_math: true
 
 ## 🍑 기본 설정
 
-[라이브러리 자세히 알아보기](https://choewj.github.io/web_crawling/Selenium_basic_template/){: .btn .btn--danger} ☜☜☜ 사용된 라이브러리가 궁금하다면!!!
+[라이브러리 자세히 알아보기](https://choewj.github.io/docs/web_crawling/selenium-grid/Selenium_basic_template/){: .btn .btn--danger} ☜☜☜ 사용된 라이브러리가 궁금하다면!!!
 
 ```python
 import time
