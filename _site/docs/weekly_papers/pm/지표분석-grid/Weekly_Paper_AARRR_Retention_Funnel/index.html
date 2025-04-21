@@ -1,0 +1,1430 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="ko-KR" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[위클리 페이퍼] AARRR 프레임워크와 Retention 그리고 Funnel | DeVlog</title>
+<meta name="description" content="👑 AARRR 프레임워크와 리텐션, 퍼널 분석">
+
+
+  <meta name="author" content="ChoeWJ">
+  
+  <meta property="article:author" content="ChoeWJ">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="DeVlog">
+<meta property="og:title" content="[위클리 페이퍼] AARRR 프레임워크와 Retention 그리고 Funnel">
+<meta property="og:url" content="http://localhost:4000/docs/weekly_papers/pm/%EC%A7%80%ED%91%9C%EB%B6%84%EC%84%9D-grid/Weekly_Paper_AARRR_Retention_Funnel/">
+
+
+  <meta property="og:description" content="👑 AARRR 프레임워크와 리텐션, 퍼널 분석">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2025-03-31T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/docs/weekly_papers/pm/%EC%A7%80%ED%91%9C%EB%B6%84%EC%84%9D-grid/Weekly_Paper_AARRR_Retention_Funnel/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="DeVlog Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  window.enable_copy_code_button = true;
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+
+
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        TeX: {
+          equationNumbers: {
+            autoNumber: "AMS"
+          }
+        },
+        tex2jax: {
+        inlineMath: [ ['$', '$'] ],
+        displayMath: [ ['$$', '$$'] ],
+        processEscapes: true,
+      }
+    });
+    MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+          alert("Math Processing Error: "+message[1]);
+        });
+    MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+          alert("Math Processing Error: "+message[1]);
+        });
+    </script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7766483371449117" crossorigin="anonymous"></script>
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single" dir="ltr">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/images/logo.jpg" alt="DeVlog"></a>
+        
+        <a class="site-title" href="/">
+          DeVlog
+          <span class="site-subtitle">Leisurely but efficiently</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/categories/"
+                
+                
+              >Category</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/tags/"
+                
+                
+              >Tag</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/year-archive/"
+                
+                
+              >By Year</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/search/"
+                
+                
+              >Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories-grid/#docs" itemprop="item"><span itemprop="name">Docs</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories-grid/#weekly_papers" itemprop="item"><span itemprop="name">Weekly_papers</span></a>
+          <meta itemprop="position" content="3" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories-grid/#pm" itemprop="item"><span itemprop="name">Pm</span></a>
+          <meta itemprop="position" content="4" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories-grid/#%EC%A7%80%ED%91%9C%EB%B6%84%EC%84%9D-grid" itemprop="item"><span itemprop="name">지표분석 grid</span></a>
+          <meta itemprop="position" content="5" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[위클리 페이퍼] AARRR 프레임워크와 Retention 그리고 Funnel</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main" style="padding-top: 0 !important; margin-top: 0 !important;">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      <nav class="nav__list">
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-python" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-python" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Python
+      <span style="font-size: 14px; color: gray;">5</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#basic" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Basic
+            </a>
+            <span style="font-size: 12px; color: gray;">6</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#data" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Data
+            </a>
+            <span style="font-size: 12px; color: gray;">2</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#regular-expression" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Regular_Expression
+            </a>
+            <span style="font-size: 12px; color: gray;">1</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-sql" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-sql" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      SQL
+      <span style="font-size: 14px; color: gray;">10</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#basic" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Basic
+            </a>
+            <span style="font-size: 12px; color: gray;">6</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#advanced" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Advanced
+            </a>
+            <span style="font-size: 12px; color: gray;">1</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#learning-sql" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Learning_SQL
+            </a>
+            <span style="font-size: 12px; color: gray;">5</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-front" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-front" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Front
+      <span style="font-size: 14px; color: gray;">1</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#html-css" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              HTML_CSS
+            </a>
+            <span style="font-size: 12px; color: gray;">1</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-back" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-back" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Back
+      <span style="font-size: 14px; color: gray;">0</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#rust" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Rust
+            </a>
+            <span style="font-size: 12px; color: gray;">0</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#java" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              JAVA
+            </a>
+            <span style="font-size: 12px; color: gray;">0</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#javascript" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              JavaScript
+            </a>
+            <span style="font-size: 12px; color: gray;">0</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-security" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-security" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Security
+      <span style="font-size: 14px; color: gray;">2</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#security" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Security
+            </a>
+            <span style="font-size: 12px; color: gray;">2</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-web-crawling" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-web-crawling" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Web_Crawling
+      <span style="font-size: 14px; color: gray;">11</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#beautifulsoup" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              BeautifulSoup
+            </a>
+            <span style="font-size: 12px; color: gray;">4</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#selenium" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Selenium
+            </a>
+            <span style="font-size: 12px; color: gray;">7</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-ml-dl" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-ml-dl" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      ML-DL
+      <span style="font-size: 14px; color: gray;">2</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#ml" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              ML
+            </a>
+            <span style="font-size: 12px; color: gray;">2</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#dl" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              DL
+            </a>
+            <span style="font-size: 12px; color: gray;">0</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-pyside6" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-pyside6" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      PySide6
+      <span style="font-size: 14px; color: gray;">1</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#widget" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Widget
+            </a>
+            <span style="font-size: 12px; color: gray;">1</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-statistics" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-statistics" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Statistics
+      <span style="font-size: 14px; color: gray;">3</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#for-data" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              For_Data
+            </a>
+            <span style="font-size: 12px; color: gray;">3</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-pm" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-pm" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      PM
+      <span style="font-size: 14px; color: gray;">31</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#data-literacy" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Data_Literacy
+            </a>
+            <span style="font-size: 12px; color: gray;">25</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#product-data" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Product_Data
+            </a>
+            <span style="font-size: 12px; color: gray;">1</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-git" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-git" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Git
+      <span style="font-size: 14px; color: gray;">2</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#git" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Git
+            </a>
+            <span style="font-size: 12px; color: gray;">2</span>
+          </li>
+        
+      
+    </ul>
+  
+</nav>
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <meta itemprop="headline" content="[위클리 페이퍼] AARRR 프레임워크와 Retention 그리고 Funnel">
+    
+    
+      <meta itemprop="description" content="👑 AARRR 프레임워크와 리텐션, 퍼널 분석">
+    
+    
+      <meta itemprop="datePublished" content="2025-03-31T00:00:00+09:00">
+    
+    
+
+    <div class="page__inner-wrap" style="padding-top: 0 !important; margin-top: 0 !important;">
+      <!-- 페이지 상단 배너 -->
+      
+
+
+      
+        <header class="page__header">
+          <h1 id="page-title" class="page__title" itemprop="headline" style="padding-top: 0 !important; margin-top: 0 !important;">
+            <a href="http://localhost:4000/docs/weekly_papers/pm/%EC%A7%80%ED%91%9C%EB%B6%84%EC%84%9D-grid/Weekly_Paper_AARRR_Retention_Funnel/" itemprop="url">[위클리 페이퍼] AARRR 프레임워크와 Retention 그리고 Funnel
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-03-31T00:00:00+09:00">2025-03-31</time>
+      </span>
+    
+
+    <!-- <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 분 소요
+        
+      </span>
+     -->
+  </p>
+
+
+        </header>
+      
+      
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header>
+                <h4 class="nav__title">
+                  <i class="fas fa-fa-solid fa-hexagon-nodes"></i> 
+                  목차
+                </h4>
+              </header>
+              <ul class="toc__menu"><li><a href="#-aarrr-프레임워크와-리텐션-퍼널-분석">👑 AARRR 프레임워크와 리텐션, 퍼널 분석</a><ul><li><a href="#-전체-구조-요약">🍓 전체 구조 요약</a></li><li><a href="#-acquisition-획득">🍓 Acquisition (획득)</a><ul><li><a href="#-주요-채널-예시">🍑 주요 채널 예시</a></li><li><a href="#-핵심-지표">🍑 핵심 지표</a></li><li><a href="#-방문당-페이지-뷰--체류-시간-예시">🍑 방문당 페이지 뷰 / 체류 시간 (예시)</a></li></ul></li><li><a href="#-activation-활성화">🍓 Activation (활성화)</a><ul><li><a href="#-예시">🍑 예시</a></li><li><a href="#-측정-지표">🍑 측정 지표</a></li></ul></li><li><a href="#-retention-유지">🍓 Retention (유지)</a><ul><li><a href="#-리텐션-유형">🍑 리텐션 유형</a></li><li><a href="#-리텐션-분석-시각화-예-코호트별-리텐션-그래프">🍑 리텐션 분석 시각화 예: 코호트별 리텐션 그래프</a></li></ul></li><li><a href="#-revenue-수익-창출">🍓 Revenue (수익 창출)</a><ul><li><a href="#-수익-관련-지표">🍑 수익 관련 지표</a></li></ul></li><li><a href="#-referral-추천">🍓 Referral (추천)</a><ul><li><a href="#-추천-지표">🍑 추천 지표</a></li><li><a href="#-추천-유도-전략">🍑 추천 유도 전략</a></li></ul></li><li><a href="#-퍼널funnel-분석과의-연관성">🍓 퍼널(Funnel) 분석과의 연관성</a><ul><li><a href="#-예시-퍼널-흐름">🍑 예시 퍼널 흐름:</a></li></ul></li></ul></li></ul>
+            </nav>
+          </aside>
+        
+        
+        <h1 id="-aarrr-프레임워크와-리텐션-퍼널-분석">👑 AARRR 프레임워크와 리텐션, 퍼널 분석</h1>
+
+<ul>
+  <li>AARRR 프레임워크는 사용자의 전환 여정을 총 5단계로 나누어, 각 단계에서의 행동과 성과를 분석함으로써 <strong>제품 성장 전략</strong>을 수립하는 데 활용되는 대표적인 퍼널 프레임워크</li>
+  <li>이는 500 Startups의 Dave McClure가 제안한 것으로, <a style="color: tomato;">Acquisition</a> → <a style="color: tomato;">Activation</a> → <a style="color: tomato;">Retention</a> → <a style="color: tomato;">Revenue</a> → <a style="color: tomato;">Referral</a> 순으로 고객을 이해하고 최적화할 수 있게 해준다.</li>
+</ul>
+
+<h2 id="-전체-구조-요약">🍓 전체 구조 요약</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>단계</th>
+      <th>핵심 질문</th>
+      <th>주요 지표 (Metrics)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a style="color: tomato;">Acquisition</a></td>
+      <td>고객은 어떻게 우리 서비스를 알게 되었는가?</td>
+      <td>유입 수, CTR, CAC, 유입 경로별 전환율</td>
+    </tr>
+    <tr>
+      <td><a style="color: tomato;">Activation</a></td>
+      <td>고객은 제품의 가치를 처음으로 경험했는가?</td>
+      <td>온보딩 완료율, 첫 기능 사용률, 아하 모먼트 도달률</td>
+    </tr>
+    <tr>
+      <td><a style="color: tomato;">Retention</a></td>
+      <td>고객은 지속적으로 우리 제품을 사용하는가?</td>
+      <td>D1/D7/D30 리텐션, 재방문률, 세션 빈도</td>
+    </tr>
+    <tr>
+      <td><a style="color: tomato;">Revenue</a></td>
+      <td>고객은 비용을 지불하고 있는가?</td>
+      <td>ARPU, ARPPU, 전환율, 장바구니 이탈율</td>
+    </tr>
+    <tr>
+      <td><a style="color: tomato;">Referral</a></td>
+      <td>고객은 다른 사람에게 우리 제품을 소개하는가?</td>
+      <td>NPS, 추천 코드 사용률, Viral Coefficient</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-acquisition-획득">🍓 <a style="color: tomato;">Acquisition</a> (획득)</h2>
+
+<ul>
+  <li>사용자가 처음 제품 또는 서비스와 접점을 형성하는 단계</li>
+  <li>이 과정은 <strong>트래픽 유입 채널</strong>과 <strong>초기 인지</strong>를 다루게 되는데, 유료 광고(Google Ads, Meta Ads), 오가닉 검색(SEO), 콘텐츠 마케팅, SNS, 파트너십 등 매우 다양하다.</li>
+  <li>이 단계의 주요 KPI는 CTR(Click Through Rate), CAC(Customer Acquisition Cost), CPA(Cost per Action), 유입 채널별 전환율 등이다.</li>
+</ul>
+
+<h3 id="-주요-채널-예시">🍑 주요 채널 예시</h3>
+
+<ul>
+  <li>유료 광고(Google Ads, Meta Ads)</li>
+  <li>오가닉 검색(SEO)</li>
+  <li>콘텐츠 마케팅 및 SNS 유입</li>
+  <li>파트너 제휴 또는 이벤트 유입</li>
+</ul>
+
+<h3 id="-핵심-지표">🍑 핵심 지표</h3>
+
+<ul>
+  <li>CAC (Customer Acquisition Cost)</li>
+  <li>CPA (Cost per Action)</li>
+  <li>CTR (Click Through Rate)</li>
+</ul>
+
+<h3 id="-방문당-페이지-뷰--체류-시간-예시">🍑 방문당 페이지 뷰 / 체류 시간 (예시)</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="n">seaborn</span> <span class="k">as</span> <span class="n">sns</span>
+<span class="kn">import</span> <span class="n">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+
+<span class="c1"># 데이터 정의
+</span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="sh">'</span><span class="s">Channel</span><span class="sh">'</span><span class="p">:</span> <span class="p">[</span><span class="sh">'</span><span class="s">Organic Search</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Paid Ads</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Social Media</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Referral</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Email</span><span class="sh">'</span><span class="p">],</span>
+    <span class="sh">'</span><span class="s">Users</span><span class="sh">'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1200</span><span class="p">,</span> <span class="mi">800</span><span class="p">,</span> <span class="mi">650</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">450</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nc">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># 그래프 스타일 설정
+</span><span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">sns</span><span class="p">.</span><span class="nf">barplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="sh">'</span><span class="s">Channel</span><span class="sh">'</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="sh">'</span><span class="s">Users</span><span class="sh">'</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="sh">'</span><span class="s">pastel</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">title</span><span class="p">(</span><span class="sh">'</span><span class="s">User Acquisition by Channel</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">xlabel</span><span class="p">(</span><span class="sh">'</span><span class="s">Number of Users</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">ylabel</span><span class="p">(</span><span class="sh">'</span><span class="s">Channel</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="http://localhost:4000/images/graphs/acquisition_channels.png" alt="acquisition_channels" /></p>
+
+<h2 id="-activation-활성화">🍓 <a style="color: tomato;">Activation</a> (활성화)</h2>
+
+<ul>
+  <li>사용자가 서비스를 처음 이용하고, 그 가치를 인식하는 첫 순간의 단계</li>
+  <li>흔히 ‘아하 모먼트(Aha Moment)’라고 불리는 이 시점은 제품이 유저의 문제를 해결할 수 있음을 직관적으로 느끼게 하는 지점이고, 대표적인 지표로는 첫 방문 후 특정 액션 완료율(예: 가입 후 3일 내 3개 기능 사용), NPS, Onboarding Completion Rate 등이 있다.</li>
+</ul>
+
+<h3 id="-예시">🍑 예시</h3>
+
+<ul>
+  <li>페이스북: 가입 후 10일 이내 7명 친구 추가</li>
+  <li>드롭박스: 첫 파일 업로드 시점</li>
+  <li>슬랙: 첫 대화 생성</li>
+</ul>
+
+<h3 id="-측정-지표">🍑 측정 지표</h3>
+
+<ul>
+  <li>온보딩 완료율</li>
+  <li>제품 주요 기능 사용률</li>
+  <li>세션 길이 / 이벤트 수</li>
+  <li>아하 모먼트 도달 시간</li>
+</ul>
+
+<h2 id="-retention-유지">🍓 <a style="color: tomato;">Retention</a> (유지)</h2>
+
+<ul>
+  <li>리텐션은 고객이 지속적으로 제품을 사용하거나 서비스를 반복 이용하는 비율 일간/주간/월간 리텐션(D1, D7, D30 Retention Rate)을 통해 초기 이탈율을 확인하고, 장기 고객 확보 가능성을 평가할 수 있다.</li>
+  <li>리텐션은 LTV와 직결되며 제품 지속 가능성을 판단하는 핵심 지표</li>
+</ul>
+
+<h3 id="-리텐션-유형">🍑 리텐션 유형</h3>
+
+<ul>
+  <li>D1 / D7 / D30 Retention Rate (일간, 주간, 월간)</li>
+  <li>Cohort Retention (코호트별 리텐션 비교)</li>
+  <li>Session Frequency (주당 평균 사용 세션)</li>
+</ul>
+
+<h3 id="-리텐션-분석-시각화-예-코호트별-리텐션-그래프">🍑 리텐션 분석 시각화 예: 코호트별 리텐션 그래프</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="n">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+
+<span class="c1"># 리텐션 데이터 정의
+</span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="sh">'</span><span class="s">Cohort</span><span class="sh">'</span><span class="p">:</span> <span class="p">[</span><span class="sh">'</span><span class="s">Cohort 1</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Cohort 2</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Cohort 3</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Cohort 4</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Cohort 5</span><span class="sh">'</span><span class="p">],</span>
+    <span class="sh">'</span><span class="s">Day 1</span><span class="sh">'</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">85</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span>
+    <span class="sh">'</span><span class="s">Day 7</span><span class="sh">'</span><span class="p">:</span> <span class="p">[</span><span class="mi">90</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">40</span><span class="p">],</span>
+    <span class="sh">'</span><span class="s">Day 14</span><span class="sh">'</span><span class="p">:</span> <span class="p">[</span><span class="mi">80</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span>
+    <span class="sh">'</span><span class="s">Day 21</span><span class="sh">'</span><span class="p">:</span> <span class="p">[</span><span class="mi">70</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">25</span><span class="p">],</span>
+    <span class="sh">'</span><span class="s">Day 30</span><span class="sh">'</span><span class="p">:</span> <span class="p">[</span><span class="mi">60</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nc">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># 시각화
+</span><span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">day</span> <span class="ow">in</span> <span class="p">[</span><span class="sh">'</span><span class="s">Day 1</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Day 7</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Day 14</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Day 21</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Day 30</span><span class="sh">'</span><span class="p">]:</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sh">'</span><span class="s">Cohort</span><span class="sh">'</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">day</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="sh">'</span><span class="s">o</span><span class="sh">'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">day</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="nf">title</span><span class="p">(</span><span class="sh">'</span><span class="s">Cohort Retention Over Time</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">xlabel</span><span class="p">(</span><span class="sh">'</span><span class="s">Cohort</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">ylabel</span><span class="p">(</span><span class="sh">'</span><span class="s">Retention (%)</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">legend</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="sh">'</span><span class="s">Day</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">grid</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="http://localhost:4000/images/graphs/cohort_retention.png" alt="cohort_retention" /></p>
+
+<h2 id="-revenue-수익-창출">🍓 <a style="color: tomato;">Revenue</a> (수익 창출)</h2>
+
+<ul>
+  <li>이 단계는 사용자가 실제로 제품에 대해 비용을 지불하기 시작하는 시점으로 이익 중심의 단계이며, 지속적인 수익 모델이 매우 중요</li>
+  <li>유료 전환율, ARPU(Average Revenue Per User), ARPPU(Average Revenue Per Paying User), Conversion Rate, 장바구니 이탈율 등 수익과 직결되는 정량적 지표들이 포함된다.</li>
+  <li>지표로는 Viral Coefficient, Invite Conversion Rate, Net Promoter Score(NPS) 등이 있다.</li>
+</ul>
+
+<h3 id="-수익-관련-지표">🍑 수익 관련 지표</h3>
+
+<ul>
+  <li>ARPU: Average Revenue per User</li>
+  <li>ARPPU: Average Revenue per Paying User</li>
+  <li>전환율 (Free → Paid)</li>
+  <li>장바구니 이탈률</li>
+  <li>업셀링 / 재구매율</li>
+</ul>
+
+<h2 id="-referral-추천">🍓 <a style="color: tomato;">Referral</a> (추천)</h2>
+
+<ul>
+  <li>기존 고객이 새로운 고객을 자발적으로 유치하는 단계로, 제품의 바이럴 루프 형성 여부를 확인할 수 있다.</li>
+  <li>지표로는 Viral Coefficient, Invite Conversion Rate, Net Promoter Score(NPS) 등이 있다.</li>
+</ul>
+
+<h3 id="-추천-지표">🍑 추천 지표</h3>
+
+<ul>
+  <li>Viral Coefficient: 1 이상의 수치면 자연 성장 가능</li>
+  <li>NPS: Net Promoter Score</li>
+  <li>초대 코드 전환율</li>
+</ul>
+
+<h3 id="-추천-유도-전략">🍑 추천 유도 전략</h3>
+
+<ul>
+  <li>추천인 리워드 제공</li>
+  <li>공유 기능 최적화</li>
+  <li>자동화된 초대 메일 시스템</li>
+</ul>
+
+<h2 id="-퍼널funnel-분석과의-연관성">🍓 퍼널(Funnel) 분석과의 연관성</h2>
+
+<ul>
+  <li>AARRR는 퍼널 분석 그 자체이며, 단계별 전환율을 정량적으로 분석하여 병목(Bottleneck) 구간을 시각화하고 최적화 전략을 수립하는 데 유용하다. 유입 대비 구매 전환율이 낮다면 Activation 또는 Revenue 단계에 문제가 있을 수 있다.</li>
+</ul>
+
+<h3 id="-예시-퍼널-흐름">🍑 예시 퍼널 흐름:</h3>
+
+<ol>
+  <li>방문자 10,000명</li>
+  <li>가입자 3,000명 (Activation 전환율: 30%)</li>
+  <li>리텐션 사용자 1,200명 (Retention 전환율: 40%)</li>
+  <li>결제 사용자 300명 (Revenue 전환율: 25%)</li>
+  <li>추천 활동 사용자 90명 (Referral 전환율: 30%)</li>
+</ol>
+
+<p>이를 통해 <strong>병목 구간(Bottleneck)</strong>을 식별하고, 가장 전환율이 낮은 지점을 우선 개선 대상으로 설정하게 된다.</p>
+
+
+        
+          
+            <p>
+              Comments are configured with provider: <strong>disqus</strong>,
+              but are disabled in non-production environments.
+            </p>
+          
+        
+
+        
+          
+<div class="page__related">
+  
+  <h2 class="page__related-title">참고</h2>
+  <div class="grid__wrapper">
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/docs/pm/data_literacy-grid/PM_06_04/" rel="permalink">[프로덕트 데이터 분석] 27 Tracking Plan
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-04-20T00:00:00+09:00">2025-04-20</time>
+      </span>
+    
+
+    <!-- <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          3 분 소요
+        
+      </span>
+     -->
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">👑 데이터 트래킹 플랜의 중요성과 실전 구축 전략
+</p>
+  </article>
+</div>
+
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/docs/pm/data_literacy-grid/PM_06_03/" rel="permalink">[프로덕트 데이터 분석] 26 데이터 로그 설계 프로세스
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-04-19T00:00:00+09:00">2025-04-19</time>
+      </span>
+    
+
+    <!-- <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+     -->
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">👑 데이터 로그 설계 프로세스
+</p>
+  </article>
+</div>
+
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/docs/pm/data_literacy-grid/PM_06_02/" rel="permalink">[프로덕트 데이터 분석] 25 로그 설계를 위한 데이터 기초 지식
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-04-18T00:00:00+09:00">2025-04-18</time>
+      </span>
+    
+
+    <!-- <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+     -->
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">👑 로그 설계를 위한 데이터 기초 지식
+</p>
+  </article>
+</div>
+
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/docs/pm/data_literacy-grid/PM_06_01/" rel="permalink">[프로덕트 데이터 분석] 24 데이터 로그 설계란?
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-04-17T00:00:00+09:00">2025-04-17</time>
+      </span>
+    
+
+    <!-- <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+     -->
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">👑 효과적인 데이터 로그 설계 방법
+</p>
+  </article>
+</div>
+
+    
+  </div>
+</div>
+
+        
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags-grid/#pm" class="page__taxonomy-item p-category" rel="tag">PM</a><span class="sep">, </span>
+    
+      <a href="/tags-grid/#po" class="page__taxonomy-item p-category" rel="tag">PO</a><span class="sep">, </span>
+    
+      <a href="/tags-grid/#%EC%A7%80%ED%91%9C%EB%B6%84%EC%84%9D" class="page__taxonomy-item p-category" rel="tag">지표분석</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories-grid/#docs" class="page__taxonomy-item p-category" rel="tag">docs</a><span class="sep">, </span>
+    
+      <a href="/categories-grid/#pm" class="page__taxonomy-item p-category" rel="tag">PM</a><span class="sep">, </span>
+    
+      <a href="/categories-grid/#weekly-papers" class="page__taxonomy-item p-category" rel="tag">Weekly_Papers</a><span class="sep">, </span>
+    
+      <a href="/categories-grid/#%EC%A7%80%ED%91%9C%EB%B6%84%EC%84%9D" class="page__taxonomy-item p-category" rel="tag">지표분석</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2025-03-31T00:00:00+09:00">2025-03-31</time></p>
+
+      </footer>
+
+      
+        <section class="page__share">
+  <h4 class="page__share-title">공유하기</h4>
+
+  <a href="https://twitter.com/intent/tweet?text=%5B%EC%9C%84%ED%81%B4%EB%A6%AC+%ED%8E%98%EC%9D%B4%ED%8D%BC%5D+AARRR+%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC%EC%99%80+Retention+%EA%B7%B8%EB%A6%AC%EA%B3%A0+Funnel%20http%3A%2F%2Flocalhost%3A4000%2Fdocs%2Fweekly_papers%2Fpm%2F%25EC%25A7%2580%25ED%2591%259C%25EB%25B6%2584%25EC%2584%259D-grid%2FWeekly_Paper_AARRR_Retention_Funnel%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fdocs%2Fweekly_papers%2Fpm%2F%25EC%25A7%2580%25ED%2591%259C%25EB%25B6%2584%25EC%2584%259D-grid%2FWeekly_Paper_AARRR_Retention_Funnel%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/docs/weekly_papers/pm/%EC%A7%80%ED%91%9C%EB%B6%84%EC%84%9D-grid/Weekly_Paper_AARRR_Retention_Funnel/" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/docs/pm/data_literacy-grid/PM_01_06/" class="pagination--pager" title="[프로덕트 데이터 분석] 06 데이터 인프라">이전</a>
+    
+    
+      <a href="/docs/weekly_papers/pm/%EC%A7%80%ED%91%9C%EB%B6%84%EC%84%9D-grid/Weekly_Paper_Cohort_Segment/" class="pagination--pager" title="[위클리 페이퍼] 코호트(Cohort) vs 세그먼트(Segment)">다음</a>
+    
+  </nav>
+
+
+    </div>
+  </article>
+</div>
+<script>
+    (async () => {
+      try {
+        const page_path = window.location.pathname;
+        const page_title = "[위클리 페이퍼] AARRR 프레임워크와 Retention 그리고 Funnel";
+        const source = navigator.geolocation ? "GPS" : "IP";
+    
+        const sendLog = async (geo = {}, lat = null, lon = null) => {
+          const now = new Date();
+          const kst = new Date(now.getTime() + (9 * 60 * 60 * 1000));
+          const visited_at = kst.toISOString().slice(0, 19).replace("T", " ");
+    
+          await fetch("https://atbgxpqvgtqkguucaoeh.supabase.co/rest/v1/page_visits", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "apikey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF0Ymd4cHF2Z3Rxa2d1dWNhb2VoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMwNTUxNTIsImV4cCI6MjA1ODYzMTE1Mn0.F7L7WDpICjIOL2ZcBwekTgSuqlWjZTX6gEn4QvVjceE",
+              "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF0Ymd4cHF2Z3Rxa2d1dWNhb2VoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMwNTUxNTIsImV4cCI6MjA1ODYzMTE1Mn0.F7L7WDpICjIOL2ZcBwekTgSuqlWjZTX6gEn4QvVjceE",
+              "Prefer": "return=representation"
+            },
+            body: JSON.stringify({
+              visited_at,
+              page_path,
+              page_title,
+              ip: geo.ip || null,
+              country: geo.country || null,
+              city: geo.city || null,
+              timezone: geo.timezone || null,
+              latitude: lat,
+              longitude: lon,
+              location_source: source
+            })
+          });
+        };
+    
+        // 위치 우선 GPS → fallback: ipinfo
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            async (pos) => {
+              const info = await fetch("https://ipinfo.io/json?token=4c589a64d00b3c").then(res => res.json());
+              sendLog(info, pos.coords.latitude, pos.coords.longitude);
+            },
+            async () => {
+              const info = await fetch("https://ipinfo.io/json?token=4c589a64d00b3c").then(res => res.json());
+              sendLog(info, null, null);
+            }
+          );
+        } else {
+          const info = await fetch("https://ipinfo.io/json?token=4c589a64d00b3c").then(res => res.json());
+          sendLog(info, null, null);
+        }
+      } catch (err) {
+        console.warn("📄 방문 로그 기록 실패:", err);
+      }
+    })();
+    </script>
+      
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/ChoeWJ/project" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 <a href="http://localhost:4000">DeVlog</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://localhost:4000/docs/weekly_papers/pm/%EC%A7%80%ED%91%9C%EB%B6%84%EC%84%9D-grid/Weekly_Paper_AARRR_Retention_Funnel/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/docs/weekly_papers/pm/%EC%A7%80%ED%91%9C%EB%B6%84%EC%84%9D-grid/Weekly_Paper_AARRR_Retention_Funnel"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://choeic.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+  </body>
+</html>

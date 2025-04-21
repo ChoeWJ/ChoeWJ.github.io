@@ -1,0 +1,1374 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="ko-KR" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[프로덕트 데이터 분석] 04 데이터 조직 구조 | DeVlog</title>
+<meta name="description" content="👑 데이터 조직 구조">
+
+
+  <meta name="author" content="ChoeWJ">
+  
+  <meta property="article:author" content="ChoeWJ">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="DeVlog">
+<meta property="og:title" content="[프로덕트 데이터 분석] 04 데이터 조직 구조">
+<meta property="og:url" content="http://localhost:4000/docs/pm/data_literacy-grid/PM_01_04/">
+
+
+  <meta property="og:description" content="👑 데이터 조직 구조">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2025-03-29T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/docs/pm/data_literacy-grid/PM_01_04/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="DeVlog Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  window.enable_copy_code_button = true;
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+
+
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        TeX: {
+          equationNumbers: {
+            autoNumber: "AMS"
+          }
+        },
+        tex2jax: {
+        inlineMath: [ ['$', '$'] ],
+        displayMath: [ ['$$', '$$'] ],
+        processEscapes: true,
+      }
+    });
+    MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+          alert("Math Processing Error: "+message[1]);
+        });
+    MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+          alert("Math Processing Error: "+message[1]);
+        });
+    </script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7766483371449117" crossorigin="anonymous"></script>
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single" dir="ltr">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/images/logo.jpg" alt="DeVlog"></a>
+        
+        <a class="site-title" href="/">
+          DeVlog
+          <span class="site-subtitle">Leisurely but efficiently</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/categories/"
+                
+                
+              >Category</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/tags/"
+                
+                
+              >Tag</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/year-archive/"
+                
+                
+              >By Year</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/search/"
+                
+                
+              >Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories-grid/#docs" itemprop="item"><span itemprop="name">Docs</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories-grid/#pm" itemprop="item"><span itemprop="name">Pm</span></a>
+          <meta itemprop="position" content="3" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories-grid/#data_literacy-grid" itemprop="item"><span itemprop="name">Data_literacy grid</span></a>
+          <meta itemprop="position" content="4" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[프로덕트 데이터 분석] 04 데이터 조직 구조</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main" style="padding-top: 0 !important; margin-top: 0 !important;">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      <nav class="nav__list">
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-python" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-python" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Python
+      <span style="font-size: 14px; color: gray;">5</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#basic" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Basic
+            </a>
+            <span style="font-size: 12px; color: gray;">6</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#data" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Data
+            </a>
+            <span style="font-size: 12px; color: gray;">2</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#regular-expression" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Regular_Expression
+            </a>
+            <span style="font-size: 12px; color: gray;">1</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-sql" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-sql" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      SQL
+      <span style="font-size: 14px; color: gray;">10</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#basic" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Basic
+            </a>
+            <span style="font-size: 12px; color: gray;">6</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#advanced" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Advanced
+            </a>
+            <span style="font-size: 12px; color: gray;">1</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#learning-sql" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Learning_SQL
+            </a>
+            <span style="font-size: 12px; color: gray;">5</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-front" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-front" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Front
+      <span style="font-size: 14px; color: gray;">1</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#html-css" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              HTML_CSS
+            </a>
+            <span style="font-size: 12px; color: gray;">1</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-back" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-back" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Back
+      <span style="font-size: 14px; color: gray;">0</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#rust" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Rust
+            </a>
+            <span style="font-size: 12px; color: gray;">0</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#java" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              JAVA
+            </a>
+            <span style="font-size: 12px; color: gray;">0</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#javascript" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              JavaScript
+            </a>
+            <span style="font-size: 12px; color: gray;">0</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-security" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-security" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Security
+      <span style="font-size: 14px; color: gray;">2</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#security" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Security
+            </a>
+            <span style="font-size: 12px; color: gray;">2</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-web-crawling" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-web-crawling" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Web_Crawling
+      <span style="font-size: 14px; color: gray;">11</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#beautifulsoup" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              BeautifulSoup
+            </a>
+            <span style="font-size: 12px; color: gray;">4</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#selenium" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Selenium
+            </a>
+            <span style="font-size: 12px; color: gray;">7</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-ml-dl" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-ml-dl" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      ML-DL
+      <span style="font-size: 14px; color: gray;">2</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#ml" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              ML
+            </a>
+            <span style="font-size: 12px; color: gray;">2</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#dl" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              DL
+            </a>
+            <span style="font-size: 12px; color: gray;">0</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-pyside6" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-pyside6" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      PySide6
+      <span style="font-size: 14px; color: gray;">1</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#widget" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Widget
+            </a>
+            <span style="font-size: 12px; color: gray;">1</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-statistics" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-statistics" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Statistics
+      <span style="font-size: 14px; color: gray;">3</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#for-data" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              For_Data
+            </a>
+            <span style="font-size: 12px; color: gray;">3</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-pm" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-pm" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      PM
+      <span style="font-size: 14px; color: gray;">31</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#data-literacy" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Data_Literacy
+            </a>
+            <span style="font-size: 12px; color: gray;">25</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#product-data" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Product_Data
+            </a>
+            <span style="font-size: 12px; color: gray;">1</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-git" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-git" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Git
+      <span style="font-size: 14px; color: gray;">2</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#git" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Git
+            </a>
+            <span style="font-size: 12px; color: gray;">2</span>
+          </li>
+        
+      
+    </ul>
+  
+</nav>
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <meta itemprop="headline" content="[프로덕트 데이터 분석] 04 데이터 조직 구조">
+    
+    
+      <meta itemprop="description" content="👑 데이터 조직 구조">
+    
+    
+      <meta itemprop="datePublished" content="2025-03-29T00:00:00+09:00">
+    
+    
+
+    <div class="page__inner-wrap" style="padding-top: 0 !important; margin-top: 0 !important;">
+      <!-- 페이지 상단 배너 -->
+      
+
+
+      
+        <header class="page__header">
+          <h1 id="page-title" class="page__title" itemprop="headline" style="padding-top: 0 !important; margin-top: 0 !important;">
+            <a href="http://localhost:4000/docs/pm/data_literacy-grid/PM_01_04/" itemprop="url">[프로덕트 데이터 분석] 04 데이터 조직 구조
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-03-29T00:00:00+09:00">2025-03-29</time>
+      </span>
+    
+
+    <!-- <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+     -->
+  </p>
+
+
+        </header>
+      
+      
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header>
+                <h4 class="nav__title">
+                  <i class="fas fa-fa-solid fa-hexagon-nodes"></i> 
+                  목차
+                </h4>
+              </header>
+              <ul class="toc__menu"><li><a href="#-데이터-조직-구조">👑 데이터 조직 구조</a><ul><li><a href="#-데이터-조직-구조의-중요성과-특징">🧄 데이터 조직 구조의 중요성과 특징</a></li><li><a href="#-주요-데이터-직무-4가지-개요">🧄 주요 데이터 직무 4가지 개요</a></li><li><a href="#-데이터-분석가와-데이터-사이언티스트">🧄 데이터 분석가와 데이터 사이언티스트</a></li><li><a href="#-데이터-엔지니어의-역할과-협업-방법">🧄 데이터 엔지니어의 역할과 협업 방법</a></li><li><a href="#-pm의-데이터-직무와-협업-전략-요약">🧄 PM의 데이터 직무와 협업 전략 요약</a></li><li><a href="#-결과-요약-마인드맵">🧄 결과 요약 마인드맵</a></li></ul></li></ul>
+            </nav>
+          </aside>
+        
+        
+        <h1 id="-데이터-조직-구조">👑 데이터 조직 구조</h1>
+
+<h2 id="-데이터-조직-구조의-중요성과-특징">🧄 데이터 조직 구조의 중요성과 특징</h2>
+
+<ul>
+  <li>데이터 조직의 구조는 기업 내에서 데이터 활용 가능성을 좌우하는 중요한 요소이다.</li>
+  <li>데이터 조직은 CEO 직속, CTO 직속, 사업 운영 조직 내 위치 등 다양한 형태로 구성될 수 있으며, 이는 데이터 문화와 인프라 발전 수준에도 직접적인 영향을 미친다.</li>
+  <li>초기에는 데이터 팀 하나로 시작하여 시간이 흐르면서 데이터 분석팀과 데이터 엔지니어링 팀으로 분화되는 것이 가장 일반적이다.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>조직 형태</th>
+      <th>특징 및 장단점</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>CEO 직속 조직</td>
+      <td>신속한 의사 결정, 독립성 및 전략적 활용 가능</td>
+    </tr>
+    <tr>
+      <td>CTO 직속 조직</td>
+      <td>기술적 전문성 강화, 인프라 관리에 강점</td>
+    </tr>
+    <tr>
+      <td>사업 운영 조직 내</td>
+      <td>실무 중심적 접근 가능, 빠른 현업 반영</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-주요-데이터-직무-4가지-개요">🧄 주요 데이터 직무 4가지 개요</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>직무</th>
+      <th>주요 업무</th>
+      <th>협업 대상</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>데이터 분석가</td>
+      <td>데이터 분석, 데이터 기반 액션 창출 및 실험 주도</td>
+      <td>PM, 마케팅, 비즈니스 현업 부서</td>
+    </tr>
+    <tr>
+      <td>데이터 사이언티스트</td>
+      <td>머신러닝 및 딥러닝 알고리즘 개발 및 고도화</td>
+      <td>PM, 데이터 엔지니어</td>
+    </tr>
+    <tr>
+      <td>데이터 엔지니어</td>
+      <td>데이터 인프라 및 데이터 웨어하우스 구축, 데이터 품질 관리</td>
+      <td>PM, 데이터 분석가, 데이터 사이언티스트</td>
+    </tr>
+    <tr>
+      <td>AI 연구자</td>
+      <td>인공지능 및 딥러닝 모델 연구, 논문 출판</td>
+      <td>주로 독립적인 연구, PM과는 제한적 협업</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-데이터-분석가와-데이터-사이언티스트">🧄 데이터 분석가와 데이터 사이언티스트</h2>
+
+<ul>
+  <li>
+    <p>데이터 분석가는 주로 SQL을 활용하여 회사 데이터 분석을 담당하며, 현업 부서와의 적극적인 소통을 통해 데이터 기반의 액션 아이템을 도출하고 실행하는 역할</p>
+  </li>
+  <li>
+    <p>데이터 사이언티스트는 머신러닝이나 딥러닝과 같은 알고리즘 개발에 집중하고 때로는 데이터 분석가와 역할이 겹치기도 하며, PM과는 알고리즘의 제품 적용을 위한 협업을 진행</p>
+  </li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>직무</th>
+      <th>역할 상세 설명</th>
+      <th>주요 협업 방법</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>데이터 분석가</td>
+      <td>SQL을 이용한 데이터 분석, 현업과 액션 아이템 도출</td>
+      <td>PM과 함께 가설 설정 및 데이터 기반 실행 추진</td>
+    </tr>
+    <tr>
+      <td>데이터 사이언티스트</td>
+      <td>머신러닝·딥러닝 알고리즘 개발 및 적용</td>
+      <td>PM과 알고리즘 제품 적용 협의 및 협업</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-데이터-엔지니어의-역할과-협업-방법">🧄 데이터 엔지니어의 역할과 협업 방법</h2>
+
+<ul>
+  <li>데이터 엔지니어는 데이터 인프라와 데이터 웨어하우스를 구축하여 데이터의 저장 및 활용성을 높이는 역할을 수행한다.</li>
+  <li>특히 데이터 사이언티스트가 개발한 알고리즘의 실질적 품질 향상과 안정적 운영을 지원하고, 작은 조직에서는 데이터 엔지니어의 역할을 백엔드 개발자가 수행하는 경우도 있다.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>주요 업무</th>
+      <th>역할 및 협업 상세 설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>데이터 기반 개발</td>
+      <td>데이터 저장 및 접근성 관리</td>
+    </tr>
+    <tr>
+      <td>인프라 구축</td>
+      <td>데이터 웨어하우스와 BI 플랫폼 구축</td>
+    </tr>
+    <tr>
+      <td>협업</td>
+      <td>PM과 협력하여 데이터 분석가·사이언티스트가 요구하는 데이터 제공</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-pm의-데이터-직무와-협업-전략-요약">🧄 PM의 데이터 직무와 협업 전략 요약</h2>
+
+<ul>
+  <li>PM은 데이터 직무와의 협업을 통해 데이터 기반의 의사 결정을 지원한다.</li>
+  <li>데이터 분석가와는 구체적인 액션 아이템을 논의하고,</li>
+  <li>데이터 사이언티스트와는 알고리즘 활용 방안을 모색하며,</li>
+  <li>데이터 엔지니어와는 데이터 접근성과 품질 관리를 논의하면 된다.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>PM 협업 대상</th>
+      <th>협업 전략 및 중점 사항</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>데이터 분석가</td>
+      <td>가설 검증 및 데이터 기반 액션 추진</td>
+    </tr>
+    <tr>
+      <td>데이터 사이언티스트</td>
+      <td>제품 내 알고리즘 적용 및 최적화 협의</td>
+    </tr>
+    <tr>
+      <td>데이터 엔지니어</td>
+      <td>데이터 접근성 개선과 품질 향상</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-결과-요약-마인드맵">🧄 결과 요약 마인드맵</h2>
+
+<p><img src="http://localhost:4000/images/2025-03-25-PM/01_04.png" alt="PM_01_04" /></p>
+
+<hr />
+
+<p class="text-center notice--danger"><a style="font-size:30px; color: white;">⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩출처⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩</a></p>
+
+<p>※ 위 글은 인프런 지식공유자 데이터 사이언티스트 <a style="color: orange;">카일 스쿨</a>님의 강의를 수강하고 복습을 위해 작성된 글입니다.<br />
+※ 강의 내용 중 필자가 기억하고 싶은 핵심과 본인의 생각이 포함되어 있으니 보다 자세한 내용은 <a style="color: orange;">카일 스쿨</a>님의 강의를 수강하시는 것을 추천드립니다. <br /></p>
+
+<p>※ 인프런 강의 주소 ☞☞☞ <a href="https://www.inflearn.com/course/pm-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%A6%AC%ED%84%B0%EB%9F%AC%EC%8B%9C" class="btn btn--success">카일 스쿨 인프런 강의 바로가기</a><br />
+※ <a style="color: orange;">카일 스쿨</a>유튜브 ☞☞☞ <a href="https://www.youtube.com/c/kyleschool" class="btn btn--warning">카일 스쿨 유튜브 바로가기</a><br />
+※ <a style="color: orange;">카일 스쿨</a>기술 블로그 ☞☞☞ <a href="https://zzsza.github.io/" class="btn btn--danger">카일 스쿨 블로그 바로가기</a><br />
+※ <a style="color: orange;">카일 스쿨</a>인스타 ☞☞☞ <a href="https://www.instagram.com/data.scientist/" class="btn btn--info">카일 스쿨 인스타 바로가기</a></p>
+
+<hr />
+
+
+        
+          
+            <p>
+              Comments are configured with provider: <strong>disqus</strong>,
+              but are disabled in non-production environments.
+            </p>
+          
+        
+
+        
+          
+<div class="page__related">
+  
+  <h2 class="page__related-title">참고</h2>
+  <div class="grid__wrapper">
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/docs/pm/data_literacy-grid/PM_06_04/" rel="permalink">[프로덕트 데이터 분석] 27 Tracking Plan
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-04-20T00:00:00+09:00">2025-04-20</time>
+      </span>
+    
+
+    <!-- <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          3 분 소요
+        
+      </span>
+     -->
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">👑 데이터 트래킹 플랜의 중요성과 실전 구축 전략
+</p>
+  </article>
+</div>
+
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/docs/pm/data_literacy-grid/PM_06_03/" rel="permalink">[프로덕트 데이터 분석] 26 데이터 로그 설계 프로세스
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-04-19T00:00:00+09:00">2025-04-19</time>
+      </span>
+    
+
+    <!-- <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+     -->
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">👑 데이터 로그 설계 프로세스
+</p>
+  </article>
+</div>
+
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/docs/pm/data_literacy-grid/PM_06_02/" rel="permalink">[프로덕트 데이터 분석] 25 로그 설계를 위한 데이터 기초 지식
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-04-18T00:00:00+09:00">2025-04-18</time>
+      </span>
+    
+
+    <!-- <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+     -->
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">👑 로그 설계를 위한 데이터 기초 지식
+</p>
+  </article>
+</div>
+
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/docs/pm/data_literacy-grid/PM_06_01/" rel="permalink">[프로덕트 데이터 분석] 24 데이터 로그 설계란?
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-04-17T00:00:00+09:00">2025-04-17</time>
+      </span>
+    
+
+    <!-- <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+     -->
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">👑 효과적인 데이터 로그 설계 방법
+</p>
+  </article>
+</div>
+
+    
+  </div>
+</div>
+
+        
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags-grid/#data" class="page__taxonomy-item p-category" rel="tag">Data</a><span class="sep">, </span>
+    
+      <a href="/tags-grid/#data-literacy" class="page__taxonomy-item p-category" rel="tag">Data_Literacy</a><span class="sep">, </span>
+    
+      <a href="/tags-grid/#pm" class="page__taxonomy-item p-category" rel="tag">PM</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories-grid/#data-literacy" class="page__taxonomy-item p-category" rel="tag">Data_Literacy</a><span class="sep">, </span>
+    
+      <a href="/categories-grid/#docs" class="page__taxonomy-item p-category" rel="tag">docs</a><span class="sep">, </span>
+    
+      <a href="/categories-grid/#pm" class="page__taxonomy-item p-category" rel="tag">PM</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2025-03-29T00:00:00+09:00">2025-03-29</time></p>
+
+      </footer>
+
+      
+        <section class="page__share">
+  <h4 class="page__share-title">공유하기</h4>
+
+  <a href="https://twitter.com/intent/tweet?text=%5B%ED%94%84%EB%A1%9C%EB%8D%95%ED%8A%B8+%EB%8D%B0%EC%9D%B4%ED%84%B0+%EB%B6%84%EC%84%9D%5D+04+%EB%8D%B0%EC%9D%B4%ED%84%B0+%EC%A1%B0%EC%A7%81+%EA%B5%AC%EC%A1%B0%20http%3A%2F%2Flocalhost%3A4000%2Fdocs%2Fpm%2Fdata_literacy-grid%2FPM_01_04%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fdocs%2Fpm%2Fdata_literacy-grid%2FPM_01_04%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/docs/pm/data_literacy-grid/PM_01_04/" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/docs/pm/data_literacy-grid/PM_01_03/" class="pagination--pager" title="[프로덕트 데이터 분석] 03 조직 구조 파악">이전</a>
+    
+    
+      <a href="/docs/pm/data_literacy-grid/PM_01_05/" class="pagination--pager" title="[프로덕트 데이터 분석] 05 데이터 문화">다음</a>
+    
+  </nav>
+
+
+    </div>
+  </article>
+</div>
+<script>
+    (async () => {
+      try {
+        const page_path = window.location.pathname;
+        const page_title = "[프로덕트 데이터 분석] 04 데이터 조직 구조";
+        const source = navigator.geolocation ? "GPS" : "IP";
+    
+        const sendLog = async (geo = {}, lat = null, lon = null) => {
+          const now = new Date();
+          const kst = new Date(now.getTime() + (9 * 60 * 60 * 1000));
+          const visited_at = kst.toISOString().slice(0, 19).replace("T", " ");
+    
+          await fetch("https://atbgxpqvgtqkguucaoeh.supabase.co/rest/v1/page_visits", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "apikey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF0Ymd4cHF2Z3Rxa2d1dWNhb2VoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMwNTUxNTIsImV4cCI6MjA1ODYzMTE1Mn0.F7L7WDpICjIOL2ZcBwekTgSuqlWjZTX6gEn4QvVjceE",
+              "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF0Ymd4cHF2Z3Rxa2d1dWNhb2VoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMwNTUxNTIsImV4cCI6MjA1ODYzMTE1Mn0.F7L7WDpICjIOL2ZcBwekTgSuqlWjZTX6gEn4QvVjceE",
+              "Prefer": "return=representation"
+            },
+            body: JSON.stringify({
+              visited_at,
+              page_path,
+              page_title,
+              ip: geo.ip || null,
+              country: geo.country || null,
+              city: geo.city || null,
+              timezone: geo.timezone || null,
+              latitude: lat,
+              longitude: lon,
+              location_source: source
+            })
+          });
+        };
+    
+        // 위치 우선 GPS → fallback: ipinfo
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            async (pos) => {
+              const info = await fetch("https://ipinfo.io/json?token=4c589a64d00b3c").then(res => res.json());
+              sendLog(info, pos.coords.latitude, pos.coords.longitude);
+            },
+            async () => {
+              const info = await fetch("https://ipinfo.io/json?token=4c589a64d00b3c").then(res => res.json());
+              sendLog(info, null, null);
+            }
+          );
+        } else {
+          const info = await fetch("https://ipinfo.io/json?token=4c589a64d00b3c").then(res => res.json());
+          sendLog(info, null, null);
+        }
+      } catch (err) {
+        console.warn("📄 방문 로그 기록 실패:", err);
+      }
+    })();
+    </script>
+      
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/ChoeWJ/project" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 <a href="http://localhost:4000">DeVlog</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://localhost:4000/docs/pm/data_literacy-grid/PM_01_04/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/docs/pm/data_literacy-grid/PM_01_04"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://choeic.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+  </body>
+</html>

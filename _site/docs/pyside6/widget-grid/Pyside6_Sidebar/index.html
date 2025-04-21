@@ -1,0 +1,1532 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="ko-KR" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[PySide6] 위젯 총정리 | DeVlog</title>
+<meta name="description" content="👑 PySide6 위젯">
+
+
+  <meta name="author" content="ChoeWJ">
+  
+  <meta property="article:author" content="ChoeWJ">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="DeVlog">
+<meta property="og:title" content="[PySide6] 위젯 총정리">
+<meta property="og:url" content="http://localhost:4000/docs/pyside6/widget-grid/Pyside6_Sidebar/">
+
+
+  <meta property="og:description" content="👑 PySide6 위젯">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2025-03-24T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/docs/pyside6/widget-grid/Pyside6_Sidebar/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="DeVlog Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  window.enable_copy_code_button = true;
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+
+
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        TeX: {
+          equationNumbers: {
+            autoNumber: "AMS"
+          }
+        },
+        tex2jax: {
+        inlineMath: [ ['$', '$'] ],
+        displayMath: [ ['$$', '$$'] ],
+        processEscapes: true,
+      }
+    });
+    MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+          alert("Math Processing Error: "+message[1]);
+        });
+    MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+          alert("Math Processing Error: "+message[1]);
+        });
+    </script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7766483371449117" crossorigin="anonymous"></script>
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single" dir="ltr">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/images/logo.jpg" alt="DeVlog"></a>
+        
+        <a class="site-title" href="/">
+          DeVlog
+          <span class="site-subtitle">Leisurely but efficiently</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/categories/"
+                
+                
+              >Category</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/tags/"
+                
+                
+              >Tag</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/year-archive/"
+                
+                
+              >By Year</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/search/"
+                
+                
+              >Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories-grid/#docs" itemprop="item"><span itemprop="name">Docs</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories-grid/#pyside6" itemprop="item"><span itemprop="name">Pyside6</span></a>
+          <meta itemprop="position" content="3" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories-grid/#widget-grid" itemprop="item"><span itemprop="name">Widget grid</span></a>
+          <meta itemprop="position" content="4" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[PySide6] 위젯 총정리</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main" style="padding-top: 0 !important; margin-top: 0 !important;">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      <nav class="nav__list">
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-python" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-python" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Python
+      <span style="font-size: 14px; color: gray;">5</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#basic" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Basic
+            </a>
+            <span style="font-size: 12px; color: gray;">6</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#data" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Data
+            </a>
+            <span style="font-size: 12px; color: gray;">2</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#regular-expression" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Regular_Expression
+            </a>
+            <span style="font-size: 12px; color: gray;">1</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-sql" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-sql" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      SQL
+      <span style="font-size: 14px; color: gray;">10</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#basic" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Basic
+            </a>
+            <span style="font-size: 12px; color: gray;">6</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#advanced" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Advanced
+            </a>
+            <span style="font-size: 12px; color: gray;">1</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#learning-sql" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Learning_SQL
+            </a>
+            <span style="font-size: 12px; color: gray;">5</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-front" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-front" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Front
+      <span style="font-size: 14px; color: gray;">1</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#html-css" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              HTML_CSS
+            </a>
+            <span style="font-size: 12px; color: gray;">1</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-back" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-back" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Back
+      <span style="font-size: 14px; color: gray;">0</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#rust" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Rust
+            </a>
+            <span style="font-size: 12px; color: gray;">0</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#java" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              JAVA
+            </a>
+            <span style="font-size: 12px; color: gray;">0</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#javascript" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              JavaScript
+            </a>
+            <span style="font-size: 12px; color: gray;">0</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-security" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-security" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Security
+      <span style="font-size: 14px; color: gray;">2</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#security" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Security
+            </a>
+            <span style="font-size: 12px; color: gray;">2</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-web-crawling" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-web-crawling" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Web_Crawling
+      <span style="font-size: 14px; color: gray;">11</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#beautifulsoup" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              BeautifulSoup
+            </a>
+            <span style="font-size: 12px; color: gray;">4</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#selenium" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Selenium
+            </a>
+            <span style="font-size: 12px; color: gray;">7</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-ml-dl" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-ml-dl" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      ML-DL
+      <span style="font-size: 14px; color: gray;">2</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#ml" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              ML
+            </a>
+            <span style="font-size: 12px; color: gray;">2</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#dl" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              DL
+            </a>
+            <span style="font-size: 12px; color: gray;">0</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-pyside6" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-pyside6" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      PySide6
+      <span style="font-size: 14px; color: gray;">1</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#widget" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Widget
+            </a>
+            <span style="font-size: 12px; color: gray;">1</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-statistics" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-statistics" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Statistics
+      <span style="font-size: 14px; color: gray;">3</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#for-data" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              For_Data
+            </a>
+            <span style="font-size: 12px; color: gray;">3</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-pm" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-pm" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      PM
+      <span style="font-size: 14px; color: gray;">31</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#data-literacy" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Data_Literacy
+            </a>
+            <span style="font-size: 12px; color: gray;">25</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#product-data" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Product_Data
+            </a>
+            <span style="font-size: 12px; color: gray;">1</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-git" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-git" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Git
+      <span style="font-size: 14px; color: gray;">2</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#git" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Git
+            </a>
+            <span style="font-size: 12px; color: gray;">2</span>
+          </li>
+        
+      
+    </ul>
+  
+</nav>
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <meta itemprop="headline" content="[PySide6] 위젯 총정리">
+    
+    
+      <meta itemprop="description" content="👑 PySide6 위젯">
+    
+    
+      <meta itemprop="datePublished" content="2025-03-24T00:00:00+09:00">
+    
+    
+
+    <div class="page__inner-wrap" style="padding-top: 0 !important; margin-top: 0 !important;">
+      <!-- 페이지 상단 배너 -->
+      
+
+
+      
+        <header class="page__header">
+          <h1 id="page-title" class="page__title" itemprop="headline" style="padding-top: 0 !important; margin-top: 0 !important;">
+            <a href="http://localhost:4000/docs/pyside6/widget-grid/Pyside6_Sidebar/" itemprop="url">[PySide6] 위젯 총정리
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-03-24T00:00:00+09:00">2025-03-24</time>
+      </span>
+    
+
+    <!-- <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+     -->
+  </p>
+
+
+        </header>
+      
+      
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header>
+                <h4 class="nav__title">
+                  <i class="fas fa-fa-solid fa-hexagon-nodes"></i> 
+                  목차
+                </h4>
+              </header>
+              <ul class="toc__menu"><li><a href="#-pyside6-위젯">👑 PySide6 위젯</a><ul><li><a href="#1-레이아웃-layouts">🍒1. 레이아웃 (Layouts)</a></li><li><a href="#-간격-조절-spacers">🍒 간격 조절 (Spacers)</a></li><li><a href="#버튼-buttons">🍒버튼 (Buttons)</a></li><li><a href="#모델-기반-항목-뷰-item-views---model-based">🍒모델 기반 항목 뷰 (Item Views - Model-Based)</a></li><li><a href="#-항목-기반-위젯-item-widgets---item-based">🍒 항목 기반 위젯 (Item Widgets - Item-Based)</a></li><li><a href="#-컨테이너-containers">🍒 컨테이너 (Containers)</a></li><li><a href="#-입력-위젯-input-widgets">🍒 입력 위젯 (Input Widgets)</a></li><li><a href="#-표시-위젯-display-widgets">🍒 표시 위젯 (Display Widgets)</a></li></ul></li></ul>
+            </nav>
+          </aside>
+        
+        
+        <h1 id="-pyside6-위젯">👑 PySide6 위젯</h1>
+
+<h2 id="1-레이아웃-layouts">🍒1. 레이아웃 (Layouts)</h2>
+
+<p>위젯을 자동으로 정렬하는 컨테이너입니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>위젯</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Vertical Layout</strong></td>
+      <td>위젯을 <strong>수직으로</strong> 정렬</td>
+    </tr>
+    <tr>
+      <td><strong>Horizontal Layout</strong></td>
+      <td>위젯을 <strong>수평으로</strong> 정렬</td>
+    </tr>
+    <tr>
+      <td><strong>Grid Layout</strong></td>
+      <td><strong>그리드(행/열 구조)</strong> 로 정렬</td>
+    </tr>
+    <tr>
+      <td><strong>Form Layout</strong></td>
+      <td>라벨과 입력 필드를 <strong>폼 형태</strong>로 정렬</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-간격-조절-spacers">🍒 간격 조절 (Spacers)</h2>
+
+<p>위젯 간의 간격을 조정하는 요소입니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>위젯</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Horizontal Spacer</strong></td>
+      <td>가로 공간을 조정</td>
+    </tr>
+    <tr>
+      <td><strong>Vertical Spacer</strong></td>
+      <td>세로 공간을 조정</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="버튼-buttons">🍒버튼 (Buttons)</h2>
+
+<p>사용자의 클릭 이벤트를 처리하는 버튼 위젯입니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>위젯</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Push Button</strong></td>
+      <td>일반적인 클릭 버튼</td>
+    </tr>
+    <tr>
+      <td><strong>Tool Button</strong></td>
+      <td>툴바에서 사용되는 작은 버튼</td>
+    </tr>
+    <tr>
+      <td><strong>Radio Button</strong></td>
+      <td><strong>단일 선택</strong>이 가능한 라디오 버튼</td>
+    </tr>
+    <tr>
+      <td><strong>Check Box</strong></td>
+      <td><strong>다중 선택</strong>이 가능한 체크 박스</td>
+    </tr>
+    <tr>
+      <td><strong>Command Link Button</strong></td>
+      <td>링크 스타일 버튼 (Windows UI에서 사용)</td>
+    </tr>
+    <tr>
+      <td><strong>Dialog Button Box</strong></td>
+      <td>대화 상자에서 “확인 / 취소” 버튼을 자동 배치</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="모델-기반-항목-뷰-item-views---model-based">🍒모델 기반 항목 뷰 (Item Views - Model-Based)</h2>
+
+<p>모델 데이터를 기반으로 항목을 표시하는 위젯입니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>위젯</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>List View</strong></td>
+      <td>모델을 기반으로 리스트 형태로 표시</td>
+    </tr>
+    <tr>
+      <td><strong>Tree View</strong></td>
+      <td>계층 구조(트리 구조)로 항목을 표시</td>
+    </tr>
+    <tr>
+      <td><strong>Table View</strong></td>
+      <td>테이블 형태로 데이터 표시</td>
+    </tr>
+    <tr>
+      <td><strong>Column View</strong></td>
+      <td>컬럼 구조로 데이터 표시</td>
+    </tr>
+    <tr>
+      <td><strong>Undo View</strong></td>
+      <td>실행 취소(Undo) 항목을 보여주는 뷰</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-항목-기반-위젯-item-widgets---item-based">🍒 항목 기반 위젯 (Item Widgets - Item-Based)</h2>
+
+<p>모델을 사용하지 않고 직접 항목을 추가하는 위젯입니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>위젯</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>List Widget</strong></td>
+      <td>리스트 항목을 직접 추가</td>
+    </tr>
+    <tr>
+      <td><strong>Tree Widget</strong></td>
+      <td>트리 구조 항목을 직접 추가</td>
+    </tr>
+    <tr>
+      <td><strong>Table Widget</strong></td>
+      <td>테이블 항목을 직접 추가</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-컨테이너-containers">🍒 컨테이너 (Containers)</h2>
+
+<p>여러 위젯을 포함하는 컨테이너 역할을 합니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>위젯</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Group Box</strong></td>
+      <td>여러 위젯을 그룹으로 묶음</td>
+    </tr>
+    <tr>
+      <td><strong>Scroll Area</strong></td>
+      <td>스크롤 가능한 컨테이너</td>
+    </tr>
+    <tr>
+      <td><strong>Tool Box</strong></td>
+      <td>여러 탭을 포함하는 툴박스</td>
+    </tr>
+    <tr>
+      <td><strong>Tab Widget</strong></td>
+      <td>여러 탭을 가진 컨테이너</td>
+    </tr>
+    <tr>
+      <td><strong>Stacked Widget</strong></td>
+      <td>하나의 화면에서 여러 페이지를 전환</td>
+    </tr>
+    <tr>
+      <td><strong>Frame</strong></td>
+      <td>사각형 프레임을 제공</td>
+    </tr>
+    <tr>
+      <td><strong>Widget</strong></td>
+      <td>기본적인 위젯 컨테이너</td>
+    </tr>
+    <tr>
+      <td><strong>MDI Area</strong></td>
+      <td>멀티 문서 인터페이스 (MDI) 지원</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-입력-위젯-input-widgets">🍒 입력 위젯 (Input Widgets)</h2>
+
+<p>사용자가 데이터를 입력할 수 있는 위젯입니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>위젯</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Combo Box</strong></td>
+      <td>드롭다운 목록에서 선택</td>
+    </tr>
+    <tr>
+      <td><strong>Font Combo Box</strong></td>
+      <td>폰트 선택 드롭다운</td>
+    </tr>
+    <tr>
+      <td><strong>Line Edit</strong></td>
+      <td>한 줄 텍스트 입력 필드</td>
+    </tr>
+    <tr>
+      <td><strong>Text Edit</strong></td>
+      <td>여러 줄 텍스트 입력 필드 (서식 지원)</td>
+    </tr>
+    <tr>
+      <td><strong>Plain Text Edit</strong></td>
+      <td>여러 줄 텍스트 입력 필드 (서식 없음)</td>
+    </tr>
+    <tr>
+      <td><strong>Spin Box</strong></td>
+      <td>숫자 입력 (정수)</td>
+    </tr>
+    <tr>
+      <td><strong>Double Spin Box</strong></td>
+      <td>숫자 입력 (실수)</td>
+    </tr>
+    <tr>
+      <td><strong>Time Edit</strong></td>
+      <td>시간 입력 필드</td>
+    </tr>
+    <tr>
+      <td><strong>Date Edit</strong></td>
+      <td>날짜 입력 필드</td>
+    </tr>
+    <tr>
+      <td><strong>Date/Time Edit</strong></td>
+      <td>날짜와 시간 입력 필드</td>
+    </tr>
+    <tr>
+      <td><strong>Dial</strong></td>
+      <td>다이얼 형태의 입력 컨트롤</td>
+    </tr>
+    <tr>
+      <td><strong>Horizontal Scroll Bar</strong></td>
+      <td>가로 스크롤 바</td>
+    </tr>
+    <tr>
+      <td><strong>Vertical Scroll Bar</strong></td>
+      <td>세로 스크롤 바</td>
+    </tr>
+    <tr>
+      <td><strong>Horizontal Slider</strong></td>
+      <td>가로 슬라이더 (값 조정)</td>
+    </tr>
+    <tr>
+      <td><strong>Vertical Slider</strong></td>
+      <td>세로 슬라이더 (값 조정)</td>
+    </tr>
+    <tr>
+      <td><strong>Key Sequence Edit</strong></td>
+      <td>키보드 단축키 입력</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-표시-위젯-display-widgets">🍒 표시 위젯 (Display Widgets)</h2>
+
+<p>정보를 출력하는 역할을 하는 위젯입니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>위젯</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Label</strong></td>
+      <td>텍스트 또는 이미지 표시</td>
+    </tr>
+    <tr>
+      <td><strong>Text Browser</strong></td>
+      <td>텍스트를 표시하는 위젯 (HTML 렌더링 가능)</td>
+    </tr>
+    <tr>
+      <td><strong>Graphics View</strong></td>
+      <td>2D 그래픽을 표시</td>
+    </tr>
+    <tr>
+      <td><strong>Calendar Widget</strong></td>
+      <td>캘린더 UI 제공</td>
+    </tr>
+    <tr>
+      <td><strong>LCD Number</strong></td>
+      <td>숫자를 LCD 스타일로 표시</td>
+    </tr>
+    <tr>
+      <td><strong>Progress Bar</strong></td>
+      <td>진행 상태 표시 바</td>
+    </tr>
+    <tr>
+      <td><strong>Horizontal Line</strong></td>
+      <td>가로 구분선</td>
+    </tr>
+    <tr>
+      <td><strong>Vertical Line</strong></td>
+      <td>세로 구분선</td>
+    </tr>
+    <tr>
+      <td><strong>OpenGL Widget</strong></td>
+      <td>OpenGL을 사용하는 3D 그래픽 렌더링</td>
+    </tr>
+    <tr>
+      <td><strong>QQuickWidget</strong></td>
+      <td>QML 기반 UI를 임베딩</td>
+    </tr>
+    <tr>
+      <td><strong>QWebEngineView</strong></td>
+      <td>웹 페이지를 표시하는 위젯 (Chromium 기반)</td>
+    </tr>
+  </tbody>
+</table>
+
+
+        
+          
+            <p>
+              Comments are configured with provider: <strong>disqus</strong>,
+              but are disabled in non-production environments.
+            </p>
+          
+        
+
+        
+          
+<div class="page__related">
+  
+  <h2 class="page__related-title">참고</h2>
+  <div class="grid__wrapper">
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/docs/pm/data_literacy-grid/PM_06_04/" rel="permalink">[프로덕트 데이터 분석] 27 Tracking Plan
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-04-20T00:00:00+09:00">2025-04-20</time>
+      </span>
+    
+
+    <!-- <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          3 분 소요
+        
+      </span>
+     -->
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">👑 데이터 트래킹 플랜의 중요성과 실전 구축 전략
+</p>
+  </article>
+</div>
+
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/docs/pm/data_literacy-grid/PM_06_03/" rel="permalink">[프로덕트 데이터 분석] 26 데이터 로그 설계 프로세스
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-04-19T00:00:00+09:00">2025-04-19</time>
+      </span>
+    
+
+    <!-- <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+     -->
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">👑 데이터 로그 설계 프로세스
+</p>
+  </article>
+</div>
+
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/docs/pm/data_literacy-grid/PM_06_02/" rel="permalink">[프로덕트 데이터 분석] 25 로그 설계를 위한 데이터 기초 지식
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-04-18T00:00:00+09:00">2025-04-18</time>
+      </span>
+    
+
+    <!-- <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+     -->
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">👑 로그 설계를 위한 데이터 기초 지식
+</p>
+  </article>
+</div>
+
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/docs/pm/data_literacy-grid/PM_06_01/" rel="permalink">[프로덕트 데이터 분석] 24 데이터 로그 설계란?
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-04-17T00:00:00+09:00">2025-04-17</time>
+      </span>
+    
+
+    <!-- <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+     -->
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">👑 효과적인 데이터 로그 설계 방법
+</p>
+  </article>
+</div>
+
+    
+  </div>
+</div>
+
+        
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags-grid/#pyside6" class="page__taxonomy-item p-category" rel="tag">pyside6</a><span class="sep">, </span>
+    
+      <a href="/tags-grid/#python" class="page__taxonomy-item p-category" rel="tag">python</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories-grid/#docs" class="page__taxonomy-item p-category" rel="tag">docs</a><span class="sep">, </span>
+    
+      <a href="/categories-grid/#pyside6" class="page__taxonomy-item p-category" rel="tag">PySide6</a><span class="sep">, </span>
+    
+      <a href="/categories-grid/#widget" class="page__taxonomy-item p-category" rel="tag">Widget</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2025-03-24T00:00:00+09:00">2025-03-24</time></p>
+
+      </footer>
+
+      
+        <section class="page__share">
+  <h4 class="page__share-title">공유하기</h4>
+
+  <a href="https://twitter.com/intent/tweet?text=%5BPySide6%5D+%EC%9C%84%EC%A0%AF+%EC%B4%9D%EC%A0%95%EB%A6%AC%20http%3A%2F%2Flocalhost%3A4000%2Fdocs%2Fpyside6%2Fwidget-grid%2FPyside6_Sidebar%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fdocs%2Fpyside6%2Fwidget-grid%2FPyside6_Sidebar%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/docs/pyside6/widget-grid/Pyside6_Sidebar/" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/docs/web_crawling/selenium-grid/Bypassing_Automatic_Input_Prevention/" class="pagination--pager" title="[웹 크롤링] 자동 입력 방지 우회하기">이전</a>
+    
+    
+      <a href="/docs/web_crawling/selenium-grid/Select_box/" class="pagination--pager" title="[웹 크롤링] Selenium Select Box 컨트롤">다음</a>
+    
+  </nav>
+
+
+    </div>
+  </article>
+</div>
+<script>
+    (async () => {
+      try {
+        const page_path = window.location.pathname;
+        const page_title = "[PySide6] 위젯 총정리";
+        const source = navigator.geolocation ? "GPS" : "IP";
+    
+        const sendLog = async (geo = {}, lat = null, lon = null) => {
+          const now = new Date();
+          const kst = new Date(now.getTime() + (9 * 60 * 60 * 1000));
+          const visited_at = kst.toISOString().slice(0, 19).replace("T", " ");
+    
+          await fetch("https://atbgxpqvgtqkguucaoeh.supabase.co/rest/v1/page_visits", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "apikey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF0Ymd4cHF2Z3Rxa2d1dWNhb2VoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMwNTUxNTIsImV4cCI6MjA1ODYzMTE1Mn0.F7L7WDpICjIOL2ZcBwekTgSuqlWjZTX6gEn4QvVjceE",
+              "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF0Ymd4cHF2Z3Rxa2d1dWNhb2VoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMwNTUxNTIsImV4cCI6MjA1ODYzMTE1Mn0.F7L7WDpICjIOL2ZcBwekTgSuqlWjZTX6gEn4QvVjceE",
+              "Prefer": "return=representation"
+            },
+            body: JSON.stringify({
+              visited_at,
+              page_path,
+              page_title,
+              ip: geo.ip || null,
+              country: geo.country || null,
+              city: geo.city || null,
+              timezone: geo.timezone || null,
+              latitude: lat,
+              longitude: lon,
+              location_source: source
+            })
+          });
+        };
+    
+        // 위치 우선 GPS → fallback: ipinfo
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            async (pos) => {
+              const info = await fetch("https://ipinfo.io/json?token=4c589a64d00b3c").then(res => res.json());
+              sendLog(info, pos.coords.latitude, pos.coords.longitude);
+            },
+            async () => {
+              const info = await fetch("https://ipinfo.io/json?token=4c589a64d00b3c").then(res => res.json());
+              sendLog(info, null, null);
+            }
+          );
+        } else {
+          const info = await fetch("https://ipinfo.io/json?token=4c589a64d00b3c").then(res => res.json());
+          sendLog(info, null, null);
+        }
+      } catch (err) {
+        console.warn("📄 방문 로그 기록 실패:", err);
+      }
+    })();
+    </script>
+      
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/ChoeWJ/project" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 <a href="http://localhost:4000">DeVlog</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://localhost:4000/docs/pyside6/widget-grid/Pyside6_Sidebar/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/docs/pyside6/widget-grid/Pyside6_Sidebar"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://choeic.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+  </body>
+</html>

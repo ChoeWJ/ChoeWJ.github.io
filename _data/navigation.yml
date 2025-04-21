@@ -1,0 +1,97 @@
+# main links
+main:
+  - title: "Category"
+    url: /categories/
+  - title: "Tag"
+    url: /tags/
+  - title: "By Year"
+    url: /year-archive/
+  - title: "Search"
+    url: /search/
+
+docs:
+  - title: "Python"
+    children:
+      - title: "Basic"
+        url: /docs/Python/Basic/
+      - title: "Data"
+        url: /docs/Python/Data/
+      - title: "Regular_Expression"
+        url: /docs/Python/Regular_Expression/
+
+  - title: "SQL"
+    children:
+      - title: "Basic"
+        url: /docs/SQL/Basic/
+      - title: "Advanced"
+        url: /docs/SQL/Advanced/
+      - title: "Learning_SQL"
+        url: /docs/SQL/Learning_SQL/
+
+  - title: "Front"
+    children:
+      - title: "HTML_CSS"
+        url: /docs/Front/HTML_CSS/
+
+  - title: "Back"
+    children:
+      - title: "Rust"
+        url: /docs/Back/Rust/
+      - title: "JAVA"
+        url: /docs/Back/JAVA/
+      - title: "JavaScript"
+        url: /docs/Back/JavaScript/
+
+  - title: "Security"
+    children:
+      - title: "Security"
+        url: /docs/Security/Security/
+
+  - title: "Web_Crawling"
+    children:
+      - title: "BeautifulSoup"
+        url: /docs/Web_Crawling/BeautifulSoup/
+      - title: "Selenium"
+        url: /docs/Web_Crawling/Selenium/
+
+  - title: "ML-DL"
+    children:
+      - title: "ML"
+        url: /docs/ML-DL/ML/
+      - title: "DL"
+        url: /docs/ML-DL/DL/
+
+  - title: "PySide6"
+    children:
+      - title: "Widget"
+        url: /docs/PySide6/Widget/
+
+  - title: "Statistics"
+    children:
+      - title: "For_Data"
+        url: /docs/Statistics/For_Data/
+
+  - title: "PM"
+    children:
+      - title: "Data_Literacy"
+        url: /docs/PM/Data_Literacy/
+      - title: "Product_Data"
+        url: /docs/PM/Product_Data/
+
+  - title: "Git"
+    children:
+      - title: "Git"
+        url: /docs/Git/Git/
+
+counts:
+  - title: "카테고리"
+    use: true
+
+  # - title: "About"
+  #   url: https://mmistakes.github.io/minimal-mistakes/about/
+  # - title: "Sample Posts"
+  #   url: /year-archive/
+  # - title: "Sample Collections"
+  #   url: /collection-archive/
+  # - title: "Sitemap"
+  #   url: /sitemap/

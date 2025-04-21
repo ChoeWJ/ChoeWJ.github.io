@@ -1,0 +1,1425 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="ko-KR" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[웹 크롤링] 자식, 자손, 형제, 부모 | DeVlog</title>
+<meta name="description" content="👑 HTML 구조 분석">
+
+
+  <meta name="author" content="ChoeWJ">
+  
+  <meta property="article:author" content="ChoeWJ">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="DeVlog">
+<meta property="og:title" content="[웹 크롤링] 자식, 자손, 형제, 부모">
+<meta property="og:url" content="http://localhost:4000/docs/web_crawling/beautifulsoup-grid/crawling_method/">
+
+
+  <meta property="og:description" content="👑 HTML 구조 분석">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2025-03-18T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/docs/web_crawling/beautifulsoup-grid/crawling_method/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="DeVlog Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  window.enable_copy_code_button = true;
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+
+
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        TeX: {
+          equationNumbers: {
+            autoNumber: "AMS"
+          }
+        },
+        tex2jax: {
+        inlineMath: [ ['$', '$'] ],
+        displayMath: [ ['$$', '$$'] ],
+        processEscapes: true,
+      }
+    });
+    MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+          alert("Math Processing Error: "+message[1]);
+        });
+    MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+          alert("Math Processing Error: "+message[1]);
+        });
+    </script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7766483371449117" crossorigin="anonymous"></script>
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single" dir="ltr">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/images/logo.jpg" alt="DeVlog"></a>
+        
+        <a class="site-title" href="/">
+          DeVlog
+          <span class="site-subtitle">Leisurely but efficiently</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/categories/"
+                
+                
+              >Category</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/tags/"
+                
+                
+              >Tag</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/year-archive/"
+                
+                
+              >By Year</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/search/"
+                
+                
+              >Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories-grid/#docs" itemprop="item"><span itemprop="name">Docs</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories-grid/#web_crawling" itemprop="item"><span itemprop="name">Web_crawling</span></a>
+          <meta itemprop="position" content="3" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories-grid/#beautifulsoup-grid" itemprop="item"><span itemprop="name">Beautifulsoup grid</span></a>
+          <meta itemprop="position" content="4" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[웹 크롤링] 자식, 자손, 형제, 부모</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main" style="padding-top: 0 !important; margin-top: 0 !important;">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      <nav class="nav__list">
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-python" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-python" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Python
+      <span style="font-size: 14px; color: gray;">5</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#basic" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Basic
+            </a>
+            <span style="font-size: 12px; color: gray;">6</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#data" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Data
+            </a>
+            <span style="font-size: 12px; color: gray;">2</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#regular-expression" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Regular_Expression
+            </a>
+            <span style="font-size: 12px; color: gray;">1</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-sql" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-sql" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      SQL
+      <span style="font-size: 14px; color: gray;">10</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#basic" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Basic
+            </a>
+            <span style="font-size: 12px; color: gray;">6</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#advanced" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Advanced
+            </a>
+            <span style="font-size: 12px; color: gray;">1</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#learning-sql" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Learning_SQL
+            </a>
+            <span style="font-size: 12px; color: gray;">5</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-front" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-front" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Front
+      <span style="font-size: 14px; color: gray;">1</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#html-css" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              HTML_CSS
+            </a>
+            <span style="font-size: 12px; color: gray;">1</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-back" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-back" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Back
+      <span style="font-size: 14px; color: gray;">0</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#rust" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Rust
+            </a>
+            <span style="font-size: 12px; color: gray;">0</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#java" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              JAVA
+            </a>
+            <span style="font-size: 12px; color: gray;">0</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#javascript" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              JavaScript
+            </a>
+            <span style="font-size: 12px; color: gray;">0</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-security" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-security" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Security
+      <span style="font-size: 14px; color: gray;">2</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#security" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Security
+            </a>
+            <span style="font-size: 12px; color: gray;">2</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-web-crawling" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-web-crawling" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Web_Crawling
+      <span style="font-size: 14px; color: gray;">11</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#beautifulsoup" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              BeautifulSoup
+            </a>
+            <span style="font-size: 12px; color: gray;">4</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#selenium" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Selenium
+            </a>
+            <span style="font-size: 12px; color: gray;">7</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-ml-dl" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-ml-dl" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      ML-DL
+      <span style="font-size: 14px; color: gray;">2</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#ml" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              ML
+            </a>
+            <span style="font-size: 12px; color: gray;">2</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#dl" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              DL
+            </a>
+            <span style="font-size: 12px; color: gray;">0</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-pyside6" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-pyside6" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      PySide6
+      <span style="font-size: 14px; color: gray;">1</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#widget" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Widget
+            </a>
+            <span style="font-size: 12px; color: gray;">1</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-statistics" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-statistics" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Statistics
+      <span style="font-size: 14px; color: gray;">3</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#for-data" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              For_Data
+            </a>
+            <span style="font-size: 12px; color: gray;">3</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-pm" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-pm" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      PM
+      <span style="font-size: 14px; color: gray;">31</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#data-literacy" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Data_Literacy
+            </a>
+            <span style="font-size: 12px; color: gray;">25</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#product-data" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Product_Data
+            </a>
+            <span style="font-size: 12px; color: gray;">1</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-git" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-git" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Git
+      <span style="font-size: 14px; color: gray;">2</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#git" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Git
+            </a>
+            <span style="font-size: 12px; color: gray;">2</span>
+          </li>
+        
+      
+    </ul>
+  
+</nav>
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <meta itemprop="headline" content="[웹 크롤링] 자식, 자손, 형제, 부모">
+    
+    
+      <meta itemprop="description" content="👑 HTML 구조 분석">
+    
+    
+      <meta itemprop="datePublished" content="2025-03-18T00:00:00+09:00">
+    
+    
+
+    <div class="page__inner-wrap" style="padding-top: 0 !important; margin-top: 0 !important;">
+      <!-- 페이지 상단 배너 -->
+      
+
+
+      
+        <header class="page__header">
+          <h1 id="page-title" class="page__title" itemprop="headline" style="padding-top: 0 !important; margin-top: 0 !important;">
+            <a href="http://localhost:4000/docs/web_crawling/beautifulsoup-grid/crawling_method/" itemprop="url">[웹 크롤링] 자식, 자손, 형제, 부모
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-03-18T00:00:00+09:00">2025-03-18</time>
+      </span>
+    
+
+    <!-- <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+     -->
+  </p>
+
+
+        </header>
+      
+      
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header>
+                <h4 class="nav__title">
+                  <i class="fas fa-fa-solid fa-hexagon-nodes"></i> 
+                  목차
+                </h4>
+              </header>
+              <ul class="toc__menu"><li><a href="#-html-구조-분석">👑 HTML 구조 분석</a><ul><li><a href="#-자식과-자손">🌟 자식과 자손</a><ul><li><a href="#children">children()</a></li><li><a href="#descendants">descendants()</a></li></ul></li><li><a href="#-형제">🌟 형제</a><ul><li><a href="#next_siblings">next_siblings()</a></li><li><a href="#previous_siblings">previous_siblings()</a></li></ul></li><li><a href="#-부모">🌟 부모</a><ul><li><a href="#parent">parent</a></li></ul></li></ul></li></ul>
+            </nav>
+          </aside>
+        
+        
+        <h1 id="-html-구조-분석">👑 HTML 구조 분석</h1>
+
+<h2 id="-자식과-자손">🌟 자식과 자손</h2>
+
+<ul>
+  <li>
+    <h3 id="children"><code class="language-plaintext highlighter-rouge">children()</code></h3>
+    <ul>
+      <li>직계 자식 요소만 반환</li>
+      <li>즉, find로 찾은 태그의 바로 아래의 태그만 포함</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">requests</span>
+
+<span class="kn">from</span> <span class="n">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="sh">"</span><span class="s">https://choewj.github.io/machine_learning/built_in_data_type/</span><span class="sh">"</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">soup</span> <span class="o">=</span> <span class="nc">BeautifulSoup</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">,</span> <span class="sh">'</span><span class="s">html.parser</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="c1"># page__content 클래스를 가지는 &lt;section&gt; 태그의 자식 요소들만 순환
+</span><span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">soup</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="sh">'</span><span class="s">section</span><span class="sh">'</span><span class="p">,</span> <span class="p">{</span><span class="sh">"</span><span class="s">class</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">page__content</span><span class="sh">"</span><span class="p">}).</span><span class="n">children</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">child</span><span class="p">.</span><span class="nf">get_text</span><span class="p">().</span><span class="nf">strip</span><span class="p">())</span>  <span class="c1"># 텍스트 출력 후 공백 제거
+</span></code></pre></div></div>
+
+<p>출력 결과</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>목차
+👑 사이킷런 내장데이터🍑 결과 분석&lt;class ‘sklearn.utils._bunch.Bunch’&gt;키값들🍑 주요 데이터셋 목록
+
+👑 사이킷런 내장데이터
+
+# 사이킷런 datasets 라이브러리에서 붓꽃(iris) 데이터 불러오기
+from sklearn.datasets import load_iris
+
+iris_df = load_iris()  # 붓꽃(iris)데이터 로드
+
+print(type(iris_df))  # 붓꽃(iris) 데이터 타입 출력
+print()  # 한 칸 띄우기
+print(f"붓꽃(iris)데이터 셋의 키:\n{iris_df.keys()}")  # 붓꽃(iris) 데이터 키값들 출력
+
+&lt;중략&gt;
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <h3 id="descendants"><code class="language-plaintext highlighter-rouge">descendants()</code></h3>
+    <ul>
+      <li>모든 자손 요소를 반환</li>
+      <li>하위의 모든 태그를 포함</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">requests</span>
+
+<span class="kn">from</span> <span class="n">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="sh">"</span><span class="s">https://choewj.github.io/machine_learning/built_in_data_type/</span><span class="sh">"</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">soup</span> <span class="o">=</span> <span class="nc">BeautifulSoup</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">,</span> <span class="sh">'</span><span class="s">html.parser</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="c1"># page__content 클래스를 가지는 &lt;section&gt; 태그의 모든 자손 요소들을 순환
+</span><span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">soup</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="sh">'</span><span class="s">section</span><span class="sh">'</span><span class="p">,</span> <span class="p">{</span><span class="sh">"</span><span class="s">class</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">page__content</span><span class="sh">"</span><span class="p">}).</span><span class="n">descendants</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">child</span><span class="p">.</span><span class="nf">get_text</span><span class="p">().</span><span class="nf">strip</span><span class="p">())</span>  <span class="c1"># 텍스트 출력 후 공백 제거
+</span></code></pre></div></div>
+
+<p>출력 결과</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>목차
+
+👑 사이킷런 내장데이터🍑 결과 분석&lt;class ‘sklearn.utils.\_bunch.Bunch’&gt;키값들🍑 주요 데이터셋 목록
+
+목차
+👑 사이킷런 내장데이터🍑 결과 분석&lt;class ‘sklearn.utils._bunch.Bunch’&gt;키값들🍑 주요 데이터셋 목록
+
+목차
+목차
+
+목차
+
+👑 사이킷런 내장데이터🍑 결과 분석&lt;class ‘sklearn.utils._bunch.Bunch’&gt;키값들🍑 주요 데이터셋 목록
+👑 사이킷런 내장데이터🍑 결과 분석&lt;class ‘sklearn.utils._bunch.Bunch’&gt;키값들🍑 주요 데이터셋 목록
+👑 사이킷런 내장데이터
+👑 사이킷런 내장데이터
+🍑 결과 분석&lt;class ‘sklearn.utils._bunch.Bunch’&gt;키값들🍑 주요 데이터셋 목록
+🍑 결과 분석&lt;class ‘sklearn.utils._bunch.Bunch’&gt;키값들
+🍑 결과 분석
+🍑 결과 분석
+&lt;class ‘sklearn.utils._bunch.Bunch’&gt;키값들
+&lt;class ‘sklearn.utils._bunch.Bunch’&gt;
+&lt;class ‘sklearn.utils._bunch.Bunch’&gt;
+&lt;class ‘sklearn.utils._bunch.Bunch’&gt;
+키값들
+키값들
+키값들
+🍑 주요 데이터셋 목록
+🍑 주요 데이터셋 목록
+🍑 주요 데이터셋 목록
+
+&lt;중략&gt;
+</code></pre></div></div>
+
+<h2 id="-형제">🌟 형제</h2>
+
+<ul>
+  <li>
+    <h3 id="next_siblings"><code class="language-plaintext highlighter-rouge">next_siblings()</code></h3>
+    <ul>
+      <li>자기 자신(객채)를 제외한 그 다음에 있는 형제들을 반환</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">requests</span>
+
+<span class="kn">from</span> <span class="n">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="sh">"</span><span class="s">https://choewj.github.io/machine_learning/built_in_data_type/</span><span class="sh">"</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">soup</span> <span class="o">=</span> <span class="nc">BeautifulSoup</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">,</span> <span class="sh">'</span><span class="s">html.parser</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="c1"># page__content 클래스를 가지는 &lt;section&gt; 태그의 모든 다음 형제 태그들을 순환
+</span><span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">soup</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="sh">'</span><span class="s">section</span><span class="sh">'</span><span class="p">,</span> <span class="p">{</span><span class="sh">"</span><span class="s">class</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">page__content</span><span class="sh">"</span><span class="p">}).</span><span class="n">next_siblings</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">child</span><span class="p">.</span><span class="nf">get_text</span><span class="p">().</span><span class="nf">strip</span><span class="p">())</span>
+</code></pre></div></div>
+
+<p>출력 결과</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>태그:
+
+Data,
+ML,
+python
+
+
+
+ 카테고리:
+
+machine_learning
+
+
+ 업데이트: 2025-03-18
+
+공유하기
+ Twitter
+ Facebook
+ LinkedIn
+
+이전
+다음
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <h3 id="previous_siblings"><code class="language-plaintext highlighter-rouge">previous_siblings()</code></h3>
+    <ul>
+      <li>자기 자신(객채)를 제외한 그 전에 있는 형제들을 반환</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">requests</span>
+
+<span class="kn">from</span> <span class="n">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="sh">"</span><span class="s">https://choewj.github.io/machine_learning/built_in_data_type/</span><span class="sh">"</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">soup</span> <span class="o">=</span> <span class="nc">BeautifulSoup</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">,</span> <span class="sh">'</span><span class="s">html.parser</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="c1"># page__content 클래스를 가지는 &lt;section&gt; 태그의 모든 이전 형제 태그들을 순환
+</span><span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">soup</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="sh">'</span><span class="s">section</span><span class="sh">'</span><span class="p">,</span> <span class="p">{</span><span class="sh">"</span><span class="s">class</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">page__content</span><span class="sh">"</span><span class="p">}).</span><span class="n">previous_siblings</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">child</span><span class="p">.</span><span class="nf">get_text</span><span class="p">().</span><span class="nf">strip</span><span class="p">())</span>
+</code></pre></div></div>
+
+<p>출력 결과</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>사이킷런의 내장데이터
+
+
+
+
+
+2025-03-18
+
+
+
+
+
+          1 분 소요
+</code></pre></div></div>
+
+<h2 id="-부모">🌟 부모</h2>
+
+<h3 id="parent"><code class="language-plaintext highlighter-rouge">parent</code></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">requests</span>
+
+<span class="kn">from</span> <span class="n">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="sh">"</span><span class="s">https://choewj.github.io/machine_learning/built_in_data_type/</span><span class="sh">"</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">soup</span> <span class="o">=</span> <span class="nc">BeautifulSoup</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">,</span> <span class="sh">'</span><span class="s">html.parser</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="c1"># &lt;thead&gt; 태그의 부모 태그의 이전 형제 태그를 찾아서 텍스트로 출력
+</span><span class="nf">print</span><span class="p">(</span><span class="n">soup</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="sh">"</span><span class="s">thead</span><span class="sh">"</span><span class="p">).</span><span class="n">parent</span><span class="p">.</span><span class="nf">find_previous_sibling</span><span class="p">().</span><span class="nf">get_text</span><span class="p">())</span>
+
+</code></pre></div></div>
+
+<p>출력 결과</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>🍑 주요 데이터셋 목록
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">requests</span>
+
+<span class="kn">from</span> <span class="n">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="sh">"</span><span class="s">https://choewj.github.io/machine_learning/built_in_data_type/</span><span class="sh">"</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">soup</span> <span class="o">=</span> <span class="nc">BeautifulSoup</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">,</span> <span class="sh">'</span><span class="s">html.parser</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="c1"># &lt;thead&gt; 태그의 부모 태그의 다음 형제 태그를 찾아서 텍스트로 출력
+</span><span class="nf">print</span><span class="p">(</span><span class="n">soup</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="sh">"</span><span class="s">thead</span><span class="sh">"</span><span class="p">).</span><span class="n">parent</span><span class="p">.</span><span class="nf">find_next_sibling</span><span class="p">().</span><span class="nf">get_text</span><span class="p">())</span>
+</code></pre></div></div>
+
+<p>출력 결과</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>※ 보스턴 데이터 셋은 인종차별 논란으로 최근 사이킷런 데이터셋에서는 삭제됨
+</code></pre></div></div>
+
+
+        
+          
+            <p>
+              Comments are configured with provider: <strong>disqus</strong>,
+              but are disabled in non-production environments.
+            </p>
+          
+        
+
+        
+          
+<div class="page__related">
+  
+  <h2 class="page__related-title">참고</h2>
+  <div class="grid__wrapper">
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/docs/pm/data_literacy-grid/PM_06_04/" rel="permalink">[프로덕트 데이터 분석] 27 Tracking Plan
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-04-20T00:00:00+09:00">2025-04-20</time>
+      </span>
+    
+
+    <!-- <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          3 분 소요
+        
+      </span>
+     -->
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">👑 데이터 트래킹 플랜의 중요성과 실전 구축 전략
+</p>
+  </article>
+</div>
+
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/docs/pm/data_literacy-grid/PM_06_03/" rel="permalink">[프로덕트 데이터 분석] 26 데이터 로그 설계 프로세스
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-04-19T00:00:00+09:00">2025-04-19</time>
+      </span>
+    
+
+    <!-- <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+     -->
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">👑 데이터 로그 설계 프로세스
+</p>
+  </article>
+</div>
+
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/docs/pm/data_literacy-grid/PM_06_02/" rel="permalink">[프로덕트 데이터 분석] 25 로그 설계를 위한 데이터 기초 지식
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-04-18T00:00:00+09:00">2025-04-18</time>
+      </span>
+    
+
+    <!-- <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+     -->
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">👑 로그 설계를 위한 데이터 기초 지식
+</p>
+  </article>
+</div>
+
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/docs/pm/data_literacy-grid/PM_06_01/" rel="permalink">[프로덕트 데이터 분석] 24 데이터 로그 설계란?
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-04-17T00:00:00+09:00">2025-04-17</time>
+      </span>
+    
+
+    <!-- <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+     -->
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">👑 효과적인 데이터 로그 설계 방법
+</p>
+  </article>
+</div>
+
+    
+  </div>
+</div>
+
+        
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags-grid/#automation" class="page__taxonomy-item p-category" rel="tag">automation</a><span class="sep">, </span>
+    
+      <a href="/tags-grid/#python" class="page__taxonomy-item p-category" rel="tag">python</a><span class="sep">, </span>
+    
+      <a href="/tags-grid/#web-crawling" class="page__taxonomy-item p-category" rel="tag">web_crawling</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories-grid/#beautifulsoup" class="page__taxonomy-item p-category" rel="tag">BeautifulSoup</a><span class="sep">, </span>
+    
+      <a href="/categories-grid/#docs" class="page__taxonomy-item p-category" rel="tag">docs</a><span class="sep">, </span>
+    
+      <a href="/categories-grid/#web-crawling" class="page__taxonomy-item p-category" rel="tag">Web_Crawling</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2025-03-18T00:00:00+09:00">2025-03-18</time></p>
+
+      </footer>
+
+      
+        <section class="page__share">
+  <h4 class="page__share-title">공유하기</h4>
+
+  <a href="https://twitter.com/intent/tweet?text=%5B%EC%9B%B9+%ED%81%AC%EB%A1%A4%EB%A7%81%5D+%EC%9E%90%EC%8B%9D%2C+%EC%9E%90%EC%86%90%2C+%ED%98%95%EC%A0%9C%2C+%EB%B6%80%EB%AA%A8%20http%3A%2F%2Flocalhost%3A4000%2Fdocs%2Fweb_crawling%2Fbeautifulsoup-grid%2Fcrawling_method%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fdocs%2Fweb_crawling%2Fbeautifulsoup-grid%2Fcrawling_method%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/docs/web_crawling/beautifulsoup-grid/crawling_method/" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/docs/ml-dl/ml-grid/built_in_data_type/" class="pagination--pager" title="[Machine Learning] 사이킷런의 내장데이터">이전</a>
+    
+    
+      <a href="/docs/web_crawling/beautifulsoup-grid/web_crawling_start/" class="pagination--pager" title="[웹 크롤링] 웹 크롤링 시작하기">다음</a>
+    
+  </nav>
+
+
+    </div>
+  </article>
+</div>
+<script>
+    (async () => {
+      try {
+        const page_path = window.location.pathname;
+        const page_title = "[웹 크롤링] 자식, 자손, 형제, 부모";
+        const source = navigator.geolocation ? "GPS" : "IP";
+    
+        const sendLog = async (geo = {}, lat = null, lon = null) => {
+          const now = new Date();
+          const kst = new Date(now.getTime() + (9 * 60 * 60 * 1000));
+          const visited_at = kst.toISOString().slice(0, 19).replace("T", " ");
+    
+          await fetch("https://atbgxpqvgtqkguucaoeh.supabase.co/rest/v1/page_visits", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "apikey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF0Ymd4cHF2Z3Rxa2d1dWNhb2VoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMwNTUxNTIsImV4cCI6MjA1ODYzMTE1Mn0.F7L7WDpICjIOL2ZcBwekTgSuqlWjZTX6gEn4QvVjceE",
+              "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF0Ymd4cHF2Z3Rxa2d1dWNhb2VoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMwNTUxNTIsImV4cCI6MjA1ODYzMTE1Mn0.F7L7WDpICjIOL2ZcBwekTgSuqlWjZTX6gEn4QvVjceE",
+              "Prefer": "return=representation"
+            },
+            body: JSON.stringify({
+              visited_at,
+              page_path,
+              page_title,
+              ip: geo.ip || null,
+              country: geo.country || null,
+              city: geo.city || null,
+              timezone: geo.timezone || null,
+              latitude: lat,
+              longitude: lon,
+              location_source: source
+            })
+          });
+        };
+    
+        // 위치 우선 GPS → fallback: ipinfo
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            async (pos) => {
+              const info = await fetch("https://ipinfo.io/json?token=4c589a64d00b3c").then(res => res.json());
+              sendLog(info, pos.coords.latitude, pos.coords.longitude);
+            },
+            async () => {
+              const info = await fetch("https://ipinfo.io/json?token=4c589a64d00b3c").then(res => res.json());
+              sendLog(info, null, null);
+            }
+          );
+        } else {
+          const info = await fetch("https://ipinfo.io/json?token=4c589a64d00b3c").then(res => res.json());
+          sendLog(info, null, null);
+        }
+      } catch (err) {
+        console.warn("📄 방문 로그 기록 실패:", err);
+      }
+    })();
+    </script>
+      
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/ChoeWJ/project" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 <a href="http://localhost:4000">DeVlog</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://localhost:4000/docs/web_crawling/beautifulsoup-grid/crawling_method/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/docs/web_crawling/beautifulsoup-grid/crawling_method"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://choeic.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+  </body>
+</html>

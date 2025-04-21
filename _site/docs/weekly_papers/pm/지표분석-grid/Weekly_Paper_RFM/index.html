@@ -1,0 +1,1327 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="ko-KR" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[위클리 페이퍼] RFM 분석 | DeVlog</title>
+<meta name="description" content="👑 RFM 분석 (Recency, Frequency, Monetary Value)">
+
+
+  <meta name="author" content="ChoeWJ">
+  
+  <meta property="article:author" content="ChoeWJ">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="DeVlog">
+<meta property="og:title" content="[위클리 페이퍼] RFM 분석">
+<meta property="og:url" content="http://localhost:4000/docs/weekly_papers/pm/%EC%A7%80%ED%91%9C%EB%B6%84%EC%84%9D-grid/Weekly_Paper_RFM/">
+
+
+  <meta property="og:description" content="👑 RFM 분석 (Recency, Frequency, Monetary Value)">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2025-03-31T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/docs/weekly_papers/pm/%EC%A7%80%ED%91%9C%EB%B6%84%EC%84%9D-grid/Weekly_Paper_RFM/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="DeVlog Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  window.enable_copy_code_button = true;
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+
+
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        TeX: {
+          equationNumbers: {
+            autoNumber: "AMS"
+          }
+        },
+        tex2jax: {
+        inlineMath: [ ['$', '$'] ],
+        displayMath: [ ['$$', '$$'] ],
+        processEscapes: true,
+      }
+    });
+    MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+          alert("Math Processing Error: "+message[1]);
+        });
+    MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+          alert("Math Processing Error: "+message[1]);
+        });
+    </script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7766483371449117" crossorigin="anonymous"></script>
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single" dir="ltr">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/images/logo.jpg" alt="DeVlog"></a>
+        
+        <a class="site-title" href="/">
+          DeVlog
+          <span class="site-subtitle">Leisurely but efficiently</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/categories/"
+                
+                
+              >Category</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/tags/"
+                
+                
+              >Tag</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/year-archive/"
+                
+                
+              >By Year</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/search/"
+                
+                
+              >Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories-grid/#docs" itemprop="item"><span itemprop="name">Docs</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories-grid/#weekly_papers" itemprop="item"><span itemprop="name">Weekly_papers</span></a>
+          <meta itemprop="position" content="3" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories-grid/#pm" itemprop="item"><span itemprop="name">Pm</span></a>
+          <meta itemprop="position" content="4" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories-grid/#%EC%A7%80%ED%91%9C%EB%B6%84%EC%84%9D-grid" itemprop="item"><span itemprop="name">지표분석 grid</span></a>
+          <meta itemprop="position" content="5" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[위클리 페이퍼] RFM 분석</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main" style="padding-top: 0 !important; margin-top: 0 !important;">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      <nav class="nav__list">
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-python" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-python" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Python
+      <span style="font-size: 14px; color: gray;">5</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#basic" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Basic
+            </a>
+            <span style="font-size: 12px; color: gray;">6</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#data" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Data
+            </a>
+            <span style="font-size: 12px; color: gray;">2</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#regular-expression" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Regular_Expression
+            </a>
+            <span style="font-size: 12px; color: gray;">1</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-sql" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-sql" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      SQL
+      <span style="font-size: 14px; color: gray;">10</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#basic" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Basic
+            </a>
+            <span style="font-size: 12px; color: gray;">6</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#advanced" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Advanced
+            </a>
+            <span style="font-size: 12px; color: gray;">1</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#learning-sql" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Learning_SQL
+            </a>
+            <span style="font-size: 12px; color: gray;">5</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-front" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-front" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Front
+      <span style="font-size: 14px; color: gray;">1</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#html-css" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              HTML_CSS
+            </a>
+            <span style="font-size: 12px; color: gray;">1</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-back" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-back" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Back
+      <span style="font-size: 14px; color: gray;">0</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#rust" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Rust
+            </a>
+            <span style="font-size: 12px; color: gray;">0</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#java" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              JAVA
+            </a>
+            <span style="font-size: 12px; color: gray;">0</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#javascript" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              JavaScript
+            </a>
+            <span style="font-size: 12px; color: gray;">0</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-security" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-security" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Security
+      <span style="font-size: 14px; color: gray;">2</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#security" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Security
+            </a>
+            <span style="font-size: 12px; color: gray;">2</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-web-crawling" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-web-crawling" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Web_Crawling
+      <span style="font-size: 14px; color: gray;">11</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#beautifulsoup" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              BeautifulSoup
+            </a>
+            <span style="font-size: 12px; color: gray;">4</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#selenium" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Selenium
+            </a>
+            <span style="font-size: 12px; color: gray;">7</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-ml-dl" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-ml-dl" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      ML-DL
+      <span style="font-size: 14px; color: gray;">2</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#ml" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              ML
+            </a>
+            <span style="font-size: 12px; color: gray;">2</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#dl" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              DL
+            </a>
+            <span style="font-size: 12px; color: gray;">0</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-pyside6" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-pyside6" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      PySide6
+      <span style="font-size: 14px; color: gray;">1</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#widget" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Widget
+            </a>
+            <span style="font-size: 12px; color: gray;">1</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-statistics" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-statistics" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Statistics
+      <span style="font-size: 14px; color: gray;">3</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#for-data" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              For_Data
+            </a>
+            <span style="font-size: 12px; color: gray;">3</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-pm" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-pm" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      PM
+      <span style="font-size: 14px; color: gray;">31</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#data-literacy" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Data_Literacy
+            </a>
+            <span style="font-size: 12px; color: gray;">25</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#product-data" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Product_Data
+            </a>
+            <span style="font-size: 12px; color: gray;">1</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-git" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-git" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Git
+      <span style="font-size: 14px; color: gray;">2</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#git" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Git
+            </a>
+            <span style="font-size: 12px; color: gray;">2</span>
+          </li>
+        
+      
+    </ul>
+  
+</nav>
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <meta itemprop="headline" content="[위클리 페이퍼] RFM 분석">
+    
+    
+      <meta itemprop="description" content="👑 RFM 분석 (Recency, Frequency, Monetary Value)">
+    
+    
+      <meta itemprop="datePublished" content="2025-03-31T00:00:00+09:00">
+    
+    
+
+    <div class="page__inner-wrap" style="padding-top: 0 !important; margin-top: 0 !important;">
+      <!-- 페이지 상단 배너 -->
+      
+
+
+      
+        <header class="page__header">
+          <h1 id="page-title" class="page__title" itemprop="headline" style="padding-top: 0 !important; margin-top: 0 !important;">
+            <a href="http://localhost:4000/docs/weekly_papers/pm/%EC%A7%80%ED%91%9C%EB%B6%84%EC%84%9D-grid/Weekly_Paper_RFM/" itemprop="url">[위클리 페이퍼] RFM 분석
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-03-31T00:00:00+09:00">2025-03-31</time>
+      </span>
+    
+
+    <!-- <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+     -->
+  </p>
+
+
+        </header>
+      
+      
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header>
+                <h4 class="nav__title">
+                  <i class="fas fa-fa-solid fa-hexagon-nodes"></i> 
+                  목차
+                </h4>
+              </header>
+              <ul class="toc__menu"><li><a href="#-rfm-분석-recency-frequency-monetary-value">👑 RFM 분석 (Recency, Frequency, Monetary Value)</a><ul><li><a href="#-각-요소-설명">🍓 각 요소 설명</a></li><li><a href="#-rfm-점수-분류-예시">🍓 RFM 점수 분류 예시</a></li><li><a href="#-활용-전략-예시">🍓 활용 전략 예시</a></li><li><a href="#-시각화-예-rfm-세그먼트-히트맵-python-활용">🍓 시각화 예: RFM 세그먼트 히트맵 (Python 활용)</a><ul><li><a href="#-분석-결과-활용법">🍑 분석 결과 활용법</a></li></ul></li><li><a href="#-실무-적용-분야">🍓 실무 적용 분야</a></li></ul></li></ul>
+            </nav>
+          </aside>
+        
+        
+        <h1 id="-rfm-분석-recency-frequency-monetary-value">👑 RFM 분석 (Recency, Frequency, Monetary Value)</h1>
+
+<ul>
+  <li>RFM 분석은 고객의 구매 이력을 바탕으로 고객을 평가하고 세분화하는 대표적인 고객 가치 분석 방법</li>
+  <li>각각의 요소는 고객의 최근성(Recency), 빈도(Frequency), 금액(Monetary)을 의미하며, 이 세 가지 요소를 기반으로 데이터 기반의 마케팅 전략 수립이 가능하다.</li>
+</ul>
+
+<h2 id="-각-요소-설명">🍓 각 요소 설명</h2>
+
+<ul>
+  <li><span style="color: tomato;">Recency (최근 구매 시점)</span>: 고객이 마지막으로 구매한 시점이 얼마나 가까운가? → 최근일수록 높은 점수</li>
+  <li><span style="color: tomato;">Frequency (구매 빈도)</span>: 고객이 일정 기간 동안 얼마나 자주 구매했는가? → 자주일수록 높음</li>
+  <li>
+    <p><span style="color: tomato;">Monetary (구매 금액)</span>: 고객이 전체 기간 동안 얼마를 지출했는가? → 많이 쓸수록 높음</p>
+  </li>
+  <li>RFM 점수는 일반적으로 1~5점 척도로 분류하며, 각 요소를 기준으로 고객을 5등급으로 나누어 종합 점수 또는 조합별로 고객을 세분화합니다.</li>
+</ul>
+
+<h2 id="-rfm-점수-분류-예시">🍓 RFM 점수 분류 예시</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>고객 ID</th>
+      <th>Recency</th>
+      <th>Frequency</th>
+      <th>Monetary</th>
+      <th>RFM 등급</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>C001</td>
+      <td>5</td>
+      <td>5</td>
+      <td>5</td>
+      <td>최우수 (VIP)</td>
+    </tr>
+    <tr>
+      <td>C078</td>
+      <td>1</td>
+      <td>2</td>
+      <td>2</td>
+      <td>이탈 위험군</td>
+    </tr>
+    <tr>
+      <td>C109</td>
+      <td>4</td>
+      <td>1</td>
+      <td>3</td>
+      <td>재활성화 대상</td>
+    </tr>
+    <tr>
+      <td>C210</td>
+      <td>3</td>
+      <td>4</td>
+      <td>2</td>
+      <td>관심 유지 대상</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-활용-전략-예시">🍓 활용 전략 예시</h2>
+
+<ul>
+  <li>VIP 고객: 우선 리워드/혜택 제공, 고관여 커뮤니케이션</li>
+  <li>이탈 위험군: 타겟 쿠폰 발송, 리마인드 메시지, 휴면 해제 캠페인</li>
+  <li>재활성화 필요군: 잊지 않도록 이벤트 안내, 파손/만족도 조사 등</li>
+</ul>
+
+<h2 id="-시각화-예-rfm-세그먼트-히트맵-python-활용">🍓 시각화 예: RFM 세그먼트 히트맵 (Python 활용)</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="n">seaborn</span> <span class="k">as</span> <span class="n">sns</span>
+<span class="kn">import</span> <span class="n">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="c1"># 샘플 고객 데이터
+</span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="sh">'</span><span class="s">CustomerID</span><span class="sh">'</span><span class="p">:</span> <span class="p">[</span><span class="sh">'</span><span class="s">C001</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">C002</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">C003</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">C004</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">C005</span><span class="sh">'</span><span class="p">],</span>
+    <span class="sh">'</span><span class="s">Recency</span><span class="sh">'</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span>  <span class="c1"># 일 기준
+</span>    <span class="sh">'</span><span class="s">Frequency</span><span class="sh">'</span><span class="p">:</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span>
+    <span class="sh">'</span><span class="s">Monetary</span><span class="sh">'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">1200</span><span class="p">,</span> <span class="mi">450</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nc">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="c1"># RFM 점수 부여
+</span><span class="n">df</span><span class="p">[</span><span class="sh">'</span><span class="s">R_Score</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nf">qcut</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sh">'</span><span class="s">Recency</span><span class="sh">'</span><span class="p">],</span> <span class="n">q</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">f_labels</span> <span class="o">=</span> <span class="n">m_labels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="sh">'</span><span class="s">F_Score</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nf">qcut</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sh">'</span><span class="s">Frequency</span><span class="sh">'</span><span class="p">].</span><span class="nf">rank</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="sh">"</span><span class="s">first</span><span class="sh">"</span><span class="p">),</span> <span class="n">q</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">f_labels</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="sh">'</span><span class="s">M_Score</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nf">qcut</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sh">'</span><span class="s">Monetary</span><span class="sh">'</span><span class="p">].</span><span class="nf">rank</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="sh">"</span><span class="s">first</span><span class="sh">"</span><span class="p">),</span> <span class="n">q</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">m_labels</span><span class="p">)</span>
+
+<span class="c1"># RFM 조합 및 점수 계산
+</span><span class="n">df</span><span class="p">[</span><span class="sh">'</span><span class="s">RFM_Segment</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="sh">'</span><span class="s">R_Score</span><span class="sh">'</span><span class="p">].</span><span class="nf">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="sh">'</span><span class="s">F_Score</span><span class="sh">'</span><span class="p">].</span><span class="nf">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="sh">'</span><span class="s">M_Score</span><span class="sh">'</span><span class="p">].</span><span class="nf">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="sh">'</span><span class="s">RFM_Score</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="sh">'</span><span class="s">R_Score</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">F_Score</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">M_Score</span><span class="sh">'</span><span class="p">]].</span><span class="nf">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">).</span><span class="nf">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># 히트맵 시각화를 위한 피벗 테이블 생성
+</span><span class="n">rfm_pivot</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="nf">pivot_table</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="sh">'</span><span class="s">R_Score</span><span class="sh">'</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="sh">'</span><span class="s">F_Score</span><span class="sh">'</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="sh">'</span><span class="s">RFM_Score</span><span class="sh">'</span><span class="p">,</span> <span class="n">aggfunc</span><span class="o">=</span><span class="sh">'</span><span class="s">mean</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="c1"># 시각화
+</span><span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">sns</span><span class="p">.</span><span class="nf">heatmap</span><span class="p">(</span><span class="n">rfm_pivot</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="sh">"</span><span class="s">.0f</span><span class="sh">"</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="sh">"</span><span class="s">YlGnBu</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">title</span><span class="p">(</span><span class="sh">"</span><span class="s">RFM Heatmap</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="http://localhost:4000/images/graphs/RFM.png" alt="RFM" /></p>
+
+<h3 id="-분석-결과-활용법">🍑 분석 결과 활용법</h3>
+
+<ul>
+  <li>RFM_Score ≥ 13 이상: 최우수 고객 → 리텐션 마케팅 대상</li>
+  <li>RFM_Score ≤ 6 이하: 관심도 낮은 잠재 이탈자 → 재유입 전략 필요</li>
+</ul>
+
+<h2 id="-실무-적용-분야">🍓 실무 적용 분야</h2>
+
+<ul>
+  <li>이커머스: 고객 세그먼트별 리타겟팅 광고 집행</li>
+  <li>리워드 시스템: 우수 고객 자동 포인트 지급</li>
+  <li>CRM 자동화: 마케팅 자동화 조건 필터링 기준으로 활용</li>
+</ul>
+
+
+        
+          
+            <p>
+              Comments are configured with provider: <strong>disqus</strong>,
+              but are disabled in non-production environments.
+            </p>
+          
+        
+
+        
+          
+<div class="page__related">
+  
+  <h2 class="page__related-title">참고</h2>
+  <div class="grid__wrapper">
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/docs/pm/data_literacy-grid/PM_06_04/" rel="permalink">[프로덕트 데이터 분석] 27 Tracking Plan
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-04-20T00:00:00+09:00">2025-04-20</time>
+      </span>
+    
+
+    <!-- <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          3 분 소요
+        
+      </span>
+     -->
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">👑 데이터 트래킹 플랜의 중요성과 실전 구축 전략
+</p>
+  </article>
+</div>
+
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/docs/pm/data_literacy-grid/PM_06_03/" rel="permalink">[프로덕트 데이터 분석] 26 데이터 로그 설계 프로세스
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-04-19T00:00:00+09:00">2025-04-19</time>
+      </span>
+    
+
+    <!-- <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+     -->
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">👑 데이터 로그 설계 프로세스
+</p>
+  </article>
+</div>
+
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/docs/pm/data_literacy-grid/PM_06_02/" rel="permalink">[프로덕트 데이터 분석] 25 로그 설계를 위한 데이터 기초 지식
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-04-18T00:00:00+09:00">2025-04-18</time>
+      </span>
+    
+
+    <!-- <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+     -->
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">👑 로그 설계를 위한 데이터 기초 지식
+</p>
+  </article>
+</div>
+
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/docs/pm/data_literacy-grid/PM_06_01/" rel="permalink">[프로덕트 데이터 분석] 24 데이터 로그 설계란?
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-04-17T00:00:00+09:00">2025-04-17</time>
+      </span>
+    
+
+    <!-- <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+     -->
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">👑 효과적인 데이터 로그 설계 방법
+</p>
+  </article>
+</div>
+
+    
+  </div>
+</div>
+
+        
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags-grid/#pm" class="page__taxonomy-item p-category" rel="tag">PM</a><span class="sep">, </span>
+    
+      <a href="/tags-grid/#po" class="page__taxonomy-item p-category" rel="tag">PO</a><span class="sep">, </span>
+    
+      <a href="/tags-grid/#%EC%A7%80%ED%91%9C%EB%B6%84%EC%84%9D" class="page__taxonomy-item p-category" rel="tag">지표분석</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories-grid/#docs" class="page__taxonomy-item p-category" rel="tag">docs</a><span class="sep">, </span>
+    
+      <a href="/categories-grid/#pm" class="page__taxonomy-item p-category" rel="tag">PM</a><span class="sep">, </span>
+    
+      <a href="/categories-grid/#weekly-papers" class="page__taxonomy-item p-category" rel="tag">Weekly_Papers</a><span class="sep">, </span>
+    
+      <a href="/categories-grid/#%EC%A7%80%ED%91%9C%EB%B6%84%EC%84%9D" class="page__taxonomy-item p-category" rel="tag">지표분석</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2025-03-31T00:00:00+09:00">2025-03-31</time></p>
+
+      </footer>
+
+      
+        <section class="page__share">
+  <h4 class="page__share-title">공유하기</h4>
+
+  <a href="https://twitter.com/intent/tweet?text=%5B%EC%9C%84%ED%81%B4%EB%A6%AC+%ED%8E%98%EC%9D%B4%ED%8D%BC%5D+RFM+%EB%B6%84%EC%84%9D%20http%3A%2F%2Flocalhost%3A4000%2Fdocs%2Fweekly_papers%2Fpm%2F%25EC%25A7%2580%25ED%2591%259C%25EB%25B6%2584%25EC%2584%259D-grid%2FWeekly_Paper_RFM%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fdocs%2Fweekly_papers%2Fpm%2F%25EC%25A7%2580%25ED%2591%259C%25EB%25B6%2584%25EC%2584%259D-grid%2FWeekly_Paper_RFM%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/docs/weekly_papers/pm/%EC%A7%80%ED%91%9C%EB%B6%84%EC%84%9D-grid/Weekly_Paper_RFM/" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/docs/weekly_papers/pm/%EC%A7%80%ED%91%9C%EB%B6%84%EC%84%9D-grid/Weekly_Paper_LTV/" class="pagination--pager" title="[위클리 페이퍼] 고객 생애 가치 (LTV: Lifetime Value)">이전</a>
+    
+    
+      <a href="/docs/weekly_papers/pm/%EC%A7%80%ED%91%9C%EB%B6%84%EC%84%9D-grid/Weekly_Paper_Requirement/" class="pagination--pager" title="[위클리 페이퍼] 획득 지표">다음</a>
+    
+  </nav>
+
+
+    </div>
+  </article>
+</div>
+<script>
+    (async () => {
+      try {
+        const page_path = window.location.pathname;
+        const page_title = "[위클리 페이퍼] RFM 분석";
+        const source = navigator.geolocation ? "GPS" : "IP";
+    
+        const sendLog = async (geo = {}, lat = null, lon = null) => {
+          const now = new Date();
+          const kst = new Date(now.getTime() + (9 * 60 * 60 * 1000));
+          const visited_at = kst.toISOString().slice(0, 19).replace("T", " ");
+    
+          await fetch("https://atbgxpqvgtqkguucaoeh.supabase.co/rest/v1/page_visits", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "apikey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF0Ymd4cHF2Z3Rxa2d1dWNhb2VoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMwNTUxNTIsImV4cCI6MjA1ODYzMTE1Mn0.F7L7WDpICjIOL2ZcBwekTgSuqlWjZTX6gEn4QvVjceE",
+              "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF0Ymd4cHF2Z3Rxa2d1dWNhb2VoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMwNTUxNTIsImV4cCI6MjA1ODYzMTE1Mn0.F7L7WDpICjIOL2ZcBwekTgSuqlWjZTX6gEn4QvVjceE",
+              "Prefer": "return=representation"
+            },
+            body: JSON.stringify({
+              visited_at,
+              page_path,
+              page_title,
+              ip: geo.ip || null,
+              country: geo.country || null,
+              city: geo.city || null,
+              timezone: geo.timezone || null,
+              latitude: lat,
+              longitude: lon,
+              location_source: source
+            })
+          });
+        };
+    
+        // 위치 우선 GPS → fallback: ipinfo
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            async (pos) => {
+              const info = await fetch("https://ipinfo.io/json?token=4c589a64d00b3c").then(res => res.json());
+              sendLog(info, pos.coords.latitude, pos.coords.longitude);
+            },
+            async () => {
+              const info = await fetch("https://ipinfo.io/json?token=4c589a64d00b3c").then(res => res.json());
+              sendLog(info, null, null);
+            }
+          );
+        } else {
+          const info = await fetch("https://ipinfo.io/json?token=4c589a64d00b3c").then(res => res.json());
+          sendLog(info, null, null);
+        }
+      } catch (err) {
+        console.warn("📄 방문 로그 기록 실패:", err);
+      }
+    })();
+    </script>
+      
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/ChoeWJ/project" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 <a href="http://localhost:4000">DeVlog</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://localhost:4000/docs/weekly_papers/pm/%EC%A7%80%ED%91%9C%EB%B6%84%EC%84%9D-grid/Weekly_Paper_RFM/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/docs/weekly_papers/pm/%EC%A7%80%ED%91%9C%EB%B6%84%EC%84%9D-grid/Weekly_Paper_RFM"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://choeic.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+  </body>
+</html>

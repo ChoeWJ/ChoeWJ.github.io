@@ -1,0 +1,279 @@
+/* ==========================================================================
+   SINGLE PAGE/POST
+   ========================================================================== */
+
+   #main {
+    @include clearfix;
+    margin-inline: auto;
+    padding-inline: 1em;
+    -webkit-animation: $intro-transition;
+    animation: $intro-transition;
+    max-width: 100%;
+    -webkit-animation-delay: 0.15s;
+    animation-delay: 0.15s;
+  
+    /* ✅ 공백 제거 */
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  
+    @include breakpoint($x-large) {
+      max-width: $max-width;
+    }
+  }
+  
+  body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+  
+  .initial-content,
+  .search-content {
+    flex: 1 0 auto;
+  }
+  
+  .page {
+    @include breakpoint($large) {
+      float: inline-end;
+      width: calc(100% - #{$right-sidebar-width-narrow});
+      padding-inline-end: $right-sidebar-width-narrow;
+    }
+  
+    @include breakpoint($x-large) {
+      width: calc(100% - #{$right-sidebar-width-narrow});
+      padding-inline-end: $right-sidebar-width;
+    }
+  }
+  
+  /* ✅ 페이지 내부 정렬 최적화 */
+  .page__inner-wrap {
+    float: inline-start;
+    margin-top: 50 !important; /* ✅ 기존 여백 제거 */
+    padding-top: 50 !important;
+    width: 100%;
+    clear: both;
+  }
+  
+  /* ✅ 제목과 본문 간격 조정 */
+  .page__title {
+    padding-top: 50 !important;
+    margin-bottom: 0.5em; /* ✅ 제목과 날짜 사이 여백 추가 */
+    line-height: 2; /* ✅ 줄 간격을 약간 늘림 */
+  
+    a {
+      color: $text-color;
+      text-decoration: none;
+      margin-left: auto;
+      margin-right: auto;
+      display: table;
+    }
+  
+    & + .page__meta {
+      margin-top: -0.5em;
+      margin-bottom: 0.8em;
+    }
+  }
+  
+  /* ✅ 본문(content)와 네비게이션의 간격 조정 */
+  .page__content {
+    margin-top: 1em !important;
+    padding-top: 50 !important;
+    margin-bottom: 50 !important;
+    line-height: 1.5; /* ✅ 줄 간격을 약간 늘림 */
+  
+    h2 {
+      padding-bottom: 0.5em;
+      border-bottom: 1px solid $border-color;
+    }
+  
+    p,
+    li,
+    dl {
+      font-size: 1em;
+    }
+  
+    p {
+      margin: 0 0 $indent-var;
+  
+      @if $paragraph-indent == true {
+        & + p {
+          text-indent: $indent-var;
+          margin-top: -($indent-var);
+        }
+      }
+    }
+  
+    a:not(.btn) {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  
+    :not(pre) > code {
+      padding: 0.1rem 0.2rem;
+      font-size: 0.8em;
+      background: $code-background-color;
+      border-radius: $border-radius;
+    }
+  
+    /* ✅ 테이블 스타일 추가 시작 */
+    /* ✅ 테이블 스타일 추가 시작 */
+    table {
+      width: auto; /* ✅ 부모 너비에 맞춰 자동 확장 */
+      max-width: 100%;
+      table-layout: fixed; /* ✅ 셀 너비 균등 배분 */
+      border-collapse: collapse;
+      margin: 1.5em 0;
+      background-color: #f5f8fa; /* 산뜻한 배경 (다크 모드 대비용) */
+      color: #333;
+      font-size: 0.95em;
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      margin-left: auto;
+      margin-right: auto;
+      display: table;
+    }
+
+    table thead {
+      background-color: #d4eaff; /* 헤더 강조 */
+      color: #003366;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    table th,
+    table td {
+      border: 1px solid #ccc;
+      padding: 0.75em 1em;
+      text-align: left;
+
+      /* ✅ 내용 넘칠 때 줄바꿈 처리 */
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      white-space: normal;
+    }
+
+    table tr:nth-child(even) {
+      background-color: #eef6fb; /* 짝수 행 줄무늬 효과 */
+    }
+
+    table tr:hover {
+      background-color: #d9f0ff; /* 호버 시 하이라이트 */
+    }
+    /* ✅ 테이블 스타일 추가 끝 */
+    /* ✅ 테이블 스타일 추가 끝 */
+  }
+  
+  /* ✅ 네비게이션 사이드바의 간격 조정 */
+  .sidebar {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+  
+  /* ✅ 불필요한 여백 제거 */
+  .page__meta,
+  .page__comments,
+  .page__related {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  
+  /* ✅ taxonomy (카테고리 목록) 공백 조정 */
+  .taxonomy__index {
+    display: grid;
+    grid-column-gap: 2em;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 0 !important;
+    padding: 0;
+    font-size: 0.75em;
+    list-style: none;
+  }
+  
+  .page__hero {
+    position: relative;
+    margin-bottom: 1em;
+    @include clearfix;
+    -webkit-animation: $intro-transition;
+    animation: $intro-transition;
+  }
+  
+  /* ✅ 하단 taxonomy 공백 제거 */
+  .taxonomy__section {
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+  
+    &:not(:last-child) {
+      border-bottom: solid 1px $border-color;
+    }
+  
+    .archive__item-title {
+      margin-top: 0;
+    }
+  
+    .archive__subtitle {
+      clear: both;
+      border: 0;
+    }
+  
+    + .taxonomy__section {
+      margin-top: 1em;
+    }
+  }
+  
+  /* ✅ taxonomy__index 공백 제거 */
+  .taxonomy__index {
+    display: grid;
+    grid-column-gap: 2em;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 1em 0;
+    padding: 0;
+    font-size: 0.75em;
+    list-style: none;
+  
+    @include breakpoint($large) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  
+    a {
+      display: flex;
+      padding: 0.25em 0;
+      justify-content: space-between;
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid $border-color;
+    }
+  }
+  
+  /* ✅ 페이지 하단 Back to Top 공백 줄이기 */
+  .back-to-top {
+    display: block;
+    clear: both;
+    color: $muted-text-color;
+    font-size: 0.6em;
+    text-transform: uppercase;
+    text-align: end;
+    text-decoration: none;
+    margin-bottom: 0.5em;
+  }
+  
+  /* ✅ Related Posts 공백 제거 */
+  .page__related {
+    float: inline-start;
+    margin-top: 1em;
+    padding-top: 1em;
+    border-top: 1px solid $border-color;
+  }
+  
+  /* ✅ 반응형 대응 */
+  @include breakpoint(max-width $large - 1px) {
+    .page {
+      width: 100%;
+      padding-inline-end: 0;
+    }
+  }
+  
+  @include breakpoint(max-width $small) {
+    .taxonomy__index {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }

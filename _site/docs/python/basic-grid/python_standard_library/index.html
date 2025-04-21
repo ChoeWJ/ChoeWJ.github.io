@@ -1,0 +1,2230 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="ko-KR" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[Python] 표준 라이브러리 | DeVlog</title>
+<meta name="description" content="👑 Standard Library">
+
+
+  <meta name="author" content="ChoeWJ">
+  
+  <meta property="article:author" content="ChoeWJ">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="DeVlog">
+<meta property="og:title" content="[Python] 표준 라이브러리">
+<meta property="og:url" content="http://localhost:4000/docs/python/basic-grid/python_standard_library/">
+
+
+  <meta property="og:description" content="👑 Standard Library">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2025-04-03T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/docs/python/basic-grid/python_standard_library/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="DeVlog Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  window.enable_copy_code_button = true;
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+
+
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        TeX: {
+          equationNumbers: {
+            autoNumber: "AMS"
+          }
+        },
+        tex2jax: {
+        inlineMath: [ ['$', '$'] ],
+        displayMath: [ ['$$', '$$'] ],
+        processEscapes: true,
+      }
+    });
+    MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+          alert("Math Processing Error: "+message[1]);
+        });
+    MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+          alert("Math Processing Error: "+message[1]);
+        });
+    </script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7766483371449117" crossorigin="anonymous"></script>
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single" dir="ltr">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/images/logo.jpg" alt="DeVlog"></a>
+        
+        <a class="site-title" href="/">
+          DeVlog
+          <span class="site-subtitle">Leisurely but efficiently</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/categories/"
+                
+                
+              >Category</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/tags/"
+                
+                
+              >Tag</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/year-archive/"
+                
+                
+              >By Year</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/search/"
+                
+                
+              >Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories-grid/#docs" itemprop="item"><span itemprop="name">Docs</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories-grid/#python" itemprop="item"><span itemprop="name">Python</span></a>
+          <meta itemprop="position" content="3" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories-grid/#basic-grid" itemprop="item"><span itemprop="name">Basic grid</span></a>
+          <meta itemprop="position" content="4" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[Python] 표준 라이브러리</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main" style="padding-top: 0 !important; margin-top: 0 !important;">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      <nav class="nav__list">
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-python" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-python" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Python
+      <span style="font-size: 14px; color: gray;">5</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#basic" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Basic
+            </a>
+            <span style="font-size: 12px; color: gray;">6</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#data" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Data
+            </a>
+            <span style="font-size: 12px; color: gray;">2</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#regular-expression" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Regular_Expression
+            </a>
+            <span style="font-size: 12px; color: gray;">1</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-sql" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-sql" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      SQL
+      <span style="font-size: 14px; color: gray;">10</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#basic" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Basic
+            </a>
+            <span style="font-size: 12px; color: gray;">6</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#advanced" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Advanced
+            </a>
+            <span style="font-size: 12px; color: gray;">1</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#learning-sql" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Learning_SQL
+            </a>
+            <span style="font-size: 12px; color: gray;">5</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-front" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-front" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Front
+      <span style="font-size: 14px; color: gray;">1</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#html-css" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              HTML_CSS
+            </a>
+            <span style="font-size: 12px; color: gray;">1</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-back" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-back" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Back
+      <span style="font-size: 14px; color: gray;">0</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#rust" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Rust
+            </a>
+            <span style="font-size: 12px; color: gray;">0</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#java" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              JAVA
+            </a>
+            <span style="font-size: 12px; color: gray;">0</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#javascript" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              JavaScript
+            </a>
+            <span style="font-size: 12px; color: gray;">0</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-security" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-security" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Security
+      <span style="font-size: 14px; color: gray;">2</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#security" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Security
+            </a>
+            <span style="font-size: 12px; color: gray;">2</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-web-crawling" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-web-crawling" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Web_Crawling
+      <span style="font-size: 14px; color: gray;">11</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#beautifulsoup" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              BeautifulSoup
+            </a>
+            <span style="font-size: 12px; color: gray;">4</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#selenium" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Selenium
+            </a>
+            <span style="font-size: 12px; color: gray;">7</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-ml-dl" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-ml-dl" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      ML-DL
+      <span style="font-size: 14px; color: gray;">2</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#ml" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              ML
+            </a>
+            <span style="font-size: 12px; color: gray;">2</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#dl" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              DL
+            </a>
+            <span style="font-size: 12px; color: gray;">0</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-pyside6" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-pyside6" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      PySide6
+      <span style="font-size: 14px; color: gray;">1</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#widget" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Widget
+            </a>
+            <span style="font-size: 12px; color: gray;">1</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-statistics" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-statistics" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Statistics
+      <span style="font-size: 14px; color: gray;">3</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#for-data" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              For_Data
+            </a>
+            <span style="font-size: 12px; color: gray;">3</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-pm" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-pm" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      PM
+      <span style="font-size: 14px; color: gray;">31</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#data-literacy" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Data_Literacy
+            </a>
+            <span style="font-size: 12px; color: gray;">25</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#product-data" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Product_Data
+            </a>
+            <span style="font-size: 12px; color: gray;">1</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-git" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-git" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Git
+      <span style="font-size: 14px; color: gray;">2</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#git" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Git
+            </a>
+            <span style="font-size: 12px; color: gray;">2</span>
+          </li>
+        
+      
+    </ul>
+  
+</nav>
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <meta itemprop="headline" content="[Python] 표준 라이브러리">
+    
+    
+      <meta itemprop="description" content="👑 Standard Library">
+    
+    
+      <meta itemprop="datePublished" content="2025-04-03T00:00:00+09:00">
+    
+    
+
+    <div class="page__inner-wrap" style="padding-top: 0 !important; margin-top: 0 !important;">
+      <!-- 페이지 상단 배너 -->
+      
+
+
+      
+        <header class="page__header">
+          <h1 id="page-title" class="page__title" itemprop="headline" style="padding-top: 0 !important; margin-top: 0 !important;">
+            <a href="http://localhost:4000/docs/python/basic-grid/python_standard_library/" itemprop="url">[Python] 표준 라이브러리
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-04-03T00:00:00+09:00">2025-04-03</time>
+      </span>
+    
+
+    <!-- <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          8 분 소요
+        
+      </span>
+     -->
+  </p>
+
+
+        </header>
+      
+      
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header>
+                <h4 class="nav__title">
+                  <i class="fas fa-fa-solid fa-hexagon-nodes"></i> 
+                  목차
+                </h4>
+              </header>
+              <ul class="toc__menu"><li><a href="#-standard-library">👑 Standard Library</a><ul><li><a href="#-datetimedate">🍓 datetime.date</a></li><li><a href="#-time">🍓 time</a><ul><li><a href="#-timetime">🥝 time.time</a></li><li><a href="#-timelocaltime">🥝 time.localtime</a></li><li><a href="#-timeasctime">🥝 time.asctime</a></li><li><a href="#-timectime">🥝 time.ctime</a></li><li><a href="#-timestrftime">🥝 time.strftime</a></li><li><a href="#-timesleep">🥝 time.sleep</a></li><li><a href="#-인수-없이-time-함수-사용">🥝 인수 없이 time 함수 사용</a></li></ul></li><li><a href="#-math">🍓 math</a><ul><li><a href="#-mathgcd">🥝 math.gcd</a></li><li><a href="#-mathlcm">🥝 math.lcm</a></li></ul></li><li><a href="#-random">🍓 random</a><ul><li><a href="#-randomrandom">🥝 random.random</a></li><li><a href="#-randomrandint">🥝 random.randint</a></li><li><a href="#-randomchoice">🥝 random.choice</a></li><li><a href="#-randomsample">🥝 random.sample</a></li></ul></li><li><a href="#-itertools">🍓 itertools</a><ul><li><a href="#-itertoolszip_longest">🥝 itertools.zip_longest</a></li><li><a href="#-itertoolspermutations">🥝 itertools.permutations</a></li><li><a href="#-itertoolscombinations">🥝 itertools.combinations</a></li><li><a href="#-itertoolscombinations_with_replacement">🥝 itertools.combinations_with_replacement</a></li></ul></li><li><a href="#-functools">🍓 functools</a><ul><li><a href="#-functoolsreduce">🥝 functools.reduce</a></li></ul></li><li><a href="#-operator">🍓 operator</a><ul><li><a href="#-operatoritemgetter">🥝 operator.itemgetter</a></li><li><a href="#-operatorattrgetter">🥝 operator.attrgetter</a></li></ul></li><li><a href="#-shutil">🍓 shutil</a></li><li><a href="#-glob">🍓 glob</a></li><li><a href="#-pickle">🍓 pickle</a></li><li><a href="#-os">🍓 os</a><ul><li><a href="#-osenviron">🥝 os.environ</a></li><li><a href="#-oschdir">🥝 os.chdir</a></li><li><a href="#-osgetcwd">🥝 os.getcwd</a></li><li><a href="#-ossystem">🥝 os.system</a></li><li><a href="#-유용한-os-관련-함수">🥝 유용한 os 관련 함수</a></li></ul></li><li><a href="#-zipfile">🍓 zipfile</a><ul><li><a href="#-compression-종류">🥝 compression 종류</a></li></ul></li><li><a href="#-threading">🍓 threading</a></li><li><a href="#-traceback">🍓 traceback</a></li><li><a href="#-json">🍓 json</a><ul><li><a href="#-jsonload">🥝 json.load</a></li><li><a href="#-jsondump">🥝 json.dump</a></li></ul></li><li><a href="#-urllib">🍓 urllib</a></li><li><a href="#-webbrowser">🍓 webbrowser</a></li></ul></li></ul>
+            </nav>
+          </aside>
+        
+        
+        <h1 id="-standard-library">👑 <font color="plum" face="BMJUAOTF" size="10">Standard Library</font></h1>
+
+<p>출처:<br />
+<a href="https://wikidocs.net/book/1" class="btn btn--success">위키독스 - 점프투파이썬</a><br />
+<a href="https://www.youtube.com/watch?v=ftQZo7XaTOA&amp;t=27768s" class="btn btn--danger">점프투파이썬 2024년 통합 버전 유튜브 강의</a></p>
+
+<h2 id="-datetimedate">🍓 <font color="skyblue" face="BMJUAOTF" size="7">datetime.date</font></h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">datetime</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># D-Day 계산
+</span><span class="n">day1</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">.</span><span class="nf">date</span><span class="p">(</span><span class="mi">2025</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">day2</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">.</span><span class="nf">date</span><span class="p">(</span><span class="mi">2025</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">diff</span> <span class="o">=</span> <span class="n">day2</span> <span class="o">-</span> <span class="n">day1</span>
+
+<span class="n">diff</span><span class="p">.</span><span class="n">days</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>76
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 요일 탐색 1 - 월요일: 0, 화요일: 1, ... 일요일: 6
+</span><span class="n">day</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">.</span><span class="nf">date</span><span class="p">(</span><span class="mi">2025</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">day</span><span class="p">.</span><span class="nf">weekday</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 요일 탐색 2 - 월요일: 1, 화요일: 2, ... 일요일: 7
+</span><span class="n">day</span><span class="p">.</span><span class="nf">isoweekday</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>3
+</code></pre></div></div>
+
+<h2 id="-time">🍓 <font color="skyblue" face="BMJUAOTF" size="7">time</font></h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">time</span>
+</code></pre></div></div>
+
+<h3 id="-timetime">🥝 <font color="plum" face="BMJUAOTF" size="5">time.time</font></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 1970.01.01 기준으로 지난 시간을 초 단위로 리턴
+</span><span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1743660394.813034
+</code></pre></div></div>
+
+<h3 id="-timelocaltime">🥝 <font color="plum" face="BMJUAOTF" size="5">time.localtime</font></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># time.time()이 리턴한 실수값을 사용해서 연, 월, 일, 시...의 형태로 변환
+</span><span class="n">time</span><span class="p">.</span><span class="nf">localtime</span><span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">())</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>time.struct_time(tm_year=2025, tm_mon=4, tm_mday=3, tm_hour=15, tm_min=6, tm_sec=34, tm_wday=3, tm_yday=93, tm_isdst=0)
+</code></pre></div></div>
+
+<h3 id="-timeasctime">🥝 <font color="plum" face="BMJUAOTF" size="5">time.asctime</font></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># time.localtime에서 리턴된 튜플 형태의 값을 인수로 받아서 알아보기 쉬운 형태로 리턴
+# 요일 월 일 시간 연 순서
+</span><span class="n">time</span><span class="p">.</span><span class="nf">asctime</span><span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="nf">localtime</span><span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()))</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>'Thu Apr  3 15:06:34 2025'
+</code></pre></div></div>
+
+<h3 id="-timectime">🥝 <font color="plum" face="BMJUAOTF" size="5">time.ctime</font></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># time.asctime(time.localtime(time.time()))의 간소화
+</span><span class="n">time</span><span class="p">.</span><span class="nf">ctime</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>'Thu Apr  3 15:06:34 2025'
+</code></pre></div></div>
+
+<h3 id="-timestrftime">🥝 <font color="plum" face="BMJUAOTF" size="5">time.strftime</font></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">time</span><span class="p">.</span><span class="nf">strftime</span><span class="p">(</span><span class="sh">"</span><span class="s">포맷코드</span><span class="sh">"</span><span class="p">,</span> <span class="n">time</span><span class="p">.</span><span class="nf">localtime</span><span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()))</span>
+</code></pre></div></div>
+
+<font color="plum" face="BMJUAOTF" size="5">포맷코드 예시 표</font>
+
+<p><img src="http://localhost:4000/images/python/time_format_code.png" alt="format_code" /></p>
+
+<h3 id="-timesleep">🥝 <font color="plum" face="BMJUAOTF" size="5">time.sleep</font></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 일정한 시간 간격을 두고 루프를 실행
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+</code></pre></div></div>
+
+<h3 id="-인수-없이-time-함수-사용">🥝 <font color="gray" face="BMJUAOTF" size="4">인수 없이 time 함수 사용</font></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="nf">localtime</span><span class="p">(),</span> <span class="sh">'</span><span class="se">\n</span><span class="sh">'</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="nf">asctime</span><span class="p">(),</span> <span class="sh">'</span><span class="se">\n</span><span class="sh">'</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="nf">strftime</span><span class="p">(</span><span class="sh">'</span><span class="s">%c</span><span class="sh">'</span><span class="p">),</span> <span class="sh">'</span><span class="se">\n</span><span class="sh">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>time.struct_time(tm_year=2025, tm_mon=4, tm_mday=3, tm_hour=15, tm_min=6, tm_sec=44, tm_wday=3, tm_yday=93, tm_isdst=0)
+
+Thu Apr  3 15:06:44 2025
+
+Thu Apr  3 15:06:44 2025
+</code></pre></div></div>
+
+<h2 id="-math">🍓 <font color="skyblue" face="BMJUAOTF" size="7">math</font></h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">math</span>
+</code></pre></div></div>
+
+<h3 id="-mathgcd">🥝 <font color="plum" face="BMJUAOTF" size="5">math.gcd</font></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 최대 공약수
+</span><span class="n">math</span><span class="p">.</span><span class="nf">gcd</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">80</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>20
+</code></pre></div></div>
+
+<h3 id="-mathlcm">🥝 <font color="plum" face="BMJUAOTF" size="5">math.lcm</font></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 최소 공배수
+</span><span class="n">math</span><span class="p">.</span><span class="nf">lcm</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>75
+</code></pre></div></div>
+
+<h2 id="-random">🍓 <font color="skyblue" face="BMJUAOTF" size="7">random</font></h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">random</span>
+</code></pre></div></div>
+
+<h3 id="-randomrandom">🥝 <font color="plum" face="BMJUAOTF" size="5">random.random</font></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 0.0 ~ 1.0 사이의 실수 중 난수 값을 리턴
+</span><span class="n">random</span><span class="p">.</span><span class="nf">random</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0.7596320963850833
+</code></pre></div></div>
+
+<h3 id="-randomrandint">🥝 <font color="plum" face="BMJUAOTF" size="5">random.randint</font></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 1 ~ 10 사이의 정수 중 난수 값을 리턴
+</span><span class="n">random</span><span class="p">.</span><span class="nf">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 1 ~ 55 사이의 정수 중 난수 값을 리턴
+</span><span class="n">random</span><span class="p">.</span><span class="nf">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">55</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>5
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">random_pop</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">number</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="nf">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nf">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">data</span><span class="p">.</span><span class="nf">pop</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+    <span class="k">while</span> <span class="n">data</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="nf">random_pop</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1
+4
+2
+5
+3
+</code></pre></div></div>
+
+<h3 id="-randomchoice">🥝 <font color="plum" face="BMJUAOTF" size="5">random.choice</font></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 입력으로 받은 리스트에서 무작위로 하나를 선택하여 리턴
+</span><span class="k">def</span> <span class="nf">random_pop</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">number</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">data</span><span class="p">.</span><span class="nf">remove</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">number</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+    <span class="k">while</span> <span class="n">data</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="nf">random_pop</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2
+4
+3
+5
+1
+</code></pre></div></div>
+
+<h3 id="-randomsample">🥝 <font color="plum" face="BMJUAOTF" size="5">random.sample</font></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 리스트의 항목을 무작위로 섞음
+# 두 번째 파라미터는 무작위로 추출할 원소의 개수
+</span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">random</span><span class="p">.</span><span class="nf">sample</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nf">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[4, 2, 1, 5, 3]
+</code></pre></div></div>
+
+<h2 id="-itertools">🍓 <font color="skyblue" face="BMJUAOTF" size="7">itertools</font></h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">itertools</span>
+</code></pre></div></div>
+
+<h3 id="-itertoolszip_longest">🥝 <font color="plum" face="BMJUAOTF" size="5">itertools.zip_longest</font></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># zip함수와 동일하게 작용하지만 반복 가능 객체의 길이가 다르면 fillvalue로 설정한 값을 짧은 객체에 채울 수 있다.
+</span>
+<span class="n">students</span> <span class="o">=</span> <span class="p">[</span><span class="sh">'</span><span class="s">한민서</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">황지민</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">이영철</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">이광수</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">김승민</span><span class="sh">'</span><span class="p">]</span>
+<span class="n">snacks</span> <span class="o">=</span> <span class="p">[</span><span class="sh">'</span><span class="s">사탕</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">초컬릿</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">젤리</span><span class="sh">'</span><span class="p">]</span>
+
+<span class="c1"># zip
+</span><span class="n">result</span> <span class="o">=</span> <span class="nf">zip</span><span class="p">(</span><span class="n">students</span><span class="p">,</span> <span class="n">snacks</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">zip 결과:</span><span class="se">\n</span><span class="s"> </span><span class="si">{</span><span class="nf">list</span><span class="p">(</span><span class="n">result</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span><span class="p">,</span> <span class="sh">'</span><span class="se">\n</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="c1"># itertools.zip_longest
+</span><span class="n">result</span> <span class="o">=</span> <span class="n">itertools</span><span class="p">.</span><span class="nf">zip_longest</span><span class="p">(</span><span class="n">students</span><span class="p">,</span> <span class="n">snacks</span><span class="p">,</span> <span class="n">fillvalue</span><span class="o">=</span><span class="sh">'</span><span class="s">허니버터칩</span><span class="sh">'</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">itertools.zip_longest 함수 결과:</span><span class="se">\n</span><span class="s"> </span><span class="si">{</span><span class="nf">list</span><span class="p">(</span><span class="n">result</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>zip 결과:
+ [('한민서', '사탕'), ('황지민', '초컬릿'), ('이영철', '젤리')]
+
+itertools.zip_longest 함수 결과:
+ [('한민서', '사탕'), ('황지민', '초컬릿'), ('이영철', '젤리'), ('이광수', '허니버터칩'), ('김승민', '허니버터칩')]
+</code></pre></div></div>
+
+<h3 id="-itertoolspermutations">🥝 <font color="plum" face="BMJUAOTF" size="5">itertools.permutations</font></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 반복 가능 객체 중에서 r개를 선택한 순열을 이터레이터로 리턴
+# 1, 2, 3 이라는 숫자중 2개 순열
+</span><span class="nf">list</span><span class="p">(</span><span class="n">itertools</span><span class="p">.</span><span class="nf">permutations</span><span class="p">([</span><span class="sh">'</span><span class="s">1</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">2</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">3</span><span class="sh">'</span><span class="p">],</span> <span class="mi">2</span><span class="p">))</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[('1', '2'), ('1', '3'), ('2', '1'), ('2', '3'), ('3', '1'), ('3', '2')]
+</code></pre></div></div>
+
+<h3 id="-itertoolscombinations">🥝 <font color="plum" face="BMJUAOTF" size="5">itertools.combinations</font></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 반복 가능 객체 중에서 r개를 선택한 조합을 이터레이터로 리턴
+# 로또
+</span><span class="n">lotto</span> <span class="o">=</span> <span class="n">itertools</span><span class="p">.</span><span class="nf">combinations</span><span class="p">(</span><span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">46</span><span class="p">),</span> <span class="mi">6</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">lotto</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+    <span class="k">break</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(1, 2, 3, 4, 5, 6)
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 이터레이터의 개수만 출력
+</span><span class="nf">len</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="n">lotto</span><span class="p">))</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>8145059
+</code></pre></div></div>
+
+<h3 id="-itertoolscombinations_with_replacement">🥝 <font color="plum" face="BMJUAOTF" size="5">itertools.combinations_with_replacement</font></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 중복을 허용하는 조합
+</span><span class="nf">len</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="n">itertools</span><span class="p">.</span><span class="nf">combinations_with_replacement</span><span class="p">(</span><span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">46</span><span class="p">),</span> <span class="mi">6</span><span class="p">)))</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>15890700
+</code></pre></div></div>
+
+<h2 id="-functools">🍓 <font color="skyblue" face="BMJUAOTF" size="7">functools</font></h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">functools</span>
+</code></pre></div></div>
+
+<h3 id="-functoolsreduce">🥝 <font color="plum" face="BMJUAOTF" size="5">functools.reduce</font></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 함수를 이터레이블의 요소에 차례대로 누적 적용하여 객체를 하나의 값으로 줄이는 함수
+</span>
+<span class="c1"># add
+</span><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">+=</span> <span class="n">i</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+
+<span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">result</span> <span class="o">=</span> <span class="nf">add</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">add 함수 결과:</span><span class="se">\n</span><span class="s"> </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="se">\n</span><span class="sh">"</span><span class="p">)</span>
+
+
+<span class="c1"># functools.reduce
+</span><span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">functools</span><span class="p">.</span><span class="nf">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>  <span class="c1"># 계산 과정 ((((1+2)+3)+4)+5)
+</span><span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="s">functools.reduce 결과:</span><span class="se">\n</span><span class="s"> </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="sh">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>add 함수 결과:
+ 15
+
+functools.reduce 결과:
+ 15
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># functools.reduce를 활용한 최대값 구하기
+</span><span class="n">num_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="n">max_num</span> <span class="o">=</span> <span class="n">functools</span><span class="p">.</span><span class="nf">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span> <span class="k">else</span> <span class="n">y</span><span class="p">,</span> <span class="n">num_list</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">num_list의 최대값: </span><span class="si">{</span><span class="n">max_num</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>num_list의 최대값: 8
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># functools.reduce를 활용한 최소값 구하기
+</span><span class="n">num_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="n">min_num</span> <span class="o">=</span> <span class="n">functools</span><span class="p">.</span><span class="nf">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span> <span class="k">else</span> <span class="n">y</span><span class="p">,</span> <span class="n">num_list</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">num_list의 최소값: </span><span class="si">{</span><span class="n">min_num</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>num_list의 최소값: 1
+</code></pre></div></div>
+
+<h2 id="-operator">🍓 <font color="skyblue" face="BMJUAOTF" size="7">operator</font></h2>
+
+<h3 id="-operatoritemgetter">🥝 <font color="plum" face="BMJUAOTF" size="5">operator.itemgetter</font></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># sorted와 같은 함수의 key 매개변수에 적용
+# 다양한 기준으로 정렬을 돕는 모듈
+</span><span class="kn">from</span> <span class="n">operator</span> <span class="kn">import</span> <span class="n">itemgetter</span>
+
+<span class="n">students</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="sh">"</span><span class="s">jane</span><span class="sh">"</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="sh">'</span><span class="s">A</span><span class="sh">'</span><span class="p">),</span>
+    <span class="p">(</span><span class="sh">"</span><span class="s">dave</span><span class="sh">"</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="sh">'</span><span class="s">B</span><span class="sh">'</span><span class="p">),</span>
+    <span class="p">(</span><span class="sh">"</span><span class="s">sally</span><span class="sh">"</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="sh">'</span><span class="s">B</span><span class="sh">'</span><span class="p">),</span>
+<span class="p">]</span>
+
+<span class="c1"># 리스트 내의 튜플의 두 번째 요소를 기준으로 정렬
+</span><span class="n">result</span> <span class="o">=</span> <span class="nf">sorted</span><span class="p">(</span><span class="n">students</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nf">itemgetter</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[('dave', 32, 'B'), ('jane', 22, 'A'), ('sally', 17, 'B')]
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">students</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="sh">"</span><span class="s">name</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">jane</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">age</span><span class="sh">"</span><span class="p">:</span> <span class="mi">22</span><span class="p">,</span> <span class="sh">"</span><span class="s">grade</span><span class="sh">"</span><span class="p">:</span> <span class="sh">'</span><span class="s">A</span><span class="sh">'</span><span class="p">},</span>
+    <span class="p">{</span><span class="sh">"</span><span class="s">name</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">dave</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">age</span><span class="sh">"</span><span class="p">:</span> <span class="mi">32</span><span class="p">,</span> <span class="sh">"</span><span class="s">grade</span><span class="sh">"</span><span class="p">:</span> <span class="sh">'</span><span class="s">B</span><span class="sh">'</span><span class="p">},</span>
+    <span class="p">{</span><span class="sh">"</span><span class="s">name</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">sally</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">age</span><span class="sh">"</span><span class="p">:</span> <span class="mi">17</span><span class="p">,</span> <span class="sh">"</span><span class="s">grade</span><span class="sh">"</span><span class="p">:</span> <span class="sh">'</span><span class="s">B</span><span class="sh">'</span><span class="p">},</span>
+<span class="p">]</span>
+
+<span class="c1"># 딕셔너리의 키값을 기준으로 정렬
+</span><span class="n">result</span> <span class="o">=</span> <span class="nf">sorted</span><span class="p">(</span><span class="n">students</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nf">itemgetter</span><span class="p">(</span><span class="sh">'</span><span class="s">age</span><span class="sh">'</span><span class="p">),</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[{'name': 'dave', 'age': 32, 'grade': 'B'}, {'name': 'jane', 'age': 22, 'grade': 'A'}, {'name': 'sally', 'age': 17, 'grade': 'B'}]
+</code></pre></div></div>
+
+<h3 id="-operatorattrgetter">🥝 <font color="plum" face="BMJUAOTF" size="5">operator.attrgetter</font></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 리스트의 요소가 튜플이 아니라 클래스의 객체일때 사용
+</span><span class="kn">from</span> <span class="n">operator</span> <span class="kn">import</span> <span class="n">attrgetter</span>
+
+<span class="k">class</span> <span class="nc">Student</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">age</span><span class="p">,</span> <span class="n">grade</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">grade</span> <span class="o">=</span> <span class="n">grade</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="sh">"</span><span class="s">Student(name=</span><span class="sh">'</span><span class="si">{</span><span class="n">self</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="sh">'</span><span class="s">, age=</span><span class="si">{</span><span class="n">self</span><span class="p">.</span><span class="n">age</span><span class="si">}</span><span class="s">, grade=</span><span class="sh">'</span><span class="si">{</span><span class="n">self</span><span class="p">.</span><span class="n">grade</span><span class="si">}</span><span class="sh">'</span><span class="s">)</span><span class="sh">"</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">self</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s"> (</span><span class="si">{</span><span class="n">self</span><span class="p">.</span><span class="n">age</span><span class="si">}</span><span class="s">, </span><span class="si">{</span><span class="n">self</span><span class="p">.</span><span class="n">grade</span><span class="si">}</span><span class="s">)</span><span class="sh">"</span>
+
+
+<span class="n">students</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="nc">Student</span><span class="p">(</span><span class="sh">'</span><span class="s">jane</span><span class="sh">'</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="sh">'</span><span class="s">A</span><span class="sh">'</span><span class="p">),</span>
+    <span class="nc">Student</span><span class="p">(</span><span class="sh">'</span><span class="s">dave</span><span class="sh">'</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="sh">'</span><span class="s">B</span><span class="sh">'</span><span class="p">),</span>
+    <span class="nc">Student</span><span class="p">(</span><span class="sh">'</span><span class="s">sally</span><span class="sh">'</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="sh">'</span><span class="s">B</span><span class="sh">'</span><span class="p">),</span>
+<span class="p">]</span>
+
+
+<span class="n">result</span> <span class="o">=</span> <span class="nf">sorted</span><span class="p">(</span><span class="n">students</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nf">attrgetter</span><span class="p">(</span><span class="sh">'</span><span class="s">age</span><span class="sh">'</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">student</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">student</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sally (17, B)
+jane (22, A)
+dave (32, B)
+</code></pre></div></div>
+
+<h2 id="-shutil">🍓 <font color="skyblue" face="BMJUAOTF" size="7">shutil</font></h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 파일을 복사하거나 이동할 때 사용하는 모듈
+</span><span class="kn">import</span> <span class="n">shutil</span>
+
+<span class="n">shutil</span><span class="p">.</span><span class="nf">copy</span><span class="p">(</span><span class="sh">"</span><span class="s">/Users/woojinchoe/Desktop/personal/study/test3.md</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">/Users/woojinchoe/Desktop/personal/study/test3.md.bak</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>'/Users/woojinchoe/Desktop/personal/study/test3.md.bak'
+</code></pre></div></div>
+
+<h2 id="-glob">🍓 <font color="skyblue" face="BMJUAOTF" size="7">glob</font></h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 디렉터리 안의 파일들을 읽어서 리턴
+# 메타 문자를 써서 원하는 파일만 읽어 들이기도 가능
+</span><span class="kn">import</span> <span class="n">glob</span>
+
+<span class="n">files</span> <span class="o">=</span> <span class="n">glob</span><span class="p">.</span><span class="nf">glob</span><span class="p">(</span><span class="sh">"</span><span class="s">/Users/woojinchoe/Desktop/PM/docs/*.pdf</span><span class="sh">"</span><span class="p">)</span>
+<span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/Users/woojinchoe/Desktop/PM/docs/Section_11_의사결정.pdf
+/Users/woojinchoe/Desktop/PM/docs/Section_02.pdf
+/Users/woojinchoe/Desktop/PM/docs/Section_14_앞으로의_활용.pdf
+/Users/woojinchoe/Desktop/PM/docs/Section_12_데이터_문화_만들기.pdf
+/Users/woojinchoe/Desktop/PM/docs/Section_03.pdf
+/Users/woojinchoe/Desktop/PM/docs/Section_01.pdf
+/Users/woojinchoe/Desktop/PM/docs/Section_10_실험설계.pdf
+/Users/woojinchoe/Desktop/PM/docs/Section_08_데이터_레포트.pdf
+/Users/woojinchoe/Desktop/PM/docs/00_강의자료.pdf
+/Users/woojinchoe/Desktop/PM/docs/Section_05_지표분석.pdf
+/Users/woojinchoe/Desktop/PM/docs/Section_04_문제정의.pdf
+/Users/woojinchoe/Desktop/PM/docs/Section_05_결제율_전환_프로젝트.pdf
+/Users/woojinchoe/Desktop/PM/docs/Section_09_매트릭_하이라키.pdf
+/Users/woojinchoe/Desktop/PM/docs/Section_13_Case_Study.pdf
+/Users/woojinchoe/Desktop/PM/docs/Section_06_데이터_로그_설계.pdf
+/Users/woojinchoe/Desktop/PM/docs/Section_07_프로젝트_회고.pdf
+</code></pre></div></div>
+
+<h2 id="-pickle">🍓 <font color="skyblue" face="BMJUAOTF" size="7">pickle</font></h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 객체의 형태를 그대로 유지하면서 파일에 저장하고 불러올 수 있게 하는 모듈
+# dump 함수를 사용하여 딕셔너리 객체인 data를 그대로 파일에 저장
+</span><span class="kn">import</span> <span class="n">pickle</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="sh">'</span><span class="s">test.txt</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">wb</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="sh">'</span><span class="s">python</span><span class="sh">'</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="sh">'</span><span class="s">you need</span><span class="sh">'</span><span class="p">}</span>
+<span class="n">pickle</span><span class="p">.</span><span class="nf">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+<span class="n">f</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">f</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="sh">'</span><span class="s">/Users/woojinchoe/Desktop/personal/study/test.txt</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">rb</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pickle</span><span class="p">.</span><span class="nf">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{1: 'python', 2: 'you need'}
+</code></pre></div></div>
+
+<h2 id="-os">🍓 <font color="skyblue" face="BMJUAOTF" size="7">os</font></h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">os</span>
+</code></pre></div></div>
+
+<h3 id="-osenviron">🥝 <font color="plum" face="BMJUAOTF" size="5">os.environ</font></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 현재 시스템의 환경 변수값을 리턴
+</span><span class="n">os</span><span class="p">.</span><span class="n">environ</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>environ{'COMMAND_MODE': 'unix2003',
+        'CPPFLAGS': '-I/opt/homebrew/opt/libomp/include',
+        'ELECTRON_NO_ATTACH_CONSOLE': '1',
+        'HOME': '/Users/woojinchoe',
+        'HOMEBREW_CELLAR': '/opt/homebrew/Cellar',
+        'HOMEBREW_PREFIX': '/opt/homebrew',
+        'HOMEBREW_REPOSITORY': '/opt/homebrew',
+        'INFOPATH': '/opt/homebrew/share/info:',
+        'LANG': 'ko_KR.UTF-8',
+        'LDFLAGS': '-L/opt/homebrew/opt/libomp/lib',
+        'LESS': '-R',
+        'LOGNAME': 'woojinchoe',
+        'LSCOLORS': 'Gxfxcxdxbxegedabagacad',
+        'LS_COLORS': 'di=1;36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43',
+        'MallocNanoZone': '0',
+        'OLDPWD': '/Users/woojinchoe/Desktop',
+        'ORIGINAL_XDG_CURRENT_DESKTOP': 'undefined',
+        'P9K_SSH': '0',
+        'P9K_TTY': 'old',
+        'PAGER': 'cat',
+        'PATH': '/Users/woojinchoe/Desktop/personal/bin:/Users/woojinchoe/Desktop/personal/bin:/Users/woojinchoe/.npm-global/bin:/Users/woojinchoe/.rbenv/shims:/opt/homebrew/Cellar/pyenv-virtualenv/1.2.4/shims:/Users/woojinchoe/.pyenv/shims:/opt/homebrew/opt/libomp/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Library/Frameworks/Python.framework/Versions/3.12/bin:/Library/Frameworks/Python.framework/Versions/3.11/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Library/Apple/usr/bin:/Users/woojinchoe/.cargo/bin',
+        'PWD': '/',
+        'PYENV_SHELL': 'zsh',
+        'PYENV_VIRTUALENV_INIT': '1',
+        'RBENV_SHELL': 'zsh',
+        'SHELL': '/bin/zsh',
+        'SHLVL': '2',
+        'SSH_AUTH_SOCK': '/private/tmp/com.apple.launchd.j1HfbuG37t/Listeners',
+        'TERM': 'xterm-color',
+        'TERM_PROGRAM': 'Apple_Terminal',
+        'TERM_PROGRAM_VERSION': '455',
+        'TERM_SESSION_ID': 'B68FAEDD-A41C-4997-AFE8-351EDDB3E88C',
+        'TMPDIR': '/var/folders/j6/vc6mjcjd2yqghkgbv6fptp0r0000gn/T/',
+        'USER': 'woojinchoe',
+        'VIRTUAL_ENV': '/Users/woojinchoe/Desktop/personal',
+        'VIRTUAL_ENV_PROMPT': 'personal',
+        'VSCODE_CLI': '1',
+        'VSCODE_CODE_CACHE_PATH': '/Users/woojinchoe/Library/Application Support/Code/CachedData/ddc367ed5c8936efe395cffeec279b04ffd7db78',
+        'VSCODE_CRASH_REPORTER_PROCESS_TYPE': 'extensionHost',
+        'VSCODE_CWD': '/Users/woojinchoe/Desktop/personal/study',
+        'VSCODE_ESM_ENTRYPOINT': 'vs/workbench/api/node/extensionHostProcess',
+        'VSCODE_HANDLES_UNCAUGHT_ERRORS': 'true',
+        'VSCODE_IPC_HOOK': '/Users/woojinchoe/Library/Application Support/Code/1.98-main.sock',
+        'VSCODE_NLS_CONFIG': '{"userLocale":"ko","osLocale":"ko-kr","resolvedLanguage":"ko","defaultMessagesFile":"/Applications/Visual Studio Code.app/Contents/Resources/app/out/nls.messages.json","languagePack":{"translationsConfigFile":"/Users/woojinchoe/Library/Application Support/Code/clp/3c2addebdd9489ab038744b445159f2d.ko/tcf.json","messagesFile":"/Users/woojinchoe/Library/Application Support/Code/clp/3c2addebdd9489ab038744b445159f2d.ko/ddc367ed5c8936efe395cffeec279b04ffd7db78/nls.messages.json","corruptMarkerFile":"/Users/woojinchoe/Library/Application Support/Code/clp/3c2addebdd9489ab038744b445159f2d.ko/corrupted.info"},"locale":"ko","availableLanguages":{"*":"ko"},"_languagePackId":"3c2addebdd9489ab038744b445159f2d.ko","_languagePackSupport":true,"_translationsConfigFile":"/Users/woojinchoe/Library/Application Support/Code/clp/3c2addebdd9489ab038744b445159f2d.ko/tcf.json","_cacheRoot":"/Users/woojinchoe/Library/Application Support/Code/clp/3c2addebdd9489ab038744b445159f2d.ko","_resolvedLanguagePackCoreLocation":"/Users/woojinchoe/Library/Application Support/Code/clp/3c2addebdd9489ab038744b445159f2d.ko/ddc367ed5c8936efe395cffeec279b04ffd7db78","_corruptedFile":"/Users/woojinchoe/Library/Application Support/Code/clp/3c2addebdd9489ab038744b445159f2d.ko/corrupted.info"}',
+        'VSCODE_PID': '13986',
+        'XPC_FLAGS': '0x0',
+        'XPC_SERVICE_NAME': 'application.com.microsoft.VSCode.7773225.7773231.4A681DC5-5CCF-4850-94DF-BA198B720AA2',
+        'ZSH': '/Users/woojinchoe/.oh-my-zsh',
+        '_P9K_SSH_TTY': '/dev/ttys000',
+        '_P9K_TTY': '/dev/ttys000',
+        '__CFBundleIdentifier': 'com.microsoft.VSCode',
+        '__CF_USER_TEXT_ENCODING': '0x1F5:0x3:0x33',
+        'ELECTRON_RUN_AS_NODE': '1',
+        'NODE_TLS_REJECT_UNAUTHORIZED': 'undefined',
+        'VSCODE_L10N_BUNDLE_LOCATION': 'file:///Users/woojinchoe/.vscode/extensions/ms-ceintl.vscode-language-pack-ko-1.98.2025031209/translations/extensions/vscode.markdown-language-features.i18n.json',
+        'PYTHONUNBUFFERED': '1',
+        'PYTHONIOENCODING': 'utf-8',
+        'PS1': '(personal) ',
+        '_': '/Users/woojinchoe/Desktop/personal/bin/python',
+        'PYDEVD_IPYTHON_COMPATIBLE_DEBUGGING': '1',
+        'PYTHON_FROZEN_MODULES': 'on',
+        'PYDEVD_USE_FRAME_EVAL': 'NO',
+        'CLICOLOR': '1',
+        'FORCE_COLOR': '1',
+        'CLICOLOR_FORCE': '1',
+        'GIT_PAGER': 'cat',
+        'MPLBACKEND': 'module://matplotlib_inline.backend_inline'}
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># PATH만 호출
+</span><span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">'</span><span class="s">PATH</span><span class="sh">'</span><span class="p">]</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>'/Users/woojinchoe/Desktop/personal/bin:/Users/woojinchoe/Desktop/personal/bin:/Users/woojinchoe/.npm-global/bin:/Users/woojinchoe/.rbenv/shims:/opt/homebrew/Cellar/pyenv-virtualenv/1.2.4/shims:/Users/woojinchoe/.pyenv/shims:/opt/homebrew/opt/libomp/bin:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Library/Frameworks/Python.framework/Versions/3.12/bin:/Library/Frameworks/Python.framework/Versions/3.11/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Library/Apple/usr/bin:/Users/woojinchoe/.cargo/bin'
+</code></pre></div></div>
+
+<h3 id="-oschdir">🥝 <font color="plum" face="BMJUAOTF" size="5">os.chdir</font></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 디렉터리 위치 변경
+</span><span class="n">os</span><span class="p">.</span><span class="nf">chdir</span><span class="p">(</span><span class="sh">"</span><span class="s">/Users/woojinchoe/Desktop/personal/study</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="-osgetcwd">🥝 <font color="plum" face="BMJUAOTF" size="5">os.getcwd</font></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 현재 디렉터리 위치 리턴
+</span><span class="n">os</span><span class="p">.</span><span class="nf">getcwd</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>'/Users/woojinchoe/Desktop/personal/study'
+</code></pre></div></div>
+
+<h3 id="-ossystem">🥝 <font color="plum" face="BMJUAOTF" size="5">os.system</font></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 시스템 자체의 프로그램이나 명령어를 파이썬에서 호출
+</span><span class="n">os</span><span class="p">.</span><span class="nf">system</span><span class="p">(</span><span class="sh">"</span><span class="s">dir</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sh: dir: command not found
+
+
+
+
+
+32512
+</code></pre></div></div>
+
+<h3 id="-유용한-os-관련-함수">🥝 <font color="plum" face="BMJUAOTF" size="5">유용한 os 관련 함수</font></h3>
+
+<table>
+    <tr>
+        <th>함수</th>
+        <th>설명</th>
+    </tr>
+    <tr>
+        <td>os.mkdir(디렉터리)</td>
+        <td>디렉터리 생성</td>
+    </tr>
+    <tr>
+        <td>os.rmkdir(디렉터리)</td>
+        <td>디렉터리 삭제 (단, 디렉터리가 비어있을 때만 가능)</td>
+    </tr>
+    <tr>
+        <td>os.remove(파일)</td>
+        <td>파일 삭제</td>
+    </tr>
+    <tr>
+        <td>os.rename(src, dst)</td>
+        <td>src라는 이름의 파일을 dst라는 이름으로 변경</td>
+    </tr>
+</table>
+
+<h2 id="-zipfile">🍓 <font color="skyblue" face="BMJUAOTF" size="7">zipfile</font></h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">zipfile</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 여러개의 파일을 zip형식으로 합치거나 해제할 때 사용
+# 합체
+</span><span class="k">with</span> <span class="n">zipfile</span><span class="p">.</span><span class="nc">ZipFile</span><span class="p">(</span><span class="sh">'</span><span class="s">mytext.zip</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">w</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">myzip</span><span class="p">:</span>
+    <span class="n">myzip</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="sh">'</span><span class="s">a.txt</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">myzip</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="sh">'</span><span class="s">b.txt</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">myzip</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="sh">'</span><span class="s">c.txt</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="c1"># 해제
+</span><span class="k">with</span> <span class="n">zipfile</span><span class="p">.</span><span class="nc">ZipFile</span><span class="p">(</span><span class="sh">'</span><span class="s">mytext.zip</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">myzip</span><span class="p">:</span>
+    <span class="n">myzip</span><span class="p">.</span><span class="nf">extractall</span><span class="p">()</span>
+
+<span class="c1"># 특정 파일만 하체
+</span><span class="k">with</span> <span class="n">zipfile</span><span class="p">.</span><span class="nc">ZipFile</span><span class="p">(</span><span class="sh">'</span><span class="s">mytext.zip</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">myzip</span><span class="p">:</span>
+    <span class="n">myzip</span><span class="p">.</span><span class="nf">extract</span><span class="p">(</span><span class="sh">'</span><span class="s">a.txt</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="c1"># 압축하여 묶기
+</span><span class="k">with</span> <span class="n">zipfile</span><span class="p">.</span><span class="nc">ZipFile</span><span class="p">(</span><span class="sh">'</span><span class="s">mytext.zip</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">w</span><span class="sh">'</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="n">zipfile</span><span class="p">.</span><span class="n">ZIP_LZMA</span><span class="p">,</span> <span class="n">compresslevel</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span> <span class="k">as</span> <span class="n">myzip</span><span class="p">:</span>
+    <span class="k">pass</span>
+</code></pre></div></div>
+
+<h3 id="-compression-종류">🥝 <font color="plum" face="BMJUAOTF" size="5">compression 종류</font></h3>
+
+<pre>
+<font color="white" face="BMJUAOTF" size="4">
+• <font color="orange" face="BMJUAOTF" size="4">ZIP_STORED</font>: 압축하지 않고 파일을 zip으로만 묶는다. (속도 빠름)
+• <font color="orange" face="BMJUAOTF" size="4">ZIP_DEFLATED</font>: 일반적인 zip 압축으로 속도가 빠르고 압축률은 낮다. (호환성이 좋음)
+• <font color="orange" face="BMJUAOTF" size="4">ZIP_BZIP2</font>: bzip2 압축으로 압축률이 높고 속도가 느리다.
+• <font color="orange" face="BMJUAOTF" size="4">ZIP_LZMA</font>: lzma 압축으로 압축률이 높고 속도가 느리다. (7zip과 동일한 알고리즘)
+
+<font color="gray" face="BMJUAOTF" size="4">※ compressionlevel은 압축 수준을 의미하는 숫자값으로 1~9까지 설정가능하고 1은 속도가 빠르지만 압축률이 낮고 9는 속도는 가장 느리지만 압축률이 높다. ※</font>
+</font>
+</pre>
+
+<h2 id="-threading">🍓 <font color="skyblue" face="BMJUAOTF" size="7">threading</font></h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">time</span>
+
+<span class="k">def</span> <span class="nf">long_task</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+        <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">working</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="se">\n</span><span class="sh">"</span><span class="p">)</span>
+
+
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Start</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="nf">long_task</span><span class="p">()</span>
+
+
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">END</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Start
+working0
+
+working1
+
+working2
+
+working3
+
+working4
+
+working0
+
+working1
+
+working2
+
+working3
+
+working4
+
+working0
+
+working1
+
+working2
+
+working3
+
+working4
+
+working0
+
+working1
+
+working2
+
+working3
+
+working4
+
+working0
+
+working1
+
+working2
+
+working3
+
+working4
+
+END
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">time</span>
+<span class="kn">import</span> <span class="n">threading</span>
+
+
+<span class="k">def</span> <span class="nf">long_task</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+        <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">working:</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="se">\n</span><span class="sh">"</span><span class="p">)</span>
+
+
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Start</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="n">threads</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">threading</span><span class="p">.</span><span class="nc">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">long_task</span><span class="p">)</span>
+    <span class="n">threads</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span>
+    <span class="n">t</span><span class="p">.</span><span class="nf">start</span><span class="p">()</span>
+
+
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">End</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Start
+End
+
+
+working:0
+working:0
+
+working:0
+
+
+working:0
+
+working:0
+
+working:1
+working:1
+
+working:1
+
+working:1
+
+working:1
+
+
+working:2
+working:2
+
+working:2
+
+
+working:2
+
+working:2
+
+working:3
+working:3
+
+working:3
+
+
+working:3
+
+working:3
+
+working:4
+
+working:4
+
+working:4
+
+working:4
+
+working:4
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">time</span>
+<span class="kn">import</span> <span class="n">threading</span>
+
+
+<span class="k">def</span> <span class="nf">long_task</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+        <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">working:</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="se">\n</span><span class="sh">"</span><span class="p">)</span>
+
+
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Start</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="n">threads</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">threading</span><span class="p">.</span><span class="nc">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">long_task</span><span class="p">)</span>  <span class="c1"># 스레드 생성
+</span>    <span class="n">threads</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span>
+    <span class="n">t</span><span class="p">.</span><span class="nf">start</span><span class="p">()</span>  <span class="c1"># 스레드 실행
+</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span>
+    <span class="n">t</span><span class="p">.</span><span class="nf">join</span><span class="p">()</span>  <span class="c1"># 스레드가 종료될때까지 기다림
+</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">End</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Start
+working:0
+
+working:0
+
+working:0
+
+working:0
+
+working:0
+
+working:1
+working:1
+
+working:1
+
+
+working:1
+
+working:1
+
+working:2
+
+working:2
+
+working:2
+
+working:2
+
+working:2
+
+working:3
+
+working:3
+
+working:3
+
+working:3
+
+working:3
+
+working:4
+
+working:4
+
+working:4
+
+working:4
+
+working:4
+
+End
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">threads</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[&lt;Thread(Thread-370 (long_task), stopped 6256308224)&gt;,
+ &lt;Thread(Thread-371 (long_task), stopped 6273134592)&gt;,
+ &lt;Thread(Thread-372 (long_task), stopped 6289960960)&gt;,
+ &lt;Thread(Thread-373 (long_task), stopped 6306787328)&gt;,
+ &lt;Thread(Thread-374 (long_task), stopped 12901707776)&gt;]
+</code></pre></div></div>
+
+<h2 id="-traceback">🍓 <font color="skyblue" face="BMJUAOTF" size="7">traceback</font></h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">traceback</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 프로그램 실행 중 발생한 오류를 추적
+</span><span class="k">def</span> <span class="nf">a</span><span class="p">():</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="mi">0</span>
+
+<span class="k">def</span> <span class="nf">b</span><span class="p">():</span>
+    <span class="nf">a</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nf">b</span><span class="p">()</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">오류 발생</span><span class="sh">"</span><span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">traceback</span><span class="p">.</span><span class="nf">format_exc</span><span class="p">())</span>
+
+<span class="nf">main</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>오류 발생
+Traceback (most recent call last):
+  File "/var/folders/j6/vc6mjcjd2yqghkgbv6fptp0r0000gn/T/ipykernel_15500/3165344080.py", line 10, in main
+    b()
+  File "/var/folders/j6/vc6mjcjd2yqghkgbv6fptp0r0000gn/T/ipykernel_15500/3165344080.py", line 6, in b
+    a()
+  File "/var/folders/j6/vc6mjcjd2yqghkgbv6fptp0r0000gn/T/ipykernel_15500/3165344080.py", line 3, in a
+    return 1/0
+           ~^~
+ZeroDivisionError: division by zero
+</code></pre></div></div>
+
+<h2 id="-json">🍓 <font color="skyblue" face="BMJUAOTF" size="7">json</font></h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">json</span>
+</code></pre></div></div>
+
+<h3 id="-jsonload">🥝 <font color="plum" face="BMJUAOTF" size="5">json.load</font></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># JSON 데이터를 쉽게 처리
+</span><span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="sh">'</span><span class="s">myinfo.json</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="nf">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+
+<span class="nf">type</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dict
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">data</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{'name': '홍길동', 'birth': '0525', 'age': 30}
+</code></pre></div></div>
+
+<h3 id="-jsondump">🥝 <font color="plum" face="BMJUAOTF" size="5">json.dump</font></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 딕셔너리 자료형을 json파일로 생성
+</span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="sh">'</span><span class="s">name</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">홍길동</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">birth</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">0525</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">age</span><span class="sh">'</span><span class="p">:</span> <span class="mi">30</span><span class="p">}</span>
+<span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="sh">'</span><span class="s">myinfo.json</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">w</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">json</span><span class="p">.</span><span class="nf">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 파이썬 자료형을 JSON 문자열로 만드는 방법
+</span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="sh">'</span><span class="s">name</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">홍길동</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">birth</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">0525</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">age</span><span class="sh">'</span><span class="p">:</span> <span class="mi">30</span><span class="p">}</span>
+<span class="n">json_data</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="nf">dumps</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+<span class="n">json_data</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>'{"name": "\\ud64d\\uae38\\ub3d9", "birth": "0525", "age": 30}'
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># json 문자열을 딕셔너리로 변환
+</span><span class="n">json</span><span class="p">.</span><span class="nf">loads</span><span class="p">(</span><span class="n">json_data</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{'name': '홍길동', 'birth': '0525', 'age': 30}
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 한글 문자열로 저장
+</span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="sh">'</span><span class="s">name</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">홍길동</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">birth</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">0525</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">age</span><span class="sh">'</span><span class="p">:</span> <span class="mi">30</span><span class="p">}</span>
+<span class="n">json_data</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="nf">dumps</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">json_data</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>'{"name": "홍길동", "birth": "0525", "age": 30}'
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># json 문자열 정렬
+</span><span class="n">d</span> <span class="o">=</span> <span class="p">{</span><span class="sh">'</span><span class="s">name</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">홍길동</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">birth</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">0525</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">age</span><span class="sh">'</span><span class="p">:</span> <span class="mi">30</span><span class="p">}</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="nf">dumps</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>{
+  "name": "홍길동",
+  "birth": "0525",
+  "age": 30
+}
+</code></pre></div></div>
+
+<h2 id="-urllib">🍓 <font color="skyblue" face="BMJUAOTF" size="7">urllib</font></h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># URL을 읽고 분석
+</span><span class="kn">import</span> <span class="n">ssl</span>  <span class="c1"># SSL 인증서 검증 실패 시 문제를 회피하기 위한 라이브러리
+</span><span class="kn">import</span> <span class="n">urllib.request</span>
+
+<span class="n">context</span> <span class="o">=</span> <span class="n">ssl</span><span class="p">.</span><span class="n">_create_unverified_context</span>  <span class="c1"># SSL 인증서 검증을 비활성화 하는 Context 생성
+</span>
+<span class="k">def</span> <span class="nf">get_wikidocs</span><span class="p">(</span><span class="n">page</span><span class="p">):</span>
+    <span class="n">resource</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">'</span><span class="s">https://wikidocs.net/</span><span class="si">{</span><span class="n">page</span><span class="si">}</span><span class="sh">'</span>
+    <span class="k">with</span> <span class="n">urllib</span><span class="p">.</span><span class="n">request</span><span class="p">.</span><span class="nf">urlopen</span><span class="p">(</span><span class="n">resource</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="n">context</span><span class="p">)</span> <span class="k">as</span> <span class="n">s</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="s">wikidocs_</span><span class="si">{</span><span class="n">page</span><span class="si">}</span><span class="s">.html</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">wb</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">f</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="nf">read</span><span class="p">())</span>
+</code></pre></div></div>
+
+<h2 id="-webbrowser">🍓 <font color="skyblue" face="BMJUAOTF" size="7">webbrowser</font></h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 시스템 브라우저를 호출할 때 사용
+</span><span class="kn">import</span> <span class="n">webbrowser</span>
+
+<span class="c1"># 새 창으로 웹페이지를 열기
+</span><span class="n">webbrowser</span><span class="p">.</span><span class="nf">open_new</span><span class="p">(</span><span class="sh">'</span><span class="s">http://python.org</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="c1"># 기존에 열려있는 창으로 웹페이지 열기
+</span><span class="n">webbrowser</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="sh">"</span><span class="s">http://python.org</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>True
+</code></pre></div></div>
+
+
+        
+          
+            <p>
+              Comments are configured with provider: <strong>disqus</strong>,
+              but are disabled in non-production environments.
+            </p>
+          
+        
+
+        
+          
+<div class="page__related">
+  
+  <h2 class="page__related-title">참고</h2>
+  <div class="grid__wrapper">
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/docs/pm/data_literacy-grid/PM_06_04/" rel="permalink">[프로덕트 데이터 분석] 27 Tracking Plan
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-04-20T00:00:00+09:00">2025-04-20</time>
+      </span>
+    
+
+    <!-- <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          3 분 소요
+        
+      </span>
+     -->
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">👑 데이터 트래킹 플랜의 중요성과 실전 구축 전략
+</p>
+  </article>
+</div>
+
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/docs/pm/data_literacy-grid/PM_06_03/" rel="permalink">[프로덕트 데이터 분석] 26 데이터 로그 설계 프로세스
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-04-19T00:00:00+09:00">2025-04-19</time>
+      </span>
+    
+
+    <!-- <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+     -->
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">👑 데이터 로그 설계 프로세스
+</p>
+  </article>
+</div>
+
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/docs/pm/data_literacy-grid/PM_06_02/" rel="permalink">[프로덕트 데이터 분석] 25 로그 설계를 위한 데이터 기초 지식
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-04-18T00:00:00+09:00">2025-04-18</time>
+      </span>
+    
+
+    <!-- <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+     -->
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">👑 로그 설계를 위한 데이터 기초 지식
+</p>
+  </article>
+</div>
+
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/docs/pm/data_literacy-grid/PM_06_01/" rel="permalink">[프로덕트 데이터 분석] 24 데이터 로그 설계란?
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-04-17T00:00:00+09:00">2025-04-17</time>
+      </span>
+    
+
+    <!-- <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+     -->
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">👑 효과적인 데이터 로그 설계 방법
+</p>
+  </article>
+</div>
+
+    
+  </div>
+</div>
+
+        
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags-grid/#anaconda" class="page__taxonomy-item p-category" rel="tag">Anaconda</a><span class="sep">, </span>
+    
+      <a href="/tags-grid/#data-analysis" class="page__taxonomy-item p-category" rel="tag">Data Analysis</a><span class="sep">, </span>
+    
+      <a href="/tags-grid/#jupyter-notebook" class="page__taxonomy-item p-category" rel="tag">Jupyter Notebook</a><span class="sep">, </span>
+    
+      <a href="/tags-grid/#python" class="page__taxonomy-item p-category" rel="tag">Python</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories-grid/#basic" class="page__taxonomy-item p-category" rel="tag">Basic</a><span class="sep">, </span>
+    
+      <a href="/categories-grid/#docs" class="page__taxonomy-item p-category" rel="tag">docs</a><span class="sep">, </span>
+    
+      <a href="/categories-grid/#python" class="page__taxonomy-item p-category" rel="tag">Python</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2025-04-03T00:00:00+09:00">2025-04-03</time></p>
+
+      </footer>
+
+      
+        <section class="page__share">
+  <h4 class="page__share-title">공유하기</h4>
+
+  <a href="https://twitter.com/intent/tweet?text=%5BPython%5D+%ED%91%9C%EC%A4%80+%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC%20http%3A%2F%2Flocalhost%3A4000%2Fdocs%2Fpython%2Fbasic-grid%2Fpython_standard_library%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fdocs%2Fpython%2Fbasic-grid%2Fpython_standard_library%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/docs/python/basic-grid/python_standard_library/" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/docs/sql/learning_sql-grid/learning_sql_chapter_06/" class="pagination--pager" title="[Learning_SQL] 🔐 Chapter_06">이전</a>
+    
+    
+      <a href="/docs/pm/data_literacy-grid/PM_03/" class="pagination--pager" title="[프로덕트 데이터 분석] 10 문제 정의">다음</a>
+    
+  </nav>
+
+
+    </div>
+  </article>
+</div>
+<script>
+    (async () => {
+      try {
+        const page_path = window.location.pathname;
+        const page_title = "[Python] 표준 라이브러리";
+        const source = navigator.geolocation ? "GPS" : "IP";
+    
+        const sendLog = async (geo = {}, lat = null, lon = null) => {
+          const now = new Date();
+          const kst = new Date(now.getTime() + (9 * 60 * 60 * 1000));
+          const visited_at = kst.toISOString().slice(0, 19).replace("T", " ");
+    
+          await fetch("https://atbgxpqvgtqkguucaoeh.supabase.co/rest/v1/page_visits", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "apikey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF0Ymd4cHF2Z3Rxa2d1dWNhb2VoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMwNTUxNTIsImV4cCI6MjA1ODYzMTE1Mn0.F7L7WDpICjIOL2ZcBwekTgSuqlWjZTX6gEn4QvVjceE",
+              "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF0Ymd4cHF2Z3Rxa2d1dWNhb2VoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMwNTUxNTIsImV4cCI6MjA1ODYzMTE1Mn0.F7L7WDpICjIOL2ZcBwekTgSuqlWjZTX6gEn4QvVjceE",
+              "Prefer": "return=representation"
+            },
+            body: JSON.stringify({
+              visited_at,
+              page_path,
+              page_title,
+              ip: geo.ip || null,
+              country: geo.country || null,
+              city: geo.city || null,
+              timezone: geo.timezone || null,
+              latitude: lat,
+              longitude: lon,
+              location_source: source
+            })
+          });
+        };
+    
+        // 위치 우선 GPS → fallback: ipinfo
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            async (pos) => {
+              const info = await fetch("https://ipinfo.io/json?token=4c589a64d00b3c").then(res => res.json());
+              sendLog(info, pos.coords.latitude, pos.coords.longitude);
+            },
+            async () => {
+              const info = await fetch("https://ipinfo.io/json?token=4c589a64d00b3c").then(res => res.json());
+              sendLog(info, null, null);
+            }
+          );
+        } else {
+          const info = await fetch("https://ipinfo.io/json?token=4c589a64d00b3c").then(res => res.json());
+          sendLog(info, null, null);
+        }
+      } catch (err) {
+        console.warn("📄 방문 로그 기록 실패:", err);
+      }
+    })();
+    </script>
+      
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/ChoeWJ/project" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 <a href="http://localhost:4000">DeVlog</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://localhost:4000/docs/python/basic-grid/python_standard_library/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/docs/python/basic-grid/python_standard_library"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://choeic.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+  </body>
+</html>

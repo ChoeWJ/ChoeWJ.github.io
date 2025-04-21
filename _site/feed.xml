@@ -1,0 +1,1403 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-04-21T18:15:22+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">DeVlog</title><subtitle>데브라이터의 블로그 입니다.</subtitle><author><name>ChoeWJ</name></author><entry><title type="html">[프로덕트 데이터 분석] 27 Tracking Plan</title><link href="http://localhost:4000/docs/pm/data_literacy-grid/PM_06_04/" rel="alternate" type="text/html" title="[프로덕트 데이터 분석] 27 Tracking Plan" /><published>2025-04-20T00:00:00+09:00</published><updated>2025-04-20T00:00:00+09:00</updated><id>http://localhost:4000/docs/pm/data_literacy-grid/PM_06_04</id><content type="html" xml:base="http://localhost:4000/docs/pm/data_literacy-grid/PM_06_04/"><![CDATA[<h1 id="-데이터-트래킹-플랜의-중요성과-실전-구축-전략">👑 데이터 트래킹 플랜의 중요성과 실전 구축 전략</h1>
+
+<h2 id="-트래킹-플랜이란">🧇 트래킹 플랜이란?</h2>
+
+<ul>
+  <li>
+    <p>트래킹 플랜은 <strong>데이터를 어떻게 기록하고 관리할지에 대한 사전 계획서</strong>를 말하는데 건물을 짓기 전의 설계도와 같은 역할을 하며, 다음과 같은 기능을 수행한다.</p>
+
+    <ul>
+      <li>데이터 로그 설계의 <strong>표준화</strong></li>
+      <li>다양한 팀 간 <strong>소통 도구</strong></li>
+      <li><strong>효율적인 분석 기반</strong> 제공</li>
+    </ul>
+  </li>
+  <li>
+    <p>스프레드시트, Notion, Jira 등 다양한 도구를 활용하여 문서화되며, <strong>이벤트 정의</strong>, <strong>사용자 속성</strong>, <strong>네이밍 규칙</strong>, <strong>파라미터 설명</strong> 등이 포함된다.</p>
+  </li>
+</ul>
+
+<h2 id="-트래킹-플랜-문서화가-필요한-이유">🧇 트래킹 플랜 문서화가 필요한 이유</h2>
+
+<ul>
+  <li>데이터 로그는 시간이 지날수록 이해하기 어려워지며, 담당자가 바뀔 경우 커뮤니케이션 비용이 증가하므로 이를 방지하기 위해 <strong>일관성 있는 문서화</strong>가 필수적 요소이다.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>문제 상황</th>
+      <th>해결 방안</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>로그 담당자가 많아질수록 정보 공유 어려움</td>
+      <td>문서화로 로그 설계 히스토리 공유</td>
+    </tr>
+    <tr>
+      <td>과거 설계를 잊거나 잘못 이해하는 문제</td>
+      <td>문서 기반 커뮤니케이션 유지</td>
+    </tr>
+    <tr>
+      <td>신규 입사자의 온보딩 지연</td>
+      <td>문서 가이드 및 용어 사전 제공</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-효과적인-트래킹-플랜-작성-가이드">🧇 효과적인 트래킹 플랜 작성 가이드</h2>
+
+<ul>
+  <li><strong>데이터 영어 사전</strong>을 포함하여 구성원 간 용어를 통일</li>
+  <li>기획자, 디자이너, 개발자, 데이터 분석가가 모두 <strong>공통된 용어</strong>로 소통</li>
+  <li>문서에는 <strong>목적, 사용 가이드, 설계 히스토리</strong>를 함께 포함</li>
+</ul>
+
+<h2 id="-이벤트-네이밍-전략과-구조">🧇 이벤트 네이밍 전략과 구조</h2>
+
+<ul>
+  <li>이벤트는 <strong>동사 기반의 직관적 용어</strong>로 네이밍하며, 구성요소(Component)를 포함하는 방식 또는 행동만 기록하는 방식 중 하나를 선택한다.</li>
+  <li>또한 <strong>Google Analytics</strong>, <strong>Firebase</strong> 등의 툴은 이벤트 수 제한이 있어 전략적으로 관리하는 것이 바람직하다.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>네이밍 방식</th>
+      <th>설명</th>
+      <th>장단점</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>click_login_button</td>
+      <td>동사 + 구성요소 포함</td>
+      <td>직관적이지만 이벤트 수 증가</td>
+    </tr>
+    <tr>
+      <td>click + parameter: login_button</td>
+      <td>행동만 기록 후 파라미터 사용</td>
+      <td>이벤트 수 절감, 분석 도구 호환성 고려 필요</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-이벤트-구조-예시">🧇 이벤트 구조 예시</h2>
+
+<p>트래킹 플랜의 기본 구조는 다음과 같은 항목으로 구성됩니다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>토픽</td>
+      <td>이벤트의 주제 또는 카테고리</td>
+    </tr>
+    <tr>
+      <td>이벤트 이름</td>
+      <td>직관적이고 일관된 네이밍 사용</td>
+    </tr>
+    <tr>
+      <td>파라미터</td>
+      <td>이벤트와 함께 기록되는 변수</td>
+    </tr>
+    <tr>
+      <td>트리거</td>
+      <td>이벤트 발생 조건 (ex. 클릭, 진입 등)</td>
+    </tr>
+    <tr>
+      <td>설명</td>
+      <td>이벤트의 기능 또는 목적 설명</td>
+    </tr>
+    <tr>
+      <td>참고 문서</td>
+      <td>관련 기획서, 화면 설계 링크 등</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-파라미터-관리-및-네이밍-컨벤션">🧇 파라미터 관리 및 네이밍 컨벤션</h2>
+
+<ul>
+  <li>파라미터는 <strong>고정값 또는 변수</strong>로 정의되며, <code class="language-plaintext highlighter-rouge">string</code>, <code class="language-plaintext highlighter-rouge">int</code>, <code class="language-plaintext highlighter-rouge">float</code>, <code class="language-plaintext highlighter-rouge">boolean</code> 등의 데이터 타입을 명시하고</li>
+  <li>네이밍 규칙은 <code class="language-plaintext highlighter-rouge">snake_case</code> 또는 <code class="language-plaintext highlighter-rouge">camelCase</code> 중 하나로 <strong>통일성 유지</strong>가 필요하다</li>
+</ul>
+
+<h2 id="-트래킹-플랜-관리-전략">🧇 트래킹 플랜 관리 전략</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>상태</td>
+      <td>준비 중 / 배포 완료 / 삭제 등</td>
+    </tr>
+    <tr>
+      <td>플랫폼 구분</td>
+      <td>iOS / Android / Web 등</td>
+    </tr>
+    <tr>
+      <td>변경 이력</td>
+      <td>최근 수정자, 버전 정보, 히스토리 관리</td>
+    </tr>
+    <tr>
+      <td>사용자 속성(User Property)</td>
+      <td>유저 특성 기반의 조건 설정 가능</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-협업과-조직-내-표준화">🧇 협업과 조직 내 표준화</h2>
+
+<ul>
+  <li>
+    <p>트래킹 플랜은 단일 팀의 문서가 아닌, <strong>전체 조직의 협업 산출물</strong>이므로 PM, 디자이너, 개발자, 분석가 모두의 참여가 중요하며, 표준화를 통해 다음을 달성을 목표로 진행한다.</p>
+
+    <ul>
+      <li>커뮤니케이션 비용 감소</li>
+      <li>로그 설계 일관성 확보</li>
+      <li>온보딩 속도 향상</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="-분석-도구와의-연동-사례">🧇 분석 도구와의 연동 사례</h2>
+
+<ul>
+  <li><strong>Mixpanel</strong>: 커스텀 이벤트, 세션 시작, 가치 추적 가능</li>
+  <li><strong>Google Analytics / Firebase</strong>: 최대 500개 이벤트 제한</li>
+  <li><strong>Amplitude</strong>: 조건별 필수 프로퍼티 설정 가능</li>
+</ul>
+
+<h2 id="-마무리-트래킹-플랜이-중요한-이유">🧇 마무리: 트래킹 플랜이 중요한 이유</h2>
+
+<ul>
+  <li>트래킹 플랜은 단순히 데이터를 수집하기 위한 도구가 아니다 <strong>조직의 데이터 문화 정착</strong>, <strong>신뢰성 있는 분석</strong>, <strong>효율적인 협업</strong>을 위한 필수 기반이며 체계적인 설계와 표준화된 문서를 통해 <strong>데이터 기반 의사결정</strong>을 가능하게 만드는 것이 트래킹 플랜의 주요 역할이다.</li>
+</ul>
+
+<hr />
+
+<h2 id="-결과-요약-마인드맵">🧇 결과 요약 마인드맵</h2>
+
+<p><img src="http://localhost:4000/images/2025-03-25-PM/06_04.png" alt="PM_06_04" /></p>
+
+<hr />
+
+<p class="text-center notice--danger"><a style="font-size:30px; color: white;">⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩출처⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩</a></p>
+
+<p>※ 위 글은 인프런 지식공유자 데이터 사이언티스트 <a style="color: orange;">카일 스쿨</a>님의 강의를 수강하고 복습을 위해 작성된 글입니다.<br />
+※ 강의 내용 중 필자가 기억하고 싶은 핵심과 본인의 생각이 포함되어 있으니 보다 자세한 내용은 <a style="color: orange;">카일 스쿨</a>님의 강의를 수강하시는 것을 추천드립니다. <br /></p>
+
+<p>※ 인프런 강의 주소 ☞☞☞ <a href="https://www.inflearn.com/course/pm-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%A6%AC%ED%84%B0%EB%9F%AC%EC%8B%9C" class="btn btn--success">카일 스쿨 인프런 강의 바로가기</a><br />
+※ <a style="color: orange;">카일 스쿨</a>유튜브 ☞☞☞ <a href="https://www.youtube.com/c/kyleschool" class="btn btn--warning">카일 스쿨 유튜브 바로가기</a><br />
+※ <a style="color: orange;">카일 스쿨</a>기술 블로그 ☞☞☞ <a href="https://zzsza.github.io/" class="btn btn--danger">카일 스쿨 블로그 바로가기</a><br />
+※ <a style="color: orange;">카일 스쿨</a>인스타 ☞☞☞ <a href="https://www.instagram.com/data.scientist/" class="btn btn--info">카일 스쿨 인스타 바로가기</a></p>
+
+<hr />]]></content><author><name>ChoeWJ</name></author><category term="docs" /><category term="PM" /><category term="Data_Literacy" /><category term="PM" /><category term="Data_Literacy" /><category term="Data" /><summary type="html"><![CDATA[👑 데이터 트래킹 플랜의 중요성과 실전 구축 전략]]></summary></entry><entry><title type="html">[프로덕트 데이터 분석] 26 데이터 로그 설계 프로세스</title><link href="http://localhost:4000/docs/pm/data_literacy-grid/PM_06_03/" rel="alternate" type="text/html" title="[프로덕트 데이터 분석] 26 데이터 로그 설계 프로세스" /><published>2025-04-19T00:00:00+09:00</published><updated>2025-04-19T00:00:00+09:00</updated><id>http://localhost:4000/docs/pm/data_literacy-grid/PM_06_03</id><content type="html" xml:base="http://localhost:4000/docs/pm/data_literacy-grid/PM_06_03/"><![CDATA[<h1 id="-데이터-로그-설계-프로세스">👑 데이터 로그 설계 프로세스</h1>
+
+<h2 id="-데이터-로그-설계와-qa-프로세스">🍟 데이터 로그 설계와 QA 프로세스</h2>
+
+<ul>
+  <li>데이터 기반 프로젝트에서는 데이터 로그 설계와 QA 과정이 중요하다.</li>
+  <li>로그 설계 시 네이밍 규칙이 없다면 진행 중 정의하며, 이벤트 정의와 유저 정보 기록에 집중해야 한다.</li>
+  <li>데이터 로그 설계는 트래킹 플랜 작성 후 개발자와 협력하여 마무리하며, 이후 데이터 QA로 넘어 가게 된다.</li>
+  <li>또한 문제 정의와 지표 설정을 통해 필요한 데이터가 무엇인지 결정되므로 초기 설계 단계에서 이 과정이 반드시 포함되어야 좋은 로그 설계를 할 수 있다.</li>
+</ul>
+
+<h2 id="-클라이언트와-서버-로그-전략">🍟 클라이언트와 서버 로그 전략</h2>
+
+<ul>
+  <li>클라이언트 로그는 사용자 클릭이나 화면 이동과 같은 인터페이스 활동을 기록하며, 한글은 50자, 영문 및 숫자는 100자 제한이 있지만, 서버 로그는 API 요청 및 응답 중심이며 데이터 유실 가능성이 적고 글자수 제한도 거의 없다.</li>
+  <li>따라서 정합성과 신뢰성이 중요한 지표는 서버 로그나 DB를 통해 저장하고, 클라이언트 로그는 보조적으로 활용하는 것이 좋다.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th>클라이언트 로그</th>
+      <th>서버 로그</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>기록 대상</td>
+      <td>화면 전환, 클릭 등 UI 이벤트</td>
+      <td>API 호출, DB 처리</td>
+    </tr>
+    <tr>
+      <td>저장 위치</td>
+      <td>사용자 디바이스</td>
+      <td>서버, DB</td>
+    </tr>
+    <tr>
+      <td>특징</td>
+      <td>유실 가능성 있음, 글자 제한</td>
+      <td>안정적, 글자 제한 없음</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-이벤트와-유저-정보-로깅-원리">🍟 이벤트와 유저 정보 로깅 원리</h2>
+
+<ul>
+  <li>데이터 로깅의 핵심은 특정 행위를 이벤트로 정의하고, 발생 시점에 필요한 정보를 기록하는 것으로 클릭이나 주문 완료 같은 시점에 정보를 파라미터로 담아 저장을 하게 된다.</li>
+  <li>
+    <p>예를 들어 주문 완료 시에는 다음과 같은 데이터를 저장하게 되면 분석 및 최적화가 가능합니다.</p>
+
+    <ul>
+      <li>결제 형태</li>
+      <li>주문 ID</li>
+      <li>주문 상품</li>
+      <li>결제 금액</li>
+      <li>쿠폰 사용 여부</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="-고급-로깅-전략-및-자동화">🍟 고급 로깅 전략 및 자동화</h2>
+
+<ul>
+  <li>미래에 알 수 있는 값이나 나중에 필요하다고 판단되는 로그는 별도 이벤트로 기록해야 합니다. 이 때 주문 ID, 세션 ID 등의 키를 사용해 여러 이벤트를 연결해 분석할 수 있다.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>플랫폼</th>
+      <th>자동 수집 이벤트 예시</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Firebase</td>
+      <td>page_view, screen_view</td>
+    </tr>
+    <tr>
+      <td>GA4</td>
+      <td>session_start, click</td>
+    </tr>
+    <tr>
+      <td>FCM</td>
+      <td>push_open, push_receive</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-유저-정보-기록-및-협업-전략">🍟 유저 정보 기록 및 협업 전략</h2>
+
+<ul>
+  <li>
+    <p>유저 프로퍼티는 이벤트 발생 시 ‘누가’ 행위를 했는지 알 수 있게 도와주게 되는데 주로 다음 정보들이 포함된다.</p>
+
+    <ul>
+      <li>가입일</li>
+      <li>AB 테스트 그룹</li>
+      <li>위치 정보</li>
+      <li>멤버십 레벨</li>
+      <li>디바이스 정보</li>
+    </ul>
+  </li>
+  <li>로그 설계 시 개발자와 지속적인 커뮤니케이션을 통해 목적과 필요한 데이터를 명확히 전달한다.</li>
+  <li>이떄 PM의 역할은 로그 설계 시간을 일정에 포함시키고, 기능별 로그 요구 사항을 문서화하여 로그 네이밍과 용어 정리는 협업 효율을 높일 수 있다.</li>
+</ul>
+
+<h2 id="-효율적인-로그-설계-전략">🍟 효율적인 로그 설계 전략</h2>
+
+<ul>
+  <li>
+    <p>개발자나 분석가가 로그 구현 및 분석에 소요하는 시간은 크므로, 요구사항을 정리하고 우선순위를 구분하고 필요 이상의 요청은 협업에 부담을 줄 수 있으므로 단계별 접근이 바람직하다.</p>
+  </li>
+  <li>또한 중요한 이벤트와 상태 정의에 집중하고, 트래킹 플랜 수립을 목표로 로그 설계를 진행해야 한다.</li>
+  <li>로그 설계 시에는 개발자 및 분석가와의 상호 이해와 배려가 바탕이 되어야 하며, 동료로서 협업하는 자세가 가장 중요하고 강조된다.</li>
+</ul>
+
+<hr />
+
+<h2 id="-결과-요약-마인드맵">🍟 결과 요약 마인드맵</h2>
+
+<p><img src="http://localhost:4000/images/2025-03-25-PM/06_03.png" alt="PM_06_03" /></p>
+
+<hr />
+
+<p class="text-center notice--danger"><a style="font-size:30px; color: white;">⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩출처⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩</a></p>
+
+<p>※ 위 글은 인프런 지식공유자 데이터 사이언티스트 <a style="color: orange;">카일 스쿨</a>님의 강의를 수강하고 복습을 위해 작성된 글입니다.<br />
+※ 강의 내용 중 필자가 기억하고 싶은 핵심과 본인의 생각이 포함되어 있으니 보다 자세한 내용은 <a style="color: orange;">카일 스쿨</a>님의 강의를 수강하시는 것을 추천드립니다. <br /></p>
+
+<p>※ 인프런 강의 주소 ☞☞☞ <a href="https://www.inflearn.com/course/pm-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%A6%AC%ED%84%B0%EB%9F%AC%EC%8B%9C" class="btn btn--success">카일 스쿨 인프런 강의 바로가기</a><br />
+※ <a style="color: orange;">카일 스쿨</a>유튜브 ☞☞☞ <a href="https://www.youtube.com/c/kyleschool" class="btn btn--warning">카일 스쿨 유튜브 바로가기</a><br />
+※ <a style="color: orange;">카일 스쿨</a>기술 블로그 ☞☞☞ <a href="https://zzsza.github.io/" class="btn btn--danger">카일 스쿨 블로그 바로가기</a><br />
+※ <a style="color: orange;">카일 스쿨</a>인스타 ☞☞☞ <a href="https://www.instagram.com/data.scientist/" class="btn btn--info">카일 스쿨 인스타 바로가기</a></p>
+
+<hr />]]></content><author><name>ChoeWJ</name></author><category term="docs" /><category term="PM" /><category term="Data_Literacy" /><category term="PM" /><category term="Data_Literacy" /><category term="Data" /><summary type="html"><![CDATA[👑 데이터 로그 설계 프로세스]]></summary></entry><entry><title type="html">[프로덕트 데이터 분석] 25 로그 설계를 위한 데이터 기초 지식</title><link href="http://localhost:4000/docs/pm/data_literacy-grid/PM_06_02/" rel="alternate" type="text/html" title="[프로덕트 데이터 분석] 25 로그 설계를 위한 데이터 기초 지식" /><published>2025-04-18T00:00:00+09:00</published><updated>2025-04-18T00:00:00+09:00</updated><id>http://localhost:4000/docs/pm/data_literacy-grid/PM_06_02</id><content type="html" xml:base="http://localhost:4000/docs/pm/data_literacy-grid/PM_06_02/"><![CDATA[<h1 id="-로그-설계를-위한-데이터-기초-지식">👑 로그 설계를 위한 데이터 기초 지식</h1>
+
+<h2 id="-데이터-로그의-종류">🍡 데이터 로그의 종류</h2>
+
+<ul>
+  <li>데이터 로그는 크게 서비스 로그와 사용자 행동 로그로 나눌 수 있다.</li>
+  <li>서비스 로그는 데이터베이스에 저장되어 주로 운영 데이터를 의미하며, 예시로 고객의 가입 날짜나 구매 내역 등이 있다.</li>
+  <li>사용자 행동 로그는 유저의 클릭이나 화면 이동과 같은 활동을 기록하여 분석 목적에 사용되는데 이 로그는 추천 엔진이나 사용자 경험 개선에 활용된다.</li>
+</ul>
+
+<h2 id="-데이터-소스와-클라이언트-서버-통신">🍡 데이터 소스와 클라이언트-서버 통신</h2>
+
+<ul>
+  <li>데이터 소스는 데이터가 발생하는 출처이며, 대표적으로 서버, 웹, 앱이 있다.</li>
+  <li>클라이언트(예: 스마트폰, 웹브라우저)는 서버에 요청(request)을 보내고, 서버는 이에 대한 응답(response)을 전달하는 역할을 한다.</li>
+</ul>
+
+<h2 id="-서버-로그와-클라이언트-로그의-차이">🍡 서버 로그와 클라이언트 로그의 차이</h2>
+
+<ul>
+  <li>같은 행동이라도 서버와 클라이언트가 저장하는 로그는 다를 수 있다.</li>
+  <li>서버 로그는 처리 결과 중심의 정보를 저장하고, 클라이언트 로그는 UX 관점에서 클릭, 화면 진입 등 사용자의 실제 행동을 기록한다. 예를 들어, 로그인 전후 상태나 화면 뷰 등의 세부 행동은 클라이언트 로그에 포함될 수 있다.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>로그 유형</th>
+      <th>저장 주체</th>
+      <th>주요 내용</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>서버 로그</td>
+      <td>서버</td>
+      <td>요청 처리, 응답 상태 등</td>
+    </tr>
+    <tr>
+      <td>클라이언트 로그</td>
+      <td>사용자 디바이스</td>
+      <td>클릭, 화면 이동, 버튼 동작 등</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-데이터-저장소-데이터베이스와-데이터-웨어하우스">🍡 데이터 저장소: 데이터베이스와 데이터 웨어하우스</h2>
+
+<ul>
+  <li>데이터는 데이터베이스 또는 파일로 저장되게 되는데 서비스 운영에 사용되는 데이터베이스(RDB)는 빠른 검색과 트랜잭션 처리에 적합하지만, 분석에는 부적합할 수 있다.</li>
+  <li>때문에 분석 목적에는 OLAP 처리가 가능한 데이터 웨어하우스가 적합하며, Redshift, BigQuery, Snowflake가 대표적이며, 파일 저장은 서버 부담이 적지만 별도 처리가 필요합니다.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>저장소</th>
+      <th>특징</th>
+      <th>예시</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>데이터베이스</td>
+      <td>빠른 검색, 수정 중심</td>
+      <td>MySQL, PostgreSQL</td>
+    </tr>
+    <tr>
+      <td>데이터 웨어하우스</td>
+      <td>분석 특화, ETL 필요</td>
+      <td>BigQuery, Snowflake</td>
+    </tr>
+    <tr>
+      <td>파일</td>
+      <td>시스템 부담 낮음, 처리 필요</td>
+      <td>CSV, JSON 등</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-운영-환경-개발-환경-데이터-타입">🍡 운영 환경, 개발 환경, 데이터 타입</h2>
+
+<ul>
+  <li>운영 환경(프로덕션)과 개발 환경(데브)은 분리되어야 하며, 대부분의 QA는 개발 환경에서 진행되어야 한다.</li>
+  <li>로그가 잘 작동하는지 확인한 후 운영 환경에서 적용하며, 메모리 효율을 위해 데이터 타입을 적절히 선택해서, 활용해야 한다.</li>
+  <li>데이터 타입에는 문자열(string), 정수(int), 실수(float), 타임스탬프(timestamp), 날짜(datetime) 등이 있고 특히 UTC 기준의 타임스탬프는 글로벌 서비스에서 중요하다.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>데이터 타입</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>string</td>
+      <td>문자열</td>
+    </tr>
+    <tr>
+      <td>int</td>
+      <td>정수</td>
+    </tr>
+    <tr>
+      <td>float</td>
+      <td>실수</td>
+    </tr>
+    <tr>
+      <td>timestamp</td>
+      <td>시간값 (1970년 1월 1일부터 초 단위)</td>
+    </tr>
+    <tr>
+      <td>datetime</td>
+      <td>날짜 (예: “2025-03-25”)</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-결과-요약-마인드맵">🍡 결과 요약 마인드맵</h2>
+
+<p><img src="http://localhost:4000/images/2025-03-25-PM/06_02.png" alt="PM_06_02" /></p>
+
+<hr />
+
+<p class="text-center notice--danger"><a style="font-size:30px; color: white;">⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩출처⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩</a></p>
+
+<p>※ 위 글은 인프런 지식공유자 데이터 사이언티스트 <a style="color: orange;">카일 스쿨</a>님의 강의를 수강하고 복습을 위해 작성된 글입니다.<br />
+※ 강의 내용 중 필자가 기억하고 싶은 핵심과 본인의 생각이 포함되어 있으니 보다 자세한 내용은 <a style="color: orange;">카일 스쿨</a>님의 강의를 수강하시는 것을 추천드립니다. <br /></p>
+
+<p>※ 인프런 강의 주소 ☞☞☞ <a href="https://www.inflearn.com/course/pm-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%A6%AC%ED%84%B0%EB%9F%AC%EC%8B%9C" class="btn btn--success">카일 스쿨 인프런 강의 바로가기</a><br />
+※ <a style="color: orange;">카일 스쿨</a>유튜브 ☞☞☞ <a href="https://www.youtube.com/c/kyleschool" class="btn btn--warning">카일 스쿨 유튜브 바로가기</a><br />
+※ <a style="color: orange;">카일 스쿨</a>기술 블로그 ☞☞☞ <a href="https://zzsza.github.io/" class="btn btn--danger">카일 스쿨 블로그 바로가기</a><br />
+※ <a style="color: orange;">카일 스쿨</a>인스타 ☞☞☞ <a href="https://www.instagram.com/data.scientist/" class="btn btn--info">카일 스쿨 인스타 바로가기</a></p>
+
+<hr />]]></content><author><name>ChoeWJ</name></author><category term="docs" /><category term="PM" /><category term="Data_Literacy" /><category term="PM" /><category term="Data_Literacy" /><category term="Data" /><summary type="html"><![CDATA[👑 로그 설계를 위한 데이터 기초 지식]]></summary></entry><entry><title type="html">[프로덕트 데이터 분석] 24 데이터 로그 설계란?</title><link href="http://localhost:4000/docs/pm/data_literacy-grid/PM_06_01/" rel="alternate" type="text/html" title="[프로덕트 데이터 분석] 24 데이터 로그 설계란?" /><published>2025-04-17T00:00:00+09:00</published><updated>2025-04-17T00:00:00+09:00</updated><id>http://localhost:4000/docs/pm/data_literacy-grid/PM_06_01</id><content type="html" xml:base="http://localhost:4000/docs/pm/data_literacy-grid/PM_06_01/"><![CDATA[<h1 id="-효과적인-데이터-로그-설계-방법">👑 효과적인 데이터 로그 설계 방법</h1>
+
+<h2 id="-데이터-로깅의-기본-이해">🍨 데이터 로깅의 기본 이해</h2>
+
+<ul>
+  <li>기능 출시 준비 시 데이터 저장 방법에 대한 논의는 필수!!!</li>
+  <li>데이터는 크게 데이터베이스 데이터와 사용자 행동 데이터로 나누고 특히나 사용자 행동 데이터는 주로 제품 매니저(PM) 또는 데이터 분석가가 주도하여 로깅을 설계하고 관리한다.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>데이터 유형</th>
+      <th>설명</th>
+      <th>주도자</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>데이터베이스 데이터</td>
+      <td>사용자의 기본 정보 및 트랜잭션 기록</td>
+      <td>엔지니어</td>
+    </tr>
+    <tr>
+      <td>사용자 행동 데이터</td>
+      <td>사용자의 행동(클릭, 조회 등) 기록</td>
+      <td>PM, 데이터 분석가</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-데이터-로그-설계와-이벤트-정의-방법">🍨 데이터 로그 설계와 이벤트 정의 방법</h2>
+
+<ul>
+  <li>이벤트 로그는 특정 사용자 행동을 기록하는 것으로, 이벤트 이름과 파라미터를 명확히 정의하여 사용한다.</li>
+  <li>예를 들어 결제 페이지에서 ‘결제하기’ 버튼 클릭 시 이벤트 로그를 남기는 것이 중요한 이유는 이벤트 이름은 일반적으로 영어로 표기하며, 버튼 클릭, 화면 노출, 스크롤 등 다양한 사용자 행동을 이벤트로 정의할 수 있기 때문이다.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>항목</th>
+      <th>예시</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>이벤트 이름</td>
+      <td>click_button</td>
+    </tr>
+    <tr>
+      <td>이벤트 파라미터</td>
+      <td>user_id, payment_amount, timestamp</td>
+    </tr>
+    <tr>
+      <td>이벤트 시점</td>
+      <td>버튼 클릭 시점</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>효과적인 데이터 로그 설계를 위해 이벤트 텍사노미(Event Taxonomy)와 트래킹 플랜(Tracking Plan)을 활용하여 정보를 체계적으로 관리하여 이벤트 발생 시점과 설명, 개발 과정에 대한 정보를 상세히 기록하면 향후 데이터 분석에 큰 도움이 된다.</li>
+</ul>
+
+<h2 id="-데이터-로깅의-중요성과-지표-기반-의사결정">🍨 데이터 로깅의 중요성과 지표 기반 의사결정</h2>
+
+<ul>
+  <li>데이터 로깅을 하지 않으면 기능 출시 후 데이터를 정확하게 분석할 수 없으며, 잘못된 데이터 해석으로 이어질 수 있기 떄문에 서비스의 성과를 측정하고, 올바른 지표 기반 의사결정을 내리기 위해서는 데이터 로깅이 반드시 필요하다.</li>
+  <li>지표 기반 의사결정은 자동으로 데이터가 저장되는 것이 아니며, 의도적으로 설계하여 기록하고 데이터 로깅은 지표 기반 의사결정의 필수적인 첫 단계로, 데이터 중심의 문화 형성에 중요한 역할을 한다.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>과정</th>
+      <th>설명</th>
+      <th>주의점</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>데이터 로깅</td>
+      <td>데이터 기록 행위</td>
+      <td>명확한 이벤트 정의</td>
+    </tr>
+    <tr>
+      <td>지표 기반 의사결정</td>
+      <td>데이터를 바탕으로 한 전략 결정</td>
+      <td>정확한 데이터 확보 필수</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-데이터-로그-설계의-어려움과-해결-방안">🍨 데이터 로그 설계의 어려움과 해결 방안</h2>
+
+<ul>
+  <li>데이터 로그 설계 과정에서 가장 흔히 발생하는 어려움은 사용자 행동 로그에 대한 정보 부족과 개발 지식 부족으로 인한 혼란인데, 해결 방법은 IT 개발 용어와 클라이언트, 프론트엔드, 백엔드 등의 기초 지식을 습득하는 것이 데이터 로그 설계의 첫걸음이라고 할 수 있다.</li>
+  <li>또한, 개발자들에게 이벤트 발생 시점과 로그 기록 방법을 명확히 전달하여 개발 과정에서 혼선을 방지해야하며,</li>
+  <li>배포 과정에서 발생 가능한 문제점을 미리 예측하고 대응 가이드를 마련하여 문제 발생 시 원활한 대처가 가능해야 한다.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>문제점</th>
+      <th>해결 방안</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>사용자 행동 로그 정보 부족</td>
+      <td>이벤트 텍사노미 및 트래킹 플랜 활용</td>
+    </tr>
+    <tr>
+      <td>개발 용어 이해 부족</td>
+      <td>기본 IT 개발 지식 습득</td>
+    </tr>
+    <tr>
+      <td>배포 문제</td>
+      <td>명확한 커뮤니케이션과 대응 가이드 작성</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-결과-요약-마인드맵">🍨 결과 요약 마인드맵</h2>
+
+<p><img src="http://localhost:4000/images/2025-03-25-PM/06_01.png" alt="PM_06_01" /></p>
+
+<hr />
+
+<p class="text-center notice--danger"><a style="font-size:30px; color: white;">⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩출처⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩</a></p>
+
+<p>※ 위 글은 인프런 지식공유자 데이터 사이언티스트 <a style="color: orange;">카일 스쿨</a>님의 강의를 수강하고 복습을 위해 작성된 글입니다.<br />
+※ 강의 내용 중 필자가 기억하고 싶은 핵심과 본인의 생각이 포함되어 있으니 보다 자세한 내용은 <a style="color: orange;">카일 스쿨</a>님의 강의를 수강하시는 것을 추천드립니다. <br /></p>
+
+<p>※ 인프런 강의 주소 ☞☞☞ <a href="https://www.inflearn.com/course/pm-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%A6%AC%ED%84%B0%EB%9F%AC%EC%8B%9C" class="btn btn--success">카일 스쿨 인프런 강의 바로가기</a><br />
+※ <a style="color: orange;">카일 스쿨</a>유튜브 ☞☞☞ <a href="https://www.youtube.com/c/kyleschool" class="btn btn--warning">카일 스쿨 유튜브 바로가기</a><br />
+※ <a style="color: orange;">카일 스쿨</a>기술 블로그 ☞☞☞ <a href="https://zzsza.github.io/" class="btn btn--danger">카일 스쿨 블로그 바로가기</a><br />
+※ <a style="color: orange;">카일 스쿨</a>인스타 ☞☞☞ <a href="https://www.instagram.com/data.scientist/" class="btn btn--info">카일 스쿨 인스타 바로가기</a></p>
+
+<hr />]]></content><author><name>ChoeWJ</name></author><category term="docs" /><category term="PM" /><category term="Data_Literacy" /><category term="PM" /><category term="Data_Literacy" /><category term="Data" /><summary type="html"><![CDATA[👑 효과적인 데이터 로그 설계 방법]]></summary></entry><entry><title type="html">[프로덕트 데이터 분석] 23 데이터 기반 프로젝트</title><link href="http://localhost:4000/docs/pm/data_literacy-grid/PM_05_03/" rel="alternate" type="text/html" title="[프로덕트 데이터 분석] 23 데이터 기반 프로젝트" /><published>2025-04-16T00:00:00+09:00</published><updated>2025-04-16T00:00:00+09:00</updated><id>http://localhost:4000/docs/pm/data_literacy-grid/PM_05_03</id><content type="html" xml:base="http://localhost:4000/docs/pm/data_literacy-grid/PM_05_03/"><![CDATA[<h1 id="-데이터-기반-프로젝트-진행에서-놓치기-쉬운-핵심-단계와-개선-전략">👑 데이터 기반 프로젝트 진행에서 놓치기 쉬운 핵심 단계와 개선 전략</h1>
+
+<h2 id="-데이터-기반-프로젝트-진행-시-놓치기-쉬운-단계들">🌮 데이터 기반 프로젝트 진행 시 놓치기 쉬운 단계들</h2>
+
+<ul>
+  <li>프로젝트 진행 시 데이터가 자주 활용되는 단계는 주로 지표 설정과 문제 정의를 할 떄이다. 그러나 목표 설정 과정에서도 가설 검증을 위한 실험 설계를 진행하여 목표의 달성 가능성을 검증할 필요성이 존재한다.</li>
+  <li>실험 설계가 없을 경우, 특정 기능의 효과를 정확히 비교하기 어렵기 때문에 사용자 선호도를 명확하게 파악하고 결과를 예측할 수 있도록 다양한 기능이나 방법에 대한 실험을 설계하는 것이 중요하다.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>단계</th>
+      <th>놓치기 쉬운 점</th>
+      <th>개선 전략</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>목표 설정</td>
+      <td>목표의 달성 가능성 불확실</td>
+      <td>실험을 통한 가설 검증</td>
+    </tr>
+    <tr>
+      <td>기능 비교</td>
+      <td>사용자 선호도 파악 어려움</td>
+      <td>다양한 기능의 실험 설계</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-제품-및-기능-개발-과정에서의-데이터-로깅과-qa-중요성">🌮 제품 및 기능 개발 과정에서의 데이터 로깅과 QA 중요성</h2>
+
+<ul>
+  <li>제품 및 기능 개발 시 데이터 로깅에 대한 논의가 충분히 이루어지지 않으면 중요한 데이터가 누락될 수 있기 때문에 기능 개발 전부터 데이터를 어떻게 기록하고 저장할지 설계하는 데이터 로그 설계가 필요하다.</li>
+  <li>또한, 기능 QA뿐 아니라 데이터 QA를 통해 실제로 데이터가 예상대로 저장되었는지 확인하고, 데이터 기록 과정에서 발생할 수 있는 오류(예: 오타, 누락)를 점검하는 과정이 중요하다.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>과정</th>
+      <th>중요성</th>
+      <th>점검 사항</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>데이터 로그 설계</td>
+      <td>정확한 데이터 기록 필수</td>
+      <td>데이터 저장 방법, 누락 방지</td>
+    </tr>
+    <tr>
+      <td>데이터 QA</td>
+      <td>데이터 정확성 확보</td>
+      <td>데이터 저장 확인, 오류 검증</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-지속적인-개선을-위한-회고의-중요성">🌮 지속적인 개선을 위한 회고의 중요성</h2>
+
+<ul>
+  <li>프로젝트 성과를 확인한 후 반드시 회고 과정을 통해 프로젝트를 다시 시작할 수 있도록 계획을 세워야 장기적으로 지표 개선과 지속적인 서비스 발전을 기대할 수 있다.</li>
+  <li>회고 과정에서는 반드시 실험 설계, 데이터 로깅 설계, 데이터 QA 결과를 포함하여 프로젝트의 성과를 분석하고 다음 프로젝트의 개선 방안을 수립해야 한다.</li>
+  <li>
+    <p>회고 단계에서 고려해야 할 사항:</p>
+
+    <ul>
+      <li>지표 개선을 위한 구체적 방안 수립</li>
+      <li>실험 결과 및 데이터 분석 결과를 통한 향후 전략 결정</li>
+      <li>데이터 로깅 및 QA 과정 점검 후 개선 사항 도출</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="-데이터-기반-프로젝트-프로세스-점검-사항">🌮 데이터 기반 프로젝트 프로세스 점검 사항</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>프로젝트 단계</th>
+      <th>주요 점검 사항</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>문제 정의 및 발견</td>
+      <td>실험 설계를 통해 가설 검증</td>
+    </tr>
+    <tr>
+      <td>디자인 및 개발</td>
+      <td>데이터 로그 설계를 통한 데이터 기록</td>
+    </tr>
+    <tr>
+      <td>QA 과정</td>
+      <td>기능 QA와 데이터 QA 동시 진행</td>
+    </tr>
+    <tr>
+      <td>실험 결과 모니터링</td>
+      <td>실험 기간 설정 및 성과 지표 모니터링</td>
+    </tr>
+    <tr>
+      <td>결과 해석 및 배포</td>
+      <td>실험 결과 해석 후 최종 출시 결정</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-결과-요약-마인드맵">🌮 결과 요약 마인드맵</h2>
+
+<p><img src="http://localhost:4000/images/2025-03-25-PM/05_03.png" alt="PM_05_03" /></p>
+
+<hr />
+
+<p class="text-center notice--danger"><a style="font-size:30px; color: white;">⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩출처⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩</a></p>
+
+<p>※ 위 글은 인프런 지식공유자 데이터 사이언티스트 <a style="color: orange;">카일 스쿨</a>님의 강의를 수강하고 복습을 위해 작성된 글입니다.<br />
+※ 강의 내용 중 필자가 기억하고 싶은 핵심과 본인의 생각이 포함되어 있으니 보다 자세한 내용은 <a style="color: orange;">카일 스쿨</a>님의 강의를 수강하시는 것을 추천드립니다. <br /></p>
+
+<p>※ 인프런 강의 주소 ☞☞☞ <a href="https://www.inflearn.com/course/pm-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%A6%AC%ED%84%B0%EB%9F%AC%EC%8B%9C" class="btn btn--success">카일 스쿨 인프런 강의 바로가기</a><br />
+※ <a style="color: orange;">카일 스쿨</a>유튜브 ☞☞☞ <a href="https://www.youtube.com/c/kyleschool" class="btn btn--warning">카일 스쿨 유튜브 바로가기</a><br />
+※ <a style="color: orange;">카일 스쿨</a>기술 블로그 ☞☞☞ <a href="https://zzsza.github.io/" class="btn btn--danger">카일 스쿨 블로그 바로가기</a><br />
+※ <a style="color: orange;">카일 스쿨</a>인스타 ☞☞☞ <a href="https://www.instagram.com/data.scientist/" class="btn btn--info">카일 스쿨 인스타 바로가기</a></p>
+
+<hr />]]></content><author><name>ChoeWJ</name></author><category term="docs" /><category term="PM" /><category term="Data_Literacy" /><category term="PM" /><category term="Data_Literacy" /><category term="Data" /><summary type="html"><![CDATA[👑 데이터 기반 프로젝트 진행에서 놓치기 쉬운 핵심 단계와 개선 전략]]></summary></entry><entry><title type="html">[프로덕트 데이터 분석] 22 프로젝트 예시</title><link href="http://localhost:4000/docs/pm/data_literacy-grid/PM_05_02/" rel="alternate" type="text/html" title="[프로덕트 데이터 분석] 22 프로젝트 예시" /><published>2025-04-15T00:00:00+09:00</published><updated>2025-04-15T00:00:00+09:00</updated><id>http://localhost:4000/docs/pm/data_literacy-grid/PM_05_02</id><content type="html" xml:base="http://localhost:4000/docs/pm/data_literacy-grid/PM_05_02/"><![CDATA[<h1 id="-전환율-개선-프로젝트의-문제-정의와-데이터-기반-의사-결정">👑 전환율 개선 프로젝트의 문제 정의와 데이터 기반 의사 결정</h1>
+
+<h2 id="-전환율-개선을-위한-데이터-파악-전략">🥜 전환율 개선을 위한 데이터 파악 전략</h2>
+
+<ul>
+  <li>전환율 개선 프로젝트는 화면 기획서와 데이터 파악에서 시작된다.</li>
+  <li>결제 퍼널을 홈메뉴 페이지부터 주문 성공 페이지까지의 흐름으로 정의하며, 페이지 및 결제 전환율을 각각 확인하고 관리하며,</li>
+  <li>페이지 전환율을 우선 확인한 후 결제 전환율을 추가로 점검하는 순서가 효율적이다.</li>
+  <li>이탈 데이터가 어떤 방식으로 쌓이는지 정확히 파악하여 유저 흐름을 명확하게 이해하는 것이 중요하다.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>주요 사항</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>페이지 전환율</td>
+      <td>각 페이지 간의 이동 비율 확인</td>
+    </tr>
+    <tr>
+      <td>결제 전환율</td>
+      <td>최종 주문 완료 비율 측정</td>
+    </tr>
+    <tr>
+      <td>데이터 확인</td>
+      <td>데이터 정확성을 위해 지표 더블체크</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-장바구니-이탈-원인과-가설-설정-과정-예시">🥜 장바구니 이탈 원인과 가설 설정 과정 예시</h2>
+
+<ol>
+  <li>사용자가 장바구니 단순 저장용으로 사용한다.</li>
+  <li>일정 금액 이하로 인해 결제가 불가능하다.</li>
+  <li>상품 추가 시 전환율 변화가 발생하여 이탈한다.</li>
+</ol>
+
+<ul>
+  <li>가설 설정 과정에서 가설 확장과 수렴을 반복하며, 각 가설의 타당성을 데이터로 검증 후 사용자 행동을 면밀히 관찰하여 실제 장바구니에 추가 후 행동을 분석한다.</li>
+</ul>
+
+<h2 id="-전환율-개선을-위한-가설-설정-및-우선순위-결정">🥜 전환율 개선을 위한 가설 설정 및 우선순위 결정</h2>
+
+<ul>
+  <li>장바구니에 상품을 추가하여 주문을 완료하는 데이터를 바탕으로, 페이지를 이탈한 사용자에게 전환을 촉진하는 기능을 개발할 필요성을 확인했다면, 외부 변수로 인한 특정 날짜의 데이터 상승 현상을 파악하여, 이를 가설 설정 시 참고하면 좋다.</li>
+  <li>또한 가설의 우선순위를 명확히 하여 가장 영향력 있는 개선 방안을 선택하고 실행합니다.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>가설</th>
+      <th>설정 근거</th>
+      <th>우선순위</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>일정 금액 달성 기능</td>
+      <td>높은 임팩트 가능성</td>
+      <td>최우선</td>
+    </tr>
+    <tr>
+      <td>외부 변수 고려 (특정 날짜)</td>
+      <td>데이터 변동성 확인 필요</td>
+      <td>중간</td>
+    </tr>
+    <tr>
+      <td>장바구니 저장용 사용 분석</td>
+      <td>행동 데이터 추가 분석 필요</td>
+      <td>보조적</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-지표-정의-및-기능-개발-계획">🥜 지표 정의 및 기능 개발 계획</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>주요 지표</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>추가 상품 클릭률</td>
+      <td>추가 상품 클릭 사용자 비율</td>
+    </tr>
+    <tr>
+      <td>추가를 통한 주문 전환율</td>
+      <td>추가 상품 클릭 후 최종 결제 완료 비율</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>보조 지표로는 전체 주문 수와 사용자 스크롤 이동 횟수를 통해 추가적인 사용자 행동을 분석이 가능</li>
+</ul>
+
+<h2 id="-전환율-변화-시나리오-및-대응-방안">🥜 전환율 변화 시나리오 및 대응 방안</h2>
+
+<p>추가 상품 기능의 성과에 따라 다음과 같은 네 가지 시나리오를 설정하고 각각의 대응 방안을 마련</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>추가 상품 클릭률</th>
+      <th>결제 전환율</th>
+      <th>대응 방안</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>상승</td>
+      <td>상승</td>
+      <td>전략 유지 또는 개선</td>
+    </tr>
+    <tr>
+      <td>상승</td>
+      <td>하락</td>
+      <td>기능 개선 (구매 촉진 전략 강화)</td>
+    </tr>
+    <tr>
+      <td>하락</td>
+      <td>상승</td>
+      <td>고객 반응 증대 전략 모색</td>
+    </tr>
+    <tr>
+      <td>하락</td>
+      <td>하락</td>
+      <td>문제점 빠르게 파악 후 개선</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<p class="text-center notice--danger"><a style="font-size:30px; color: white;">⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩출처⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩</a></p>
+
+<p>※ 위 글은 인프런 지식공유자 데이터 사이언티스트 <a style="color: orange;">카일 스쿨</a>님의 강의를 수강하고 복습을 위해 작성된 글입니다.<br />
+※ 강의 내용 중 필자가 기억하고 싶은 핵심과 본인의 생각이 포함되어 있으니 보다 자세한 내용은 <a style="color: orange;">카일 스쿨</a>님의 강의를 수강하시는 것을 추가드립니다. <br /></p>
+
+<p>※ 인프런 강의 주소 ☞☞☞ <a href="https://www.inflearn.com/course/pm-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%A6%AC%ED%84%B0%EB%9F%AC%EC%8B%9C" class="btn btn--success">카일 스쿨 인프런 강의 바로가기</a><br />
+※ <a style="color: orange;">카일 스쿨</a>유튜브 ☞☞☞ <a href="https://www.youtube.com/c/kyleschool" class="btn btn--warning">카일 스쿨 유튜브 바로가기</a><br />
+※ <a style="color: orange;">카일 스쿨</a>기술 블로그 ☞☞☞ <a href="https://zzsza.github.io/" class="btn btn--danger">카일 스쿨 블로그 바로가기</a><br />
+※ <a style="color: orange;">카일 스쿨</a>인스타 ☞☞☞ <a href="https://www.instagram.com/data.scientist/" class="btn btn--info">카일 스쿨 인스타 바로가기</a></p>
+
+<hr />]]></content><author><name>ChoeWJ</name></author><category term="docs" /><category term="PM" /><category term="Data_Literacy" /><category term="PM" /><category term="Data_Literacy" /><category term="Data" /><summary type="html"><![CDATA[👑 전환율 개선 프로젝트의 문제 정의와 데이터 기반 의사 결정]]></summary></entry><entry><title type="html">[프로덕트 데이터 분석] 21 프로젝트 과정</title><link href="http://localhost:4000/docs/pm/data_literacy-grid/PM_05_01/" rel="alternate" type="text/html" title="[프로덕트 데이터 분석] 21 프로젝트 과정" /><published>2025-04-14T00:00:00+09:00</published><updated>2025-04-14T00:00:00+09:00</updated><id>http://localhost:4000/docs/pm/data_literacy-grid/PM_05_01</id><content type="html" xml:base="http://localhost:4000/docs/pm/data_literacy-grid/PM_05_01/"><![CDATA[<h1 id="-일반적인-프로젝트-과정과-핵심-단계">👑 일반적인 프로젝트 과정과 핵심 단계</h1>
+
+<h2 id="-현황-파악-및-문제-정의의-중요성">🌰 현황 파악 및 문제 정의의 중요성</h2>
+
+<ul>
+  <li>프로젝트의 첫 단계는 현황 파악과 문제 정의로 이 단계는 프로젝트의 성공을 좌우할 만큼 중요하므로, 충분한 시간을 투자해 철저하게 진행해야 한다.</li>
+  <li>현황을 정확하게 파악하기 위해 고객이 느끼는 불편함과 문제(페인 포인트)를 명확히 이해하고 정의하는 것이 필수적</li>
+  <li>현황 파악 시 고려해야 할 사항
+    <ul>
+      <li>고객의 실제 불편 사항과 페인 포인트 정의</li>
+      <li>문제의 근본 원인을 파악하는 인터뷰와 데이터 분석 실시</li>
+      <li>프로젝트 목표와의 연관성을 명확히 하기</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="-화면-기획서와-데이터-분석-방법">🌰 화면 기획서와 데이터 분석 방법</h2>
+
+<ul>
+  <li>고객의 불편 사항을 구체적으로 이해하기 위해 화면 기획서와 데이터 분석을 활용한다.</li>
+  <li>화면 기획서를 통해 서비스 내 사용자의 실제 행동 흐름을 파악하고, 데이터 분석을 통해 수치로 나타난 문제점을 정확히 진단하고 유저 인터뷰를 통해 얻은 정성적인 정보와 데이터를 기반으로 한 정량적인 정보를 결합해 실질적인 문제 해결 방안을 도출해야 한다.</li>
+  <li>화면 기획서와 데이터 분석 활용 방법:</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>분석 요소</th>
+      <th>목적 및 활용 방법</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>화면 전환율 분석</td>
+      <td>특정 화면에서의 전환율 감소 원인 진단</td>
+    </tr>
+    <tr>
+      <td>유저 인터뷰</td>
+      <td>사용자의 불편 사항에 대한 깊은 이해</td>
+    </tr>
+    <tr>
+      <td>신규 유저 vs 기존 유저 비교</td>
+      <td>사용자 세그먼트를 활용한 차이점 분석</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-문제-해결을-위한-목표-설정-및-지표-정의-방법">🌰 문제 해결을 위한 목표 설정 및 지표 정의 방법</h2>
+
+<ul>
+  <li>문제를 명확히 정의한 후에는 이를 해결하기 위한 구체적인 목표를 설정하고, 목표 달성을 평가할 수 있는 지표를 선정한다.</li>
+  <li>
+    <p>지표는 메인 지표, 보조 지표, 가드레일 지표로 구분하여, 목표 달성 여부를 명확히 판단할 수 있도록 설계하는 것이 좋다.</p>
+  </li>
+  <li>지표의 구분과 정의 예시:</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>지표 종류</th>
+      <th>설명</th>
+      <th>예시</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>메인 지표</td>
+      <td>목표의 핵심 달성 여부 평가</td>
+      <td>매출, 사용자 활성화율</td>
+    </tr>
+    <tr>
+      <td>보조 지표</td>
+      <td>메인 지표를 설명하는 상세 지표</td>
+      <td>페이지 뷰, 클릭률</td>
+    </tr>
+    <tr>
+      <td>가드레일 지표</td>
+      <td>부작용을 감지하기 위한 보호 지표</td>
+      <td>이탈률, 고객 불만율</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-제품-및-기능-개발과-qa-과정의-중요성">🌰 제품 및 기능 개발과 QA 과정의 중요성</h2>
+
+<ul>
+  <li>정의된 목표와 지표를 바탕으로 실제 제품 및 기능 개발이 진행된다.</li>
+  <li>제품 개발 과정에서는 화면 계획서, 디자인 시안, 운영 프로세스, 법률적 검토 등을 포함하여 다양한 요소를 고려해야 하며, 개발된 기능의 안정성을 확보하기 위해 QA(Quality Assurance) 과정을 거쳐 기능의 품질과 정확한 동작을 확인해야 한다.</li>
+  <li>
+    <p>개발 및 QA의 주요 단계:</p>
+
+    <ul>
+      <li>기능 기획과 디자인 시안 작성</li>
+      <li>제품 개발 과정에서의 지속적인 피드백 및 논의</li>
+      <li>개발 완료 후 기능 QA 진행을 통한 안정성 확인</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="-프로젝트-성과-측정-및-개선점-도출">🌰 프로젝트 성과 측정 및 개선점 도출</h2>
+
+<ul>
+  <li>개발된 기능이나 서비스가 성공적으로 배포된 후에는, 실제 성과 측정을 통해 목표 달성 여부를 확인해서, 측정된 성과를 기반으로 서비스의 개선점과 향후 발전 방향을 구체적으로 도출하여 지속적인 서비스 성장과 발전을 추구한다.</li>
+  <li>성과 측정 및 개선 프로세스 예시:
+    <ul>
+      <li>메인 및 보조 지표의 실제 성과 측정</li>
+      <li>성과와 목표의 차이 분석 및 원인 진단</li>
+      <li>도출된 개선점을 통한 서비스 지속 개선</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="-프로젝트-진행-프로세스에-대한-조직-내-평가-및-개선-방향-설정">🌰 프로젝트 진행 프로세스에 대한 조직 내 평가 및 개선 방향 설정</h2>
+
+<ul>
+  <li>프로젝트 진행 프로세스가 조직 내에서 얼마나 효과적으로 운영되고 있는지 정기적으로 평가하는 과정이 필요하다.</li>
+  <li>현재 조직의 프로젝트 프로세스와 이 문서의 프로세스를 비교하여, 부족한 부분을 파악하고 개선 방향을 설정.</li>
+  <li>조직 내 평가 및 개선 방법:
+    <ul>
+      <li>조직에서 잘 이루어지고 있는 부분과 부족한 부분 명확히 파악</li>
+      <li>개선점을 도출하여 프로세스의 지속적인 발전 유도</li>
+      <li>성공적인 사례를 통한 조직 내 지식 공유 활성화</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="-결과-요약-마인드맵">🌰 결과 요약 마인드맵</h2>
+
+<p><img src="http://localhost:4000/images/2025-03-25-PM/05_01.png" alt="PM_05_01" /></p>
+
+<hr />
+
+<p class="text-center notice--danger"><a style="font-size:30px; color: white;">⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩출처⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩</a></p>
+
+<p>※ 위 글은 인프런 지식공유자 데이터 사이언티스트 <a style="color: orange;">카일 스쿨</a>님의 강의를 수강하고 복습을 위해 작성된 글입니다.<br />
+※ 강의 내용 중 필자가 기억하고 싶은 핵심과 본인의 생각이 포함되어 있으니 보다 자세한 내용은 <a style="color: orange;">카일 스쿨</a>님의 강의를 수강하시는 것을 추천드립니다. <br /></p>
+
+<p>※ 인프런 강의 주소 ☞☞☞ <a href="https://www.inflearn.com/course/pm-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%A6%AC%ED%84%B0%EB%9F%AC%EC%8B%9C" class="btn btn--success">카일 스쿨 인프런 강의 바로가기</a><br />
+※ <a style="color: orange;">카일 스쿨</a>유튜브 ☞☞☞ <a href="https://www.youtube.com/c/kyleschool" class="btn btn--warning">카일 스쿨 유튜브 바로가기</a><br />
+※ <a style="color: orange;">카일 스쿨</a>기술 블로그 ☞☞☞ <a href="https://zzsza.github.io/" class="btn btn--danger">카일 스쿨 블로그 바로가기</a><br />
+※ <a style="color: orange;">카일 스쿨</a>인스타 ☞☞☞ <a href="https://www.instagram.com/data.scientist/" class="btn btn--info">카일 스쿨 인스타 바로가기</a></p>
+
+<hr />]]></content><author><name>ChoeWJ</name></author><category term="docs" /><category term="PM" /><category term="Data_Literacy" /><category term="PM" /><category term="Data_Literacy" /><category term="Data" /><summary type="html"><![CDATA[👑 일반적인 프로젝트 과정과 핵심 단계]]></summary></entry><entry><title type="html">[프로덕트 데이터 분석] 20 지표 정의 process</title><link href="http://localhost:4000/docs/pm/data_literacy-grid/PM_04_10/" rel="alternate" type="text/html" title="[프로덕트 데이터 분석] 20 지표 정의 process" /><published>2025-04-13T00:00:00+09:00</published><updated>2025-04-13T00:00:00+09:00</updated><id>http://localhost:4000/docs/pm/data_literacy-grid/PM_04_10</id><content type="html" xml:base="http://localhost:4000/docs/pm/data_literacy-grid/PM_04_10/"><![CDATA[<h1 id="-지표-정의-프로세스와-전략적-활용">👑 지표 정의 프로세스와 전략적 활용</h1>
+
+<h2 id="-지표-정의-프로세스와-데이터-비교-방법">🍤 지표 정의 프로세스와 데이터 비교 방법</h2>
+
+<ul>
+  <li>
+    <p>지표 정의는 프로젝트의 목적, 기능 개선 여부, UX 변경 사항을 바탕으로 상황에 맞는 성과 지표를 선정하는 과정으로 주요 데이터 비교 방법으로는 <strong>전후 비교</strong>와 <strong>A/B 테스트</strong>가 있다.</p>
+  </li>
+  <li><strong>전후 비교</strong>는 간단하지만 외부 요소의 영향을 배제하기 어렵기 때문에 정확성이 떨어질 수 있고, <strong>A/B 테스트</strong>는 기존 기능 개선 또는 신규 기능 도입 시 두 가지 옵션의 효과를 객관적으로 비교하는 데 효과적으로 작용한다.</li>
+  <li>따라서 정확한 지표 선정을 위해 지표 측정 가능성을 먼저 파악하고, 이후 성과 지표를 고민해야 한다.</li>
+</ul>
+
+<h2 id="-효과적인-지표-선정-전략">🍤 효과적인 지표 선정 전략</h2>
+
+<ul>
+  <li><strong>메인 지표</strong>는 직관적으로 이해할 수 있어야 하며, 프로젝트나 기능의 목표와 밀접하게 연결되어야 하고</li>
+  <li>
+    <p><strong>보조 지표</strong>는 메인 지표를 보완하고 세부 원인을 분석할 수 있도록 도움을 준다.</p>
+  </li>
+  <li>기능 기획자가 지표를 먼저 제안하고, 데이터 분석가와 협력하여 이를 최종 확정하는 것이 가장 이상적이다</li>
+  <li>지표 선정 시 클릭률, 리텐션, 매출, 예약 수 등을 고려하며, 프로젝트 특성에 맞추어 적절한 지표를 선택한다.</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>지표 유형</th>
+      <th>주요 예시</th>
+      <th>특성</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>메인 지표</td>
+      <td>리텐션, 매출, 클릭률</td>
+      <td>핵심 목표와 직결</td>
+    </tr>
+    <tr>
+      <td>보조 지표</td>
+      <td>가입자 수, 이탈률, 방문 빈도</td>
+      <td>세부 원인 분석 가능</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="-체계적인-지표-정의-프로세스">🍤 체계적인 지표 정의 프로세스</h2>
+
+<ol>
+  <li>해결해야 할 문제를 구체적으로 정의</li>
+  <li>기존에 정의된 지표가 있는지 지표 저장소(매트릭 스토어)를 통해 확인</li>
+  <li>문제가 해결된 상태를 상상하며 변화할 숫자나 현상을 고려하여 적절한 지표를 도출</li>
+  <li>여러 지표가 떠오를 경우 직접적인 관계 순서대로 정렬하여 메인 지표와 보조 지표로 구분</li>
+  <li>명확한 지표가 도출되지 않을 경우 문제 정의를 다시 점검</li>
+</ol>
+
+<h2 id="-멘탈-시뮬레이션을-통한-지표-활용과-미래-예측">🍤 멘탈 시뮬레이션을 통한 지표 활용과 미래 예측</h2>
+
+<ul>
+  <li>지표의 상승과 하락 가능성을 분석하여 원인을 파악하고 대응 전략을 미리 준비</li>
+  <li>예상치 못한 상황에 대비한 구체적인 대응 방안을 마련하여 신속한 의사결정을 보조</li>
+  <li>멘탈 시뮬레이션을 통해 데이터 업무의 불확실성을 줄이고 개인 업무의 효율성도 높일 수 있다.</li>
+</ul>
+
+<h2 id="-지표-활용을-통한-서비스-현황-파악-및-개선-전략">🍤 지표 활용을 통한 서비스 현황 파악 및 개선 전략</h2>
+
+<ul>
+  <li>DAU, WAU, MAU, 리텐션 등 주요 지표를 지속적으로 모니터링하여 서비스의 현황을 평가</li>
+  <li>지표 저장소(매트릭 스토어)를 구축하여 조직 내에서 지표의 정의와 사용 방법을 표준화</li>
+  <li>전사적으로 중요한 지표를 선정하고 아웃풋 지표(예: 매출)와 인풋 지표를 구분하여 관리</li>
+  <li>조직의 목표와 연계하여 지표 기반 액션 플랜을 수립하고 이를 정기적인 지표 회의를 통해 검토</li>
+  <li>각 지표마다 담당자를 지정하여 책임지고 관리</li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>주요 지표</th>
+      <th>설명</th>
+      <th>활용 전략</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>DAU</td>
+      <td>하루 동안의 활성 사용자 수</td>
+      <td>서비스의 단기적 활성도 파악</td>
+    </tr>
+    <tr>
+      <td>WAU</td>
+      <td>일주일 동안의 활성 사용자 수</td>
+      <td>중기적 사용자 활동 분석</td>
+    </tr>
+    <tr>
+      <td>MAU</td>
+      <td>한 달 동안의 활성 사용자 수</td>
+      <td>장기적인 사용자 활동 및 성장성 분석</td>
+    </tr>
+    <tr>
+      <td>리텐션</td>
+      <td>일정 기간 이후 사용자 유지 비율</td>
+      <td>서비스의 장기적 생존 가능성 판단</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-결과-요약-마인드맵">🍤 결과 요약 마인드맵</h2>
+
+<p><img src="http://localhost:4000/images/2025-03-25-PM/04_09.png" alt="PM_04_09" /></p>
+
+<hr />
+
+<p class="text-center notice--danger"><a style="font-size:30px; color: white;">⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩출처⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩</a></p>
+
+<p>※ 위 글은 인프런 지식공유자 데이터 사이언티스트 <a style="color: orange;">카일 스쿨</a>님의 강의를 수강하고 복습을 위해 작성된 글입니다.<br />
+※ 강의 내용 중 필자가 기억하고 싶은 핵심과 본인의 생각이 포함되어 있으니 보다 자세한 내용은 <a style="color: orange;">카일 스쿨</a>님의 강의를 수강하시는 것을 추천드립니다. <br /></p>
+
+<p>※ 인프런 강의 주소 ☞☞☞ <a href="https://www.inflearn.com/course/pm-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%A6%AC%ED%84%B0%EB%9F%AC%EC%8B%9C" class="btn btn--success">카일 스쿨 인프런 강의 바로가기</a><br />
+※ <a style="color: orange;">카일 스쿨</a>유튜브 ☞☞☞ <a href="https://www.youtube.com/c/kyleschool" class="btn btn--warning">카일 스쿨 유튜브 바로가기</a><br />
+※ <a style="color: orange;">카일 스쿨</a>기술 블로그 ☞☞☞ <a href="https://zzsza.github.io/" class="btn btn--danger">카일 스쿨 블로그 바로가기</a><br />
+※ <a style="color: orange;">카일 스쿨</a>인스타 ☞☞☞ <a href="https://www.instagram.com/data.scientist/" class="btn btn--info">카일 스쿨 인스타 바로가기</a></p>
+
+<hr />]]></content><author><name>ChoeWJ</name></author><category term="docs" /><category term="PM" /><category term="Data_Literacy" /><category term="PM" /><category term="Data_Literacy" /><category term="Data" /><summary type="html"><![CDATA[👑 지표 정의 프로세스와 전략적 활용]]></summary></entry><entry><title type="html">[프로덕트 데이터 분석] 19 Cohort Analysis</title><link href="http://localhost:4000/docs/pm/data_literacy-grid/PM_04_09/" rel="alternate" type="text/html" title="[프로덕트 데이터 분석] 19 Cohort Analysis" /><published>2025-04-12T00:00:00+09:00</published><updated>2025-04-12T00:00:00+09:00</updated><id>http://localhost:4000/docs/pm/data_literacy-grid/PM_04_09</id><content type="html" xml:base="http://localhost:4000/docs/pm/data_literacy-grid/PM_04_09/"><![CDATA[<h1 id="-코호트-분석-cohort-analysis">👑 코호트 분석 (Cohort Analysis)</h1>
+
+<h2 id="-코호트-분석이란">🍣 코호트 분석이란?</h2>
+
+<ul>
+  <li>코호트 분석(Cohort Analysis)은 특정한 기간 동안 유사한 특성(예: 가입 시기, 특정 행동 등)을 가진 사용자 집단을 나누어 시간이 지남에 따라 이들의 행동 변화를 분석하는 방법으로 주로 사용자 유지율(Retention), 참여율(Engagement), 수익성 등 다양한 지표를 시간에 따라 측정하여 서비스의 장기적 건강과 사용자 충성도를 파악할 때 사용된다.</li>
+</ul>
+
+<h2 id="-코호트-분석의-유형">🍣 코호트 분석의 유형</h2>
+
+<ul>
+  <li><strong>시간 기반 코호트(Time-Based Cohorts)</strong>: 사용자가 서비스와 처음 상호작용한 시기(예: 가입일)에 따라 그룹을 나누어 분석</li>
+  <li><strong>행동 기반 코호트(Behavior-Based Cohorts)</strong>: 특정 행동을 수행한 사용자(예: 결제, 특정 기능 사용)를 그룹으로 나누어 분석</li>
+  <li><strong>크기 기반 코호트(Size-Based Cohorts)</strong>: 구매 금액, 사용량 등 특정 기준으로 나누어 분석</li>
+</ul>
+
+<h2 id="-코호트-분석-예시">🍣 코호트 분석 예시</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>코호트 (가입 월)</th>
+      <th>사용자 수</th>
+      <th>1개월 후</th>
+      <th>3개월 후</th>
+      <th>6개월 후</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2025년 1월</td>
+      <td>1000</td>
+      <td>60%</td>
+      <td>40%</td>
+      <td>30%</td>
+    </tr>
+    <tr>
+      <td>2025년 2월</td>
+      <td>1200</td>
+      <td>65%</td>
+      <td>45%</td>
+      <td>35%</td>
+    </tr>
+    <tr>
+      <td>2025년 3월</td>
+      <td>1500</td>
+      <td>70%</td>
+      <td>50%</td>
+      <td>40%</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>위 표에서 볼 수 있듯이, 각 코호트(가입 월)는 시간이 지남에 따라 다른 리텐션 패턴을 보여주는데 이를 통해 서비스의 변화가 사용자 유지율에 어떤 영향을 미쳤는지 쉽게 이해할 수 있다.</li>
+</ul>
+
+<h2 id="-코호트-분석-시각화">🍣 코호트 분석 시각화</h2>
+
+<ul>
+  <li>코호트 분석 결과는 일반적으로 다음과 같은 Heatmap 형태로 나타낸다.</li>
+  <li>히트맵(Heatmap)은 각 코호트의 성과를 빠르게 비교하고, 특정 이벤트나 프로모션이 사용자 유지에 미치는 영향을 명확하게 볼 수 있게 한다.</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>가입 월    | Month 1 | Month 2 | Month 3 | Month 4 |
+---------|---------|---------|---------|---------|
+Jan 2025 | 100%    | 70%     | 50%     | 40%     |
+Feb 2025 | 100%    | 75%     | 55%     | 45%     |
+Mar 2025 | 100%    | 80%     | 60%     | 50%     |
+</code></pre></div></div>
+
+<h2 id="-코호트-분석의-활용">🍣 코호트 분석의 활용</h2>
+
+<ul>
+  <li><strong>서비스 개선 효과 분석</strong>: 특정 기능 개선 또는 마케팅 활동 후 사용자 리텐션과 충성도의 변화 측정</li>
+  <li><strong>고객 세분화와 타겟팅</strong>: 특정 특성을 가진 고객 그룹에 맞는 전략 수립</li>
+  <li><strong>장기적 사용자 유지 전략 수립</strong>: 장기적으로 어떤 사용자들이 남아있는지 파악하고, 해당 사용자들을 유지하기 위한 전략 구축</li>
+</ul>
+
+<hr />
+
+<p class="text-center notice--danger"><a style="font-size:30px; color: white;">⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩출처⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩</a></p>
+
+<p>※ 위 글은 인프런 지식공유자 데이터 사이언티스트 <a style="color: orange;">카일 스쿨</a>님의 강의를 수강하고 복습을 위해 작성된 글입니다.<br />
+※ 강의 내용 중 필자가 기억하고 싶은 핵심과 본인의 생각이 포함되어 있으니 보다 자세한 내용은 <a style="color: orange;">카일 스쿨</a>님의 강의를 수강하시는 것을 추천드립니다. <br /></p>
+
+<p>※ 인프런 강의 주소 ☞☞☞ <a href="https://www.inflearn.com/course/pm-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%A6%AC%ED%84%B0%EB%9F%AC%EC%8B%9C" class="btn btn--success">카일 스쿨 인프런 강의 바로가기</a><br />
+※ <a style="color: orange;">카일 스쿨</a>유튜브 ☞☞☞ <a href="https://www.youtube.com/c/kyleschool" class="btn btn--warning">카일 스쿨 유튜브 바로가기</a><br />
+※ <a style="color: orange;">카일 스쿨</a>기술 블로그 ☞☞☞ <a href="https://zzsza.github.io/" class="btn btn--danger">카일 스쿨 블로그 바로가기</a><br />
+※ <a style="color: orange;">카일 스쿨</a>인스타 ☞☞☞ <a href="https://www.instagram.com/data.scientist/" class="btn btn--info">카일 스쿨 인스타 바로가기</a></p>
+
+<hr />]]></content><author><name>ChoeWJ</name></author><category term="docs" /><category term="PM" /><category term="Data_Literacy" /><category term="PM" /><category term="Data_Literacy" /><category term="Data" /><summary type="html"><![CDATA[👑 코호트 분석 (Cohort Analysis)]]></summary></entry><entry><title type="html">[프로덕트 데이터 분석] 18 Retention</title><link href="http://localhost:4000/docs/pm/data_literacy-grid/PM_04_08/" rel="alternate" type="text/html" title="[프로덕트 데이터 분석] 18 Retention" /><published>2025-04-12T00:00:00+09:00</published><updated>2025-04-12T00:00:00+09:00</updated><id>http://localhost:4000/docs/pm/data_literacy-grid/PM_04_08</id><content type="html" xml:base="http://localhost:4000/docs/pm/data_literacy-grid/PM_04_08/"><![CDATA[<h1 id="-리텐션-분석의-이해와-활용">👑 리텐션 분석의 이해와 활용</h1>
+
+<h2 id="-리텐션의-정의와-측정-방법">🍧 리텐션의 정의와 측정 방법</h2>
+
+<ul>
+  <li>리텐션(Retention)은 사용자가 서비스와 처음 접촉한 이후 특정 기간이 지난 후에도 서비스를 지속적으로 이용하는 비율을 의미한다.</li>
+  <li>예를 들어, 신규 가입자가 1개월 뒤에도 계속 서비스를 이용하고 있다면 ‘1개월 리텐션’으로 정의할 수 있다.</li>
+</ul>
+
+<h3 id="-리텐션의-측정-예시">🍥 리텐션의 측정 예시</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>사용자</th>
+      <th>가입일</th>
+      <th>1개월 후 접속 여부</th>
+      <th>리텐션 여부</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>A</td>
+      <td>1월 1일</td>
+      <td>O</td>
+      <td>유지</td>
+    </tr>
+    <tr>
+      <td>B</td>
+      <td>1월 1일</td>
+      <td>X</td>
+      <td>이탈</td>
+    </tr>
+    <tr>
+      <td>C</td>
+      <td>1월 1일</td>
+      <td>O</td>
+      <td>유지</td>
+    </tr>
+    <tr>
+      <td>D</td>
+      <td>1월 1일</td>
+      <td>O</td>
+      <td>유지</td>
+    </tr>
+    <tr>
+      <td>E</td>
+      <td>1월 1일</td>
+      <td>X</td>
+      <td>이탈</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>
+    <p>위 표에서 리텐션 비율은 (유지 사용자 3명 / 전체 사용자 5명) × 100 = 60%가 된다.</p>
+  </li>
+  <li>
+    <p>리텐션을 정확하게 측정하려면 ‘사용’의 정의가 명확해야 하는데 이는 서비스 목적과 특성에 따라 이 정의는 다르게 설정될 수 있으며, 측정 기간도 일별, 주별, 월별 등으로 다양하게 분석할 수 있다.</p>
+
+    <ul>
+      <li>단순 앱 접속</li>
+      <li>특정 행동 (구매, 콘텐츠 소비, 기능 사용 등)</li>
+      <li>사용 빈도 (주 1회, 월 3회 등)</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="-리텐션-그래프의-형태와-의미">🍧 리텐션 그래프의 형태와 의미</h2>
+
+<ul>
+  <li>리텐션 데이터를 시각화하면 서비스 상태와 사용자 행동에 대한 중요한 통찰을 얻을 수 있는데 대표적으로 나타나는 그래프 형태는 다음과 같다.</li>
+</ul>
+
+<h3 id="-스마일-형태-smile-curve">🍥 스마일 형태 (Smile Curve)</h3>
+
+<ul>
+  <li>시간이 흐를수록 리텐션이 상승하는 형태로, 사용자의 충성도가 증가하거나 서비스의 개선 효과가 나타날 때 관찰된다.</li>
+</ul>
+
+<p><img src="http://localhost:4000/images/2025-03-25-PM/04_08_02.png" alt="PM_04_08_02" /></p>
+
+<h3 id="-평평한-형태-flattening-curve">🍥 평평한 형태 (Flattening Curve)</h3>
+
+<ul>
+  <li>초기 이탈 후 장기적으로 리텐션이 안정화되는 형태로, PMF(Product-Market Fit)를 달성한 서비스의 특징이 나타난다.</li>
+</ul>
+
+<p><img src="http://localhost:4000/images/2025-03-25-PM/04_08_03.png" alt="PM_04_08_03" /></p>
+
+<h3 id="-지속적으로-감소하는-형태-declining-curve">🍥 지속적으로 감소하는 형태 (Declining Curve)</h3>
+
+<ul>
+  <li>지속적인 사용자 이탈로 인해 서비스의 성장이 어렵고 근본적인 문제 해결이 필요한 상황을 나타낸다.</li>
+</ul>
+
+<p><img src="http://localhost:4000/images/2025-03-25-PM/04_08_04.png" alt="PM_04_08_04" /></p>
+
+<h2 id="-리텐션-개선-전략">🍧 리텐션 개선 전략</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>전략 구분</th>
+      <th>설명</th>
+      <th>예시</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>초기 이탈 방지</td>
+      <td>사용자 온보딩 개선</td>
+      <td>튜토리얼, 초기 혜택 제공</td>
+    </tr>
+    <tr>
+      <td>사용 습관 형성</td>
+      <td>반복 사용 유도 및 보상 제공</td>
+      <td>리워드 시스템, 알림 기능 강화</td>
+    </tr>
+    <tr>
+      <td>장기 충성도 확보</td>
+      <td>서비스 개인화 및 프리미엄 혜택 제공</td>
+      <td>맞춤형 콘텐츠, VIP 멤버십 제공</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<p class="text-center notice--danger"><a style="font-size:30px; color: white;">⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩출처⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩⇩</a></p>
+
+<p>※ 위 글은 인프런 지식공유자 데이터 사이언티스트 <a style="color: orange;">카일 스쿨</a>님의 강의를 수강하고 복습을 위해 작성된 글입니다.<br />
+※ 강의 내용 중 필자가 기억하고 싶은 핵심과 본인의 생각이 포함되어 있으니 보다 자세한 내용은 <a style="color: orange;">카일 스쿨</a>님의 강의를 수강하시는 것을 추천드립니다. <br /></p>
+
+<p>※ 인프런 강의 주소 ☞☞☞ <a href="https://www.inflearn.com/course/pm-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EB%A6%AC%ED%84%B0%EB%9F%AC%EC%8B%9C" class="btn btn--success">카일 스쿨 인프런 강의 바로가기</a><br />
+※ <a style="color: orange;">카일 스쿨</a>유튜브 ☞☞☞ <a href="https://www.youtube.com/c/kyleschool" class="btn btn--warning">카일 스쿨 유튜브 바로가기</a><br />
+※ <a style="color: orange;">카일 스쿨</a>기술 블로그 ☞☞☞ <a href="https://zzsza.github.io/" class="btn btn--danger">카일 스쿨 블로그 바로가기</a><br />
+※ <a style="color: orange;">카일 스쿨</a>인스타 ☞☞☞ <a href="https://www.instagram.com/data.scientist/" class="btn btn--info">카일 스쿨 인스타 바로가기</a></p>
+
+<hr />]]></content><author><name>ChoeWJ</name></author><category term="docs" /><category term="PM" /><category term="Data_Literacy" /><category term="PM" /><category term="Data_Literacy" /><category term="Data" /><summary type="html"><![CDATA[👑 리텐션 분석의 이해와 활용]]></summary></entry></feed>

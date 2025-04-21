@@ -1,0 +1,1612 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="ko-KR" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[Learning_SQL] 🔐 Chapter_05 | DeVlog</title>
+<meta name="description" content="Chapter 5 다중 테이블 쿼리">
+
+
+  <meta name="author" content="ChoeWJ">
+  
+  <meta property="article:author" content="ChoeWJ">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="DeVlog">
+<meta property="og:title" content="[Learning_SQL] 🔐 Chapter_05">
+<meta property="og:url" content="http://localhost:4000/docs/sql/learning_sql-grid/learning_sql_chapter_05/">
+
+
+  <meta property="og:description" content="Chapter 5 다중 테이블 쿼리">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2025-04-03T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/docs/sql/learning_sql-grid/learning_sql_chapter_05/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="DeVlog Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  window.enable_copy_code_button = true;
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+
+
+
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        TeX: {
+          equationNumbers: {
+            autoNumber: "AMS"
+          }
+        },
+        tex2jax: {
+        inlineMath: [ ['$', '$'] ],
+        displayMath: [ ['$$', '$$'] ],
+        processEscapes: true,
+      }
+    });
+    MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+          alert("Math Processing Error: "+message[1]);
+        });
+    MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+          alert("Math Processing Error: "+message[1]);
+        });
+    </script>
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7766483371449117" crossorigin="anonymous"></script>
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single" dir="ltr">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/images/logo.jpg" alt="DeVlog"></a>
+        
+        <a class="site-title" href="/">
+          DeVlog
+          <span class="site-subtitle">Leisurely but efficiently</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/categories/"
+                
+                
+              >Category</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/tags/"
+                
+                
+              >Tag</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/year-archive/"
+                
+                
+              >By Year</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/search/"
+                
+                
+              >Search</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/" itemprop="item"><span itemprop="name">Home</span></a>
+
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories-grid/#docs" itemprop="item"><span itemprop="name">Docs</span></a>
+          <meta itemprop="position" content="2" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories-grid/#sql" itemprop="item"><span itemprop="name">Sql</span></a>
+          <meta itemprop="position" content="3" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/categories-grid/#learning_sql-grid" itemprop="item"><span itemprop="name">Learning_sql grid</span></a>
+          <meta itemprop="position" content="4" />
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">[Learning_SQL] 🔐 Chapter_05</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main" style="padding-top: 0 !important; margin-top: 0 !important;">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      <nav class="nav__list">
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-python" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-python" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Python
+      <span style="font-size: 14px; color: gray;">5</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#basic" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Basic
+            </a>
+            <span style="font-size: 12px; color: gray;">6</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#data" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Data
+            </a>
+            <span style="font-size: 12px; color: gray;">2</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#regular-expression" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Regular_Expression
+            </a>
+            <span style="font-size: 12px; color: gray;">1</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-sql" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-sql" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      SQL
+      <span style="font-size: 14px; color: gray;">10</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#basic" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Basic
+            </a>
+            <span style="font-size: 12px; color: gray;">6</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#advanced" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Advanced
+            </a>
+            <span style="font-size: 12px; color: gray;">1</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#learning-sql" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Learning_SQL
+            </a>
+            <span style="font-size: 12px; color: gray;">5</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-front" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-front" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Front
+      <span style="font-size: 14px; color: gray;">1</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#html-css" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              HTML_CSS
+            </a>
+            <span style="font-size: 12px; color: gray;">1</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-back" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-back" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Back
+      <span style="font-size: 14px; color: gray;">0</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#rust" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Rust
+            </a>
+            <span style="font-size: 12px; color: gray;">0</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#java" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              JAVA
+            </a>
+            <span style="font-size: 12px; color: gray;">0</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#javascript" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              JavaScript
+            </a>
+            <span style="font-size: 12px; color: gray;">0</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-security" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-security" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Security
+      <span style="font-size: 14px; color: gray;">2</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#security" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Security
+            </a>
+            <span style="font-size: 12px; color: gray;">2</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-web-crawling" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-web-crawling" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Web_Crawling
+      <span style="font-size: 14px; color: gray;">11</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#beautifulsoup" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              BeautifulSoup
+            </a>
+            <span style="font-size: 12px; color: gray;">4</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#selenium" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Selenium
+            </a>
+            <span style="font-size: 12px; color: gray;">7</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-ml-dl" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-ml-dl" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      ML-DL
+      <span style="font-size: 14px; color: gray;">2</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#ml" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              ML
+            </a>
+            <span style="font-size: 12px; color: gray;">2</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#dl" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              DL
+            </a>
+            <span style="font-size: 12px; color: gray;">0</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-pyside6" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-pyside6" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      PySide6
+      <span style="font-size: 14px; color: gray;">1</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#widget" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Widget
+            </a>
+            <span style="font-size: 12px; color: gray;">1</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-statistics" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-statistics" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Statistics
+      <span style="font-size: 14px; color: gray;">3</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#for-data" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              For_Data
+            </a>
+            <span style="font-size: 12px; color: gray;">3</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-pm" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-pm" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      PM
+      <span style="font-size: 14px; color: gray;">31</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#data-literacy" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Data_Literacy
+            </a>
+            <span style="font-size: 12px; color: gray;">25</span>
+          </li>
+        
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#product-data" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Product_Data
+            </a>
+            <span style="font-size: 12px; color: gray;">1</span>
+          </li>
+        
+      
+    </ul>
+  
+    
+    
+
+    <!-- ✅ 아코디언 토글 체크박스 -->
+    <input type="checkbox" id="toggle-git" class="nav__toggle">
+    
+    <!-- ✅ label로 sub-title을 아코디언 토글로 연결 -->
+    <label for="toggle-git" class="nav__sub-title" style="font-size: 18px; font-weight: bold; font-family: Jua;">
+      Git
+      <span style="font-size: 14px; color: gray;">2</span>
+    </label>
+
+    <ul class="nav__items">
+      
+        
+        
+
+        
+          <li>
+            <!-- ✅ 서브 카테고리가 없는 카테고리 -->
+            <a href="/categories/#git" style="font-size: 12px; font-family: Jua; text-decoration: none; color: inherit;">
+              Git
+            </a>
+            <span style="font-size: 12px; color: gray;">2</span>
+          </li>
+        
+      
+    </ul>
+  
+</nav>
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    
+      <meta itemprop="headline" content="[Learning_SQL] 🔐 Chapter_05">
+    
+    
+      <meta itemprop="description" content="Chapter 5 다중 테이블 쿼리">
+    
+    
+      <meta itemprop="datePublished" content="2025-04-03T00:00:00+09:00">
+    
+    
+
+    <div class="page__inner-wrap" style="padding-top: 0 !important; margin-top: 0 !important;">
+      <!-- 페이지 상단 배너 -->
+      
+<div id="password-shadow-host"></div>
+<div id="password-blur-backdrop"></div>
+
+<style>
+  #password-blur-backdrop {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    backdrop-filter: blur(15px) brightness(0.6);
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 9998;
+  }
+  body.no-scroll {
+    overflow: hidden !important;
+  }
+</style>
+
+<script>
+  const allowedPasswords = ["pw123", "team2024"];
+  const maxAttempts = 5;
+  const timeoutSeconds = 60;
+  let attemptsLeft = maxAttempts;
+  let timeLeft = timeoutSeconds;
+  let timer;
+
+  const modalHTML = `
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: 'Jua', sans-serif;
+      }
+      #modal {
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        animation: fadeIn 0.3s ease;
+      }
+      .box {
+        background: white;
+        color: black;
+        padding: 2rem;
+        border-radius: 20px;
+        width: 90%;
+        max-width: 420px;
+        text-align: center;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        animation: popIn 0.5s ease;
+        position: relative;
+      }
+      input[type="password"] {
+        width: 100%;
+        padding: 0.7rem;
+        margin-top: 1rem;
+        font-size: 1rem;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        transition: box-shadow 0.3s ease;
+      }
+      input[type="password"]:focus {
+        outline: none;
+        box-shadow: 0 0 5px #0d6efd;
+      }
+      button {
+        margin-top: 1.2rem;
+        width: 100%;
+        padding: 0.8rem;
+        font-size: 1rem;
+        border: none;
+        border-radius: 10px;
+        background: #0d6efd;
+        color: white;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+      button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px rgba(13, 110, 253, 0.4);
+      }
+      button:active {
+        animation: pulse 0.4s;
+      }
+      .timer {
+        font-size: 0.9rem;
+        color: #0d6efd;
+        margin-top: 0.5rem;
+      }
+      .toast {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #dc3545;
+        color: white;
+        padding: 0.8rem 1.2rem;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        z-index: 10000;
+        animation: fadeIn 0.3s ease;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      @keyframes popIn {
+        from { transform: scale(0.9); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+      }
+      @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+      }
+    </style>
+
+    <div id="modal">
+      <div class="box">
+        <h3>🔒 보호된 문서입니다</h3>
+        <p>비밀번호를 입력해 주세요.</p>
+        <input type="password" id="password-input" placeholder="비밀번호 입력" />
+        <div class="timer" id="timer">남은 시간: ${timeoutSeconds}초</div>
+        <button id="submit-btn">열기</button>
+      </div>
+    </div>
+  `;
+
+  const host = document.getElementById("password-shadow-host");
+  const shadow = host.attachShadow({ mode: 'open' });
+  shadow.innerHTML = modalHTML;
+
+  const $ = sel => shadow.querySelector(sel);
+
+  $('#submit-btn').addEventListener("click", checkPassword);
+
+  async function logAttempt(input, status) {
+    try {
+        const now = new Date();
+        const kst = new Date(now.getTime() + (9 * 60 * 60 * 1000));
+        const created_at = kst.toISOString().slice(0, 19).replace("T", " ");
+
+        const payload = {
+          input,
+          status,
+          created_at
+        };
+
+        await fetch("https://atbgxpqvgtqkguucaoeh.supabase.co/rest/v1/logs", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+              "apikey": "[eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF0Ymd4cHF2Z3Rxa2d1dWNhb2VoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMwNTUxNTIsImV4cCI6MjA1ODYzMTE1Mn0.F7L7WDpICjIOL2ZcBwekTgSuqlWjZTX6gEn4QvVjceE]",
+              "Authorization": "Bearer [eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF0Ymd4cHF2Z3Rxa2d1dWNhb2VoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMwNTUxNTIsImV4cCI6MjA1ODYzMTE1Mn0.F7L7WDpICjIOL2ZcBwekTgSuqlWjZTX6gEn4QvVjceE]",
+              "Prefer": "return=representation"
+          },
+          body: JSON.stringify(payload)
+        });
+    } catch (err) {
+        console.warn("로그 전송 실패:", err);
+    }
+  }
+
+  function checkPassword() {
+    const input = $('#password-input').value;
+
+    if (allowedPasswords.includes(input)) {
+      clearInterval(timer);
+      closeModal();
+      logAttempt(input, "성공");
+    } else {
+      attemptsLeft--;
+      showToast(`❌ 비밀번호가 틀렸습니다 (${attemptsLeft}회 남음)`);
+      logAttempt(input, "실패");
+
+      if (attemptsLeft <= 0) {
+        document.body.innerHTML = "<h2 style='text-align:center; color:red;'>⛔ 5회 이상 실패하여 접근이 차단되었습니다.</h2>";
+      }
+    }
+  }
+
+  function showToast(msg) {
+    const toast = document.createElement("div");
+    toast.className = "toast";
+    toast.innerText = msg;
+    shadow.appendChild(toast);
+    setTimeout(() => toast.remove(), 3000);
+  }
+
+  function closeModal() {
+    $('#modal')?.remove();
+    document.body.classList.remove("no-scroll");
+    document.getElementById("password-blur-backdrop")?.remove();
+  }
+
+  function startTimer() {
+    timer = setInterval(() => {
+      timeLeft--;
+      const timerEl = $('#timer');
+      if (timerEl) timerEl.textContent = `남은 시간: ${timeLeft}초`;
+      if (timeLeft <= 0) {
+        clearInterval(timer);
+        document.body.innerHTML = "<h2 style='text-align:center; color:red;'>⏰ 제한 시간이 초과되었습니다. 접근이 차단됩니다.</h2>";
+      }
+    }, 1000);
+  }
+
+  document.addEventListener("keydown", e => {
+    if (e.key === "Enter") checkPassword();
+  });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    $('#password-input').focus();
+    document.body.classList.add("no-scroll");
+    startTimer();
+  });
+</script>
+
+
+
+      
+        <header class="page__header">
+          <h1 id="page-title" class="page__title" itemprop="headline" style="padding-top: 0 !important; margin-top: 0 !important;">
+            <a href="http://localhost:4000/docs/sql/learning_sql-grid/learning_sql_chapter_05/" itemprop="url">[Learning_SQL] 🔐 Chapter_05
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-04-03T00:00:00+09:00">2025-04-03</time>
+      </span>
+    
+
+    <!-- <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 분 소요
+        
+      </span>
+     -->
+  </p>
+
+
+        </header>
+      
+      
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header>
+                <h4 class="nav__title">
+                  <i class="fas fa-fa-solid fa-hexagon-nodes"></i> 
+                  목차
+                </h4>
+              </header>
+              <ul class="toc__menu"><li><a href="#chapter-5-다중-테이블-쿼리">Chapter 5 다중 테이블 쿼리</a><ul><li><a href="#51-조인">5.1 조인</a><ul><li><a href="#511-데카르트-곱-cross-join">5.1.1 데카르트 곱 cross join</a></li><li><a href="#512-내부-조인-inner-join">5.1.2 내부 조인 inner join</a></li><li><a href="#513-ansi-조인-문법">5.1.3 ANSI 조인 문법</a></li></ul></li><li><a href="#52-세-개-이상-테이블-조인">5.2 세 개 이상 테이블 조인</a><ul><li><a href="#521-서브쿼리-사용">5.2.1 서브쿼리 사용</a></li><li><a href="#522-테이블-재사용">5.2.2 테이블 재사용</a></li></ul></li><li><a href="#53-셀프-조인-self-join">5.3 셀프 조인 self join</a></li><li><a href="#54-실습">5.4 실습</a><ul><li><a href="#541-실습-1">5.4.1 실습 1</a></li><li><a href="#543-실습-3">5.4.3 실습 3</a></li></ul></li></ul></li></ul>
+            </nav>
+          </aside>
+        
+        
+        <h1 id="chapter-5-다중-테이블-쿼리"><font color="skyblue" size="7" face="BMJUAOTF">Chapter 5 다중 테이블 쿼리</font></h1>
+
+<h2 id="51-조인"><font size="6" face="BMJUAOTF" color="lightgreen">5.1 조인</font></h2>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 테이블 정의 확인</span>
+<span class="k">desc</span> <span class="n">customer</span><span class="p">;</span>
+<span class="k">desc</span> <span class="n">address</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="511-데카르트-곱-cross-join"><font color="white" size="5" face="BMJUAOTF">5.1.1 데카르트 곱 <sup>cross join</sup></font></h3>
+
+<ul>
+  <li>
+    <font color="white" size="4" face="BMJUAOTF">모든 순열을 생성</font>
+  </li>
+  <li>
+    <font color="white" size="4" face="BMJUAOTF">쿼리가 어떻게 두 테이블을 조인해야할지 지정하지 않았기 때문</font>
+  </li>
+</ul>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- cross join</span>
+<span class="k">select</span> <span class="n">concat</span><span class="p">(</span><span class="k">c</span><span class="p">.</span><span class="n">first_name</span><span class="p">,</span> <span class="s1">' - '</span><span class="p">,</span> <span class="k">c</span><span class="p">.</span><span class="n">last_name</span><span class="p">)</span> <span class="n">customer_name</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">address</span>
+<span class="k">from</span> <span class="n">customer</span> <span class="k">c</span>
+    <span class="k">join</span> <span class="n">address</span> <span class="n">a</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="512-내부-조인-inner-join"><font color="white" size="5" face="BMJUAOTF">5.1.2 내부 조인 <sup>inner join</sup></font></h3>
+
+<ul>
+  <li>
+    <font color="white" size="4" face="BMJUAOTF">한쪽 테이블에는 address_id 열의 값이 있지만 다른 테이블에는 없는 경우,<br /> 해당 값을 포함하는 행에 대한 조인은 실패하고 해당 행이 결과에서 제외된다.</font>
+    <font color="white" size="4" face="BMJUAOTF"></font>
+  </li>
+</ul>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- inner join</span>
+<span class="k">select</span> <span class="n">concat</span><span class="p">(</span><span class="k">c</span><span class="p">.</span><span class="n">first_name</span><span class="p">,</span> <span class="s1">' - '</span><span class="p">,</span> <span class="k">c</span><span class="p">.</span><span class="n">last_name</span><span class="p">)</span> <span class="n">customer_name</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">address</span>
+<span class="k">from</span> <span class="n">customer</span> <span class="k">c</span>
+    <span class="k">join</span> <span class="n">address</span> <span class="n">a</span> <span class="k">on</span> <span class="k">c</span><span class="p">.</span><span class="n">address_id</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">address_id</span><span class="p">;</span>
+
+<span class="c1">-- using</span>
+<span class="k">select</span> <span class="n">concat</span><span class="p">(</span><span class="k">c</span><span class="p">.</span><span class="n">first_name</span><span class="p">,</span> <span class="s1">' - '</span><span class="p">,</span> <span class="k">c</span><span class="p">.</span><span class="n">last_name</span><span class="p">)</span> <span class="n">customer_name</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">address</span>
+<span class="k">from</span> <span class="n">customer</span> <span class="k">c</span>
+    <span class="k">inner</span> <span class="k">join</span> <span class="n">address</span> <span class="n">a</span> <span class="k">using</span> <span class="p">(</span><span class="n">address_id</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="513-ansi-조인-문법"><font color="white" size="5" face="BMJUAOTF">5.1.3 ANSI 조인 문법</font></h3>
+
+<ul>
+  <li>
+    <font color="white" size="4" face="BMJUAOTF">SQL92 구문 이전의 SQL 문법</font>
+    <font color="white" size="4" face="BMJUAOTF"></font>
+  </li>
+</ul>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- ANSI 조인 문법</span>
+<span class="k">select</span> <span class="n">concat</span><span class="p">(</span><span class="k">c</span><span class="p">.</span><span class="n">first_name</span><span class="p">,</span> <span class="s1">' - '</span><span class="p">,</span> <span class="k">c</span><span class="p">.</span><span class="n">last_name</span><span class="p">)</span> <span class="n">customer_name</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">address</span>
+<span class="k">from</span> <span class="n">customer</span> <span class="k">c</span><span class="p">,</span> <span class="n">address</span> <span class="n">a</span>
+<span class="k">where</span> <span class="k">c</span><span class="p">.</span><span class="n">address_id</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">address_id</span><span class="p">;</span>
+
+<span class="c1">-- SQL92 조인과의 차이점</span>
+<span class="c1">---- ANSI</span>
+<span class="k">select</span> <span class="n">concat</span><span class="p">(</span><span class="k">c</span><span class="p">.</span><span class="n">first_name</span><span class="p">,</span> <span class="s1">' - '</span><span class="p">,</span> <span class="k">c</span><span class="p">.</span><span class="n">last_name</span><span class="p">)</span> <span class="n">customer_name</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">address</span>
+<span class="k">from</span> <span class="n">customer</span> <span class="k">c</span><span class="p">,</span> <span class="n">address</span> <span class="n">a</span>
+<span class="k">where</span> <span class="k">c</span><span class="p">.</span><span class="n">address_id</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">address_id</span>
+    <span class="k">and</span> <span class="n">a</span><span class="p">.</span><span class="n">postal_code</span> <span class="o">=</span> <span class="s1">'52137'</span><span class="p">;</span>
+
+<span class="c1">---- SQL92</span>
+<span class="k">select</span> <span class="n">concat</span><span class="p">(</span><span class="k">c</span><span class="p">.</span><span class="n">first_name</span><span class="p">,</span> <span class="s1">' - '</span><span class="p">,</span> <span class="k">c</span><span class="p">.</span><span class="n">last_name</span><span class="p">)</span> <span class="n">customer_name</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">address</span>
+<span class="k">from</span> <span class="n">customer</span> <span class="k">c</span>
+    <span class="k">inner</span> <span class="k">join</span> <span class="n">address</span> <span class="n">a</span> <span class="k">on</span> <span class="k">c</span><span class="p">.</span><span class="n">address_id</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">address_id</span>
+<span class="k">where</span> <span class="n">a</span><span class="p">.</span><span class="n">postal_code</span> <span class="o">=</span> <span class="s1">'52137'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="52-세-개-이상-테이블-조인"><font size="6" face="BMJUAOTF" color="lightgreen">5.2 세 개 이상 테이블 조인</font></h2>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="k">c</span><span class="p">.</span><span class="n">first_name</span><span class="p">,</span> <span class="k">c</span><span class="p">.</span><span class="n">last_name</span><span class="p">,</span> <span class="n">ct</span><span class="p">.</span><span class="n">city</span>
+<span class="k">from</span> <span class="n">customer</span> <span class="k">c</span>
+    <span class="k">inner</span> <span class="k">join</span> <span class="n">address</span> <span class="n">a</span> <span class="k">on</span> <span class="k">c</span><span class="p">.</span><span class="n">address_id</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">address_id</span>
+    <span class="k">inner</span> <span class="k">join</span> <span class="n">city</span> <span class="n">ct</span> <span class="k">on</span> <span class="n">a</span><span class="p">.</span><span class="n">city_id</span> <span class="o">=</span> <span class="n">ct</span><span class="p">.</span><span class="n">city_id</span><span class="p">;</span>
+</code></pre></div></div>
+
+<div align="center">
+<pre>
+<font size="4" face="BMJUAOTF" color="white">
+<font size="6" face="BMJUAOTF" color="white">조인의 순서?</font>
+
+SQL은 비절차적 언어!!!
+즉, 객체를 정의하는 건 나지만, 쿼리를 실행하는 건 서버
+서버는 셋 중 하나의 테이블을 시작점으로 선택한 다음(드라이빙 테이블<sup>driving table</sup>)
+나머지 테이블을 조인할 순서를 결정한다.
+
+하지만 순서를 결정하는 방법이 아예 없는건 아닌데
+<font size="4" face="BMJUAOTF" color="lightgreen">MYSQL</font> 에서는 <font size="4" face="BMJUAOTF" color="skyblue">straight_join</font> 키워드를 사용하거나,
+<font size="4" face="BMJUAOTF" color="lightgreen">SQL server</font> 에서는 <font size="4" face="BMJUAOTF" color="skyblue">force order</font> 옵션을 활용하고
+<font size="4" face="BMJUAOTF" color="lightgreen">Oracle</font> 에서는 <font size="4" face="BMJUAOTF" color="skyblue">ordered 또는 leading</font> 힌트를 사용한다.
+</font>
+
+</pre>
+</div>
+
+<h3 id="521-서브쿼리-사용"><font color="white" size="5" face="BMJUAOTF">5.2.1 서브쿼리 사용</font></h3>
+
+<ul>
+  <li>
+    <font color="white" size="4" face="BMJUAOTF">일부 데이터 셋이 서브쿼리로 생성될 경우에는 어떻게 동작할 것인가?</font>
+  </li>
+  <li>
+    <font color="white" size="4" face="BMJUAOTF">단순하게 세 개의 테이블을 조인해서 작성할 수도 있지만, 하나 이상의 서브쿼리를 사용하여 성능 및 가독성을 높이자</font>
+  </li>
+</ul>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">select</span> <span class="k">c</span><span class="p">.</span><span class="n">first_name</span><span class="p">,</span> <span class="k">c</span><span class="p">.</span><span class="n">last_name</span><span class="p">,</span> <span class="n">addr</span><span class="p">.</span><span class="n">address</span><span class="p">,</span> <span class="n">addr</span><span class="p">.</span><span class="n">city</span>
+<span class="k">from</span> <span class="n">customer</span> <span class="k">c</span>
+    <span class="k">inner</span> <span class="k">join</span>
+        <span class="p">(</span>
+            <span class="k">select</span> <span class="n">a</span><span class="p">.</span><span class="n">address_id</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">address</span><span class="p">,</span> <span class="n">ct</span><span class="p">.</span><span class="n">city</span>
+            <span class="k">from</span> <span class="n">address</span> <span class="n">a</span>
+                <span class="k">inner</span> <span class="k">join</span> <span class="n">city</span> <span class="n">ct</span> <span class="k">on</span> <span class="n">a</span><span class="p">.</span><span class="n">city_id</span> <span class="o">=</span> <span class="n">ct</span><span class="p">.</span><span class="n">city_id</span>
+            <span class="k">where</span> <span class="n">a</span><span class="p">.</span><span class="n">district</span> <span class="o">=</span> <span class="s1">'California'</span>
+        <span class="p">)</span> <span class="n">addr</span>
+    <span class="k">on</span> <span class="k">c</span><span class="p">.</span><span class="n">address_id</span> <span class="o">=</span> <span class="n">addr</span><span class="p">.</span><span class="n">address_id</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="522-테이블-재사용"><font color="white" size="5" face="BMJUAOTF">5.2.2 테이블 재사용</font></h3>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- Cate McQueen과 Cuba Birch가 출연한 영화 제목을 모두 찾기</span>
+<span class="k">select</span> <span class="n">f</span><span class="p">.</span><span class="n">title</span>
+<span class="k">from</span> <span class="n">film</span> <span class="n">f</span>
+    <span class="k">inner</span> <span class="k">join</span> <span class="n">film_actor</span> <span class="n">fa</span> <span class="k">on</span> <span class="n">f</span><span class="p">.</span><span class="n">film_id</span> <span class="o">=</span> <span class="n">fa</span><span class="p">.</span><span class="n">film_id</span>
+    <span class="k">inner</span> <span class="k">join</span> <span class="n">actor</span> <span class="n">a</span> <span class="k">on</span> <span class="n">a</span><span class="p">.</span><span class="n">actor_id</span> <span class="o">=</span> <span class="n">fa</span><span class="p">.</span><span class="n">actor_id</span>
+<span class="k">where</span> <span class="p">((</span><span class="n">a</span><span class="p">.</span><span class="n">first_name</span> <span class="o">=</span> <span class="s1">'CATE'</span> <span class="k">and</span> <span class="n">a</span><span class="p">.</span><span class="n">last_name</span> <span class="o">=</span> <span class="nv">"MCQUEEN"</span><span class="p">)</span>
+    <span class="k">or</span> <span class="n">a</span><span class="p">.</span><span class="n">first_name</span> <span class="o">=</span> <span class="s1">'CUBA'</span> <span class="k">and</span> <span class="n">a</span><span class="p">.</span><span class="n">last_name</span> <span class="o">=</span> <span class="s1">'BIRCH'</span><span class="p">);</span>
+
+<span class="c1">-- Cate McQueen과 Cuba Birch가 동시에 출연한 영화 제목을 모두 찾기</span>
+<span class="k">select</span> <span class="n">f</span><span class="p">.</span><span class="n">title</span>
+<span class="k">from</span> <span class="n">film</span> <span class="n">f</span>
+    <span class="k">inner</span> <span class="k">join</span> <span class="n">film_actor</span> <span class="n">fa1</span> <span class="k">on</span> <span class="n">f</span><span class="p">.</span><span class="n">film_id</span> <span class="o">=</span> <span class="n">fa1</span><span class="p">.</span><span class="n">film_id</span>
+    <span class="k">inner</span> <span class="k">join</span> <span class="n">actor</span> <span class="n">a1</span> <span class="k">on</span> <span class="n">fa1</span><span class="p">.</span><span class="n">actor_id</span> <span class="o">=</span> <span class="n">a1</span><span class="p">.</span><span class="n">actor_id</span>
+    <span class="k">inner</span> <span class="k">join</span> <span class="n">film_actor</span> <span class="n">fa2</span> <span class="k">on</span> <span class="n">f</span><span class="p">.</span><span class="n">film_id</span> <span class="o">=</span> <span class="n">fa2</span><span class="p">.</span><span class="n">film_id</span>
+    <span class="k">inner</span> <span class="k">join</span> <span class="n">actor</span> <span class="n">a2</span> <span class="k">on</span> <span class="n">fa2</span><span class="p">.</span><span class="n">actor_id</span> <span class="o">=</span> <span class="n">a2</span><span class="p">.</span><span class="n">actor_id</span>
+<span class="k">where</span> <span class="p">(</span><span class="n">a1</span><span class="p">.</span><span class="n">first_name</span> <span class="o">=</span> <span class="s1">'CATE'</span> <span class="k">and</span> <span class="n">a1</span><span class="p">.</span><span class="n">last_name</span> <span class="o">=</span> <span class="s1">'MCQUEEN'</span><span class="p">)</span>
+    <span class="k">and</span> <span class="p">(</span><span class="n">a2</span><span class="p">.</span><span class="n">first_name</span> <span class="o">=</span> <span class="s1">'CUBA'</span> <span class="k">and</span> <span class="n">a2</span><span class="p">.</span><span class="n">last_name</span> <span class="o">=</span> <span class="s1">'BIRCH'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h2 id="53-셀프-조인-self-join"><font size="6" face="BMJUAOTF" color="lightgreen">5.3 셀프 조인 <sup>self join</sup></font></h2>
+
+<pre>
+<font face="BMJUAOTF" size="4" color="white">
+쿼리에 동일한 테이블을 한 번 이상 포함할 수 있고 또한 자기 자신과도 조인할 수 있다.
+일부 테이블에는 <font color="skyblue">자기 참조 외래키</font> <sup>self-referencin foreign key</sup>가 포함된다
+</font>
+</pre>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 전편의 제목과 전편이 있는 모든 영화 제목을 나열</span>
+<span class="k">select</span> <span class="n">f</span><span class="p">.</span><span class="n">title</span><span class="p">,</span> <span class="n">f_pnt</span><span class="p">.</span><span class="n">title</span> <span class="n">prequel</span>
+<span class="k">from</span> <span class="n">film</span> <span class="n">f</span>
+    <span class="k">inner</span> <span class="k">join</span> <span class="n">film</span> <span class="n">f_pnt</span> <span class="k">on</span> <span class="n">f_pnt</span><span class="p">.</span><span class="n">film_id</span> <span class="o">=</span> <span class="n">f</span><span class="p">.</span><span class="n">film_id</span>
+<span class="k">where</span> <span class="n">f</span><span class="p">.</span><span class="n">prequel_film_id</span> <span class="k">is</span> <span class="k">not</span> <span class="k">null</span><span class="p">;</span>
+
+<span class="k">select</span> <span class="o">*</span>
+<span class="k">from</span> <span class="n">film</span> <span class="n">f</span>
+    <span class="k">inner</span> <span class="k">join</span> <span class="n">film</span> <span class="n">f_pnt</span> <span class="k">on</span> <span class="n">f_pnt</span><span class="p">.</span><span class="n">film_id</span> <span class="o">=</span> <span class="n">f</span><span class="p">.</span><span class="n">film_id</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h2 id="54-실습"><font size="6" face="BMJUAOTF" color="lightgreen">5.4 실습</font></h2>
+
+<h3 id="541-실습-1"><font color="white" size="5" face="BMJUAOTF">5.4.1 실습 1</font></h3>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- &lt;#&gt; 부분 채우기</span>
+<span class="k">select</span>
+<span class="k">from</span> <span class="n">customer</span> <span class="k">c</span>
+    <span class="k">inner</span> <span class="k">join</span> <span class="n">address</span> <span class="o">&lt;#</span><span class="mi">1</span><span class="o">&gt;</span> <span class="k">on</span> <span class="k">c</span><span class="p">.</span><span class="n">address_id</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">address_id</span>
+    <span class="k">inner</span> <span class="k">join</span> <span class="n">city</span> <span class="n">ct</span> <span class="k">on</span> <span class="n">a</span><span class="p">.</span><span class="n">city_id</span> <span class="o">=</span> <span class="o">&lt;#</span><span class="mi">2</span><span class="o">&gt;</span>
+<span class="k">where</span> <span class="n">a</span><span class="p">.</span><span class="n">district</span> <span class="o">=</span> <span class="s1">'California'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3><font size="5" color="orange" face="BMJUAOTF"></font></h3>
+
+<p>&lt;#1&gt;: a <br />
+&lt;#2&gt;: ct.city_id
+&lt;/font&gt;</p>
+
+<font color="white" size="5" face="BMJUAOTF">5.4.2 실습 2</font>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- JOHN이라는 이름의 배우가 출연한 모든 영화의 제목</span>
+<span class="k">select</span> <span class="n">f</span><span class="p">.</span><span class="n">title</span>
+<span class="k">from</span> <span class="n">film</span> <span class="n">f</span>
+    <span class="k">inner</span> <span class="k">join</span> <span class="n">film_actor</span> <span class="n">fa</span> <span class="k">on</span> <span class="n">f</span><span class="p">.</span><span class="n">film_id</span> <span class="o">=</span> <span class="n">fa</span><span class="p">.</span><span class="n">film_id</span>
+    <span class="k">inner</span> <span class="k">join</span> <span class="n">actor</span> <span class="n">a</span> <span class="k">on</span> <span class="n">fa</span><span class="p">.</span><span class="n">actor_id</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">actor_id</span>
+<span class="k">where</span> <span class="n">a</span><span class="p">.</span><span class="n">first_name</span> <span class="o">=</span> <span class="nv">"JOHN"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<h3 id="543-실습-3"><font color="white" size="5" face="BMJUAOTF">5.4.3 실습 3</font></h3>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 같은 도시에 있는 모든 주소를 반환</span>
+<span class="k">select</span> <span class="n">a1</span><span class="p">.</span><span class="n">address</span> <span class="n">addr1</span><span class="p">,</span> <span class="n">a2</span><span class="p">.</span><span class="n">address2</span> <span class="n">addr2</span><span class="p">,</span> <span class="n">a1</span><span class="p">.</span><span class="n">city_id</span>
+<span class="k">from</span> <span class="n">address</span> <span class="n">a1</span>
+    <span class="k">inner</span> <span class="k">join</span> <span class="n">address</span> <span class="n">a2</span>
+<span class="k">where</span> <span class="n">a1</span><span class="p">.</span><span class="n">city_id</span> <span class="o">=</span> <span class="n">a2</span><span class="p">.</span><span class="n">city_id</span>
+    <span class="k">and</span> <span class="n">a1</span><span class="p">.</span><span class="n">address_id</span> <span class="o">&lt;&gt;</span> <span class="n">a2</span><span class="p">.</span><span class="n">address_id</span><span class="p">;</span>
+</code></pre></div></div>
+
+
+        
+          
+            <p>
+              Comments are configured with provider: <strong>disqus</strong>,
+              but are disabled in non-production environments.
+            </p>
+          
+        
+
+        
+          
+<div class="page__related">
+  
+  <h2 class="page__related-title">참고</h2>
+  <div class="grid__wrapper">
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/docs/pm/data_literacy-grid/PM_06_04/" rel="permalink">[프로덕트 데이터 분석] 27 Tracking Plan
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-04-20T00:00:00+09:00">2025-04-20</time>
+      </span>
+    
+
+    <!-- <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          3 분 소요
+        
+      </span>
+     -->
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">👑 데이터 트래킹 플랜의 중요성과 실전 구축 전략
+</p>
+  </article>
+</div>
+
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/docs/pm/data_literacy-grid/PM_06_03/" rel="permalink">[프로덕트 데이터 분석] 26 데이터 로그 설계 프로세스
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-04-19T00:00:00+09:00">2025-04-19</time>
+      </span>
+    
+
+    <!-- <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+     -->
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">👑 데이터 로그 설계 프로세스
+</p>
+  </article>
+</div>
+
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/docs/pm/data_literacy-grid/PM_06_02/" rel="permalink">[프로덕트 데이터 분석] 25 로그 설계를 위한 데이터 기초 지식
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-04-18T00:00:00+09:00">2025-04-18</time>
+      </span>
+    
+
+    <!-- <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+     -->
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">👑 로그 설계를 위한 데이터 기초 지식
+</p>
+  </article>
+</div>
+
+    
+      
+      
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/docs/pm/data_literacy-grid/PM_06_01/" rel="permalink">[프로덕트 데이터 분석] 24 데이터 로그 설계란?
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2025-04-17T00:00:00+09:00">2025-04-17</time>
+      </span>
+    
+
+    <!-- <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+     -->
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">👑 효과적인 데이터 로그 설계 방법
+</p>
+  </article>
+</div>
+
+    
+  </div>
+</div>
+
+        
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags-grid/#learning-sql" class="page__taxonomy-item p-category" rel="tag">Learning_SQL</a><span class="sep">, </span>
+    
+      <a href="/tags-grid/#sql" class="page__taxonomy-item p-category" rel="tag">SQL</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories-grid/#docs" class="page__taxonomy-item p-category" rel="tag">docs</a><span class="sep">, </span>
+    
+      <a href="/categories-grid/#learning-sql" class="page__taxonomy-item p-category" rel="tag">Learning_SQL</a><span class="sep">, </span>
+    
+      <a href="/categories-grid/#sql" class="page__taxonomy-item p-category" rel="tag">SQL</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2025-04-03T00:00:00+09:00">2025-04-03</time></p>
+
+      </footer>
+
+      
+        <section class="page__share">
+  <h4 class="page__share-title">공유하기</h4>
+
+  <a href="https://twitter.com/intent/tweet?text=%5BLearning_SQL%5D+%F0%9F%94%90+Chapter_05%20http%3A%2F%2Flocalhost%3A4000%2Fdocs%2Fsql%2Flearning_sql-grid%2Flearning_sql_chapter_05%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fdocs%2Fsql%2Flearning_sql-grid%2Flearning_sql_chapter_05%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http://localhost:4000/docs/sql/learning_sql-grid/learning_sql_chapter_05/" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/docs/sql/learning_sql-grid/learning_sql_chapter_04/" class="pagination--pager" title="[Learning_SQL] 🔐 Chapter_04">이전</a>
+    
+    
+      <a href="/docs/sql/learning_sql-grid/learning_sql_chapter_06/" class="pagination--pager" title="[Learning_SQL] 🔐 Chapter_06">다음</a>
+    
+  </nav>
+
+
+    </div>
+  </article>
+</div>
+<script>
+    (async () => {
+      try {
+        const page_path = window.location.pathname;
+        const page_title = "[Learning_SQL] 🔐 Chapter_05";
+        const source = navigator.geolocation ? "GPS" : "IP";
+    
+        const sendLog = async (geo = {}, lat = null, lon = null) => {
+          const now = new Date();
+          const kst = new Date(now.getTime() + (9 * 60 * 60 * 1000));
+          const visited_at = kst.toISOString().slice(0, 19).replace("T", " ");
+    
+          await fetch("https://atbgxpqvgtqkguucaoeh.supabase.co/rest/v1/page_visits", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "apikey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF0Ymd4cHF2Z3Rxa2d1dWNhb2VoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMwNTUxNTIsImV4cCI6MjA1ODYzMTE1Mn0.F7L7WDpICjIOL2ZcBwekTgSuqlWjZTX6gEn4QvVjceE",
+              "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF0Ymd4cHF2Z3Rxa2d1dWNhb2VoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDMwNTUxNTIsImV4cCI6MjA1ODYzMTE1Mn0.F7L7WDpICjIOL2ZcBwekTgSuqlWjZTX6gEn4QvVjceE",
+              "Prefer": "return=representation"
+            },
+            body: JSON.stringify({
+              visited_at,
+              page_path,
+              page_title,
+              ip: geo.ip || null,
+              country: geo.country || null,
+              city: geo.city || null,
+              timezone: geo.timezone || null,
+              latitude: lat,
+              longitude: lon,
+              location_source: source
+            })
+          });
+        };
+    
+        // 위치 우선 GPS → fallback: ipinfo
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            async (pos) => {
+              const info = await fetch("https://ipinfo.io/json?token=4c589a64d00b3c").then(res => res.json());
+              sendLog(info, pos.coords.latitude, pos.coords.longitude);
+            },
+            async () => {
+              const info = await fetch("https://ipinfo.io/json?token=4c589a64d00b3c").then(res => res.json());
+              sendLog(info, null, null);
+            }
+          );
+        } else {
+          const info = await fetch("https://ipinfo.io/json?token=4c589a64d00b3c").then(res => res.json());
+          sendLog(info, null, null);
+        }
+      } catch (err) {
+        console.warn("📄 방문 로그 기록 실패:", err);
+      }
+    })();
+    </script>
+      
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/ChoeWJ/project" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 <a href="http://localhost:4000">DeVlog</a>. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/jekyll-themes/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "http://localhost:4000/docs/sql/learning_sql-grid/learning_sql_chapter_05/";  /* Replace PAGE_URL with your page's canonical URL variable */
+      this.page.identifier = "/docs/sql/learning_sql-grid/learning_sql_chapter_05"; /* Replace PAGE_IDENTIFIER with your page's unique identifier variable */
+    };
+    (function() { /* DON'T EDIT BELOW THIS LINE */
+      var d = document, s = d.createElement('script');
+      s.src = 'https://choeic.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+  </body>
+</html>

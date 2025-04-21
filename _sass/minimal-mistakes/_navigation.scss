@@ -1,0 +1,552 @@
+/* ==========================================================================
+   NAVIGATION
+   ========================================================================== */
+
+/*
+   Breadcrumb navigation links
+   ========================================================================== */
+
+   .breadcrumbs {
+    @include clearfix;
+    margin: 0 auto;
+    max-width: 100%;
+    padding-inline: 1em;
+    font-family: $sans-serif;
+    -webkit-animation: $intro-transition;
+    animation: $intro-transition;
+    -webkit-animation-delay: 0.3s;
+    animation-delay: 0.3s;
+    margin-left: auto;
+    margin-right: auto;
+    display: ruby-text;
+  
+    @include breakpoint($x-large) {
+      max-width: $x-large;
+    }
+  
+    ol {
+      padding: 0;
+      list-style: none;
+      font-size: $type-size-6;
+  
+      @include breakpoint($large) {
+        float: inline-end;
+        width: calc(100% - #{$right-sidebar-width-narrow});
+      }
+  
+      @include breakpoint($x-large) {
+        width: calc(100% - #{$right-sidebar-width});
+      }
+    }
+  
+    li {
+      display: inline;
+    }
+  
+    .current {
+      font-weight: bold;
+    }
+  }
+  
+  /*
+       Post pagination navigation links
+       ========================================================================== */
+  
+  .pagination {
+    @include clearfix();
+    float: inline-start;
+    margin-top: 1em;
+    padding-top: 1em;
+    width: 100%;
+  
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+      font-family: $sans-serif;
+    }
+  
+    li {
+      display: block;
+      float: inline-start;
+      margin-inline-start: -1px;
+  
+      a {
+        display: block;
+        margin-bottom: 0.25em;
+        padding: 0.5em 1em;
+        font-family: $sans-serif;
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 1.5;
+        text-align: center;
+        text-decoration: none;
+        color: $muted-text-color;
+        border: 1px solid mix(#000, $border-color, 25%);
+        border-radius: 0;
+  
+        &:hover {
+          color: $link-color-hover;
+        }
+  
+        &.current,
+        &.current.disabled {
+          color: #fff;
+          background: $primary-color;
+        }
+  
+        &.disabled {
+          color: rgba($muted-text-color, 0.5);
+          pointer-events: none;
+          cursor: not-allowed;
+        }
+      }
+  
+      &:first-child {
+        margin-inline-start: 0;
+  
+        a {
+          border-start-start-radius: $border-radius;
+          border-end-start-radius: $border-radius;
+        }
+      }
+  
+      &:last-child {
+        a {
+          border-start-end-radius: $border-radius;
+          border-end-end-radius: $border-radius;
+        }
+      }
+    }
+  
+    /* next/previous buttons */
+    &--pager {
+      display: block;
+      padding: 1em 2em;
+      float: inline-start;
+      width: 50%;
+      font-family: $sans-serif;
+      font-size: $type-size-5;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      color: $muted-text-color;
+      border: 1px solid mix(#000, $border-color, 25%);
+      border-radius: $border-radius;
+  
+      &:hover {
+        @include yiq-contrasted($muted-text-color);
+      }
+  
+      &:first-child {
+        border-start-end-radius: 0;
+        border-end-end-radius: 0;
+      }
+  
+      &:last-child {
+        margin-inline-start: -1px;
+        border-start-start-radius: 0;
+        border-end-start-radius: 0;
+      }
+  
+      &.disabled {
+        color: rgba($muted-text-color, 0.5);
+        pointer-events: none;
+        cursor: not-allowed;
+      }
+    }
+  }
+  
+  .page__content + .pagination,
+  .page__meta + .pagination,
+  .page__share + .pagination,
+  .page__comments + .pagination {
+    margin-top: 2em;
+    padding-top: 2em;
+    border-top: 1px solid $border-color;
+  }
+  
+  /*
+       Priority plus navigation
+       ========================================================================== */
+  
+  .greedy-nav {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    min-height: $nav-height;
+    background: $background-color;
+  
+    a {
+      display: block;
+      margin: 0 1rem;
+      color: $masthead-link-color;
+      text-decoration: none;
+      -webkit-transition: none;
+      transition: none;
+  
+      &:hover {
+        color: $masthead-link-color-hover;
+      }
+  
+      &.site-logo {
+        margin-inline-start: 0;
+        margin-inline-end: 0.5rem;
+      }
+  
+      &.site-title {
+        margin-inline-start: 0;
+      }
+    }
+  
+    img {
+      -webkit-transition: none;
+      transition: none;
+    }
+  
+    &__toggle {
+      -ms-flex-item-align: center;
+      align-self: center;
+      height: $nav-toggle-height;
+      border: 0;
+      outline: none;
+      background-color: transparent;
+      cursor: pointer;
+    }
+  
+    .visible-links {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: end;
+      -ms-flex-pack: end;
+      justify-content: flex-end;
+      -webkit-box-flex: 1;
+      -ms-flex: 1;
+      flex: 1;
+      overflow: hidden;
+  
+      li {
+        -webkit-box-flex: 0;
+        -ms-flex: none;
+        flex: none;
+      }
+  
+      a {
+        position: relative;
+  
+        &:before {
+          content: "";
+          position: absolute;
+          inset-inline-start: 0;
+          bottom: 0;
+          height: 4px;
+          background: $primary-color;
+          width: 100%;
+          -webkit-transition: $global-transition;
+          transition: $global-transition;
+          -webkit-transform: scaleX(0) translate3d(0, 0, 0);
+          transform: scaleX(0) translate3d(0, 0, 0); // hide
+        }
+  
+        &:hover:before {
+          -webkit-transform: scaleX(1);
+          -ms-transform: scaleX(1);
+          transform: scaleX(1); // reveal
+        }
+      }
+    }
+  
+    .hidden-links {
+      position: absolute;
+      top: 100%;
+      inset-inline-end: 0;
+      margin-top: 15px;
+      padding: 5px;
+      border: 1px solid $border-color;
+      border-radius: $border-radius;
+      background: $background-color;
+      -webkit-box-shadow: 0 2px 4px 0 rgba(#000, 0.16),
+        0 2px 10px 0 rgba(#000, 0.12);
+      box-shadow: 0 2px 4px 0 rgba(#000, 0.16), 0 2px 10px 0 rgba(#000, 0.12);
+  
+      &.hidden {
+        display: none;
+      }
+  
+      a {
+        margin: 0;
+        padding: 10px 20px;
+        font-size: $type-size-5;
+  
+        &:hover {
+          color: $masthead-link-color-hover;
+          background: $navicon-link-color-hover;
+        }
+      }
+  
+      &::before {
+        content: "";
+        position: absolute;
+        top: -11px;
+        inset-inline-end: 10px;
+        width: 0;
+        border-style: solid;
+        border-width: 0 10px 10px;
+        border-color: $border-color transparent;
+        display: block;
+        z-index: 0;
+      }
+  
+      &::after {
+        content: "";
+        position: absolute;
+        top: -10px;
+        inset-inline-end: 10px;
+        width: 0;
+        border-style: solid;
+        border-width: 0 10px 10px;
+        border-color: $background-color transparent;
+        display: block;
+        z-index: 1;
+      }
+  
+      li {
+        display: block;
+        border-bottom: 1px solid $border-color;
+  
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+  
+  .no-js {
+    .greedy-nav {
+      .visible-links {
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        overflow: visible;
+      }
+    }
+  }
+  
+  /* ========================================================================== */
+/* Navigation list                                                            */
+/* ========================================================================== */
+
+.nav__list {
+  margin-bottom: 1.5em;
+  max-width: 270px;
+}
+
+/* ✅ 숨겨진 체크박스 (아코디언 제어용) */
+.nav__toggle {
+  display: none;
+}
+
+/* ✅ 메인 카테고리 (대제목) 스타일 */
+.nav__sub-title {
+  display: block;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  font-size: $type-size-6;
+  font-weight: bold;
+  text-transform: capitalize;
+  border-bottom: 1px solid $border-color;
+  width: 100%;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  cursor: pointer; /* 마우스 포인터 변경 */
+}
+
+/* ✅ hover 효과 */
+.nav__sub-title:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: $primary-color;
+}
+
+/* ✅ 아코디언 기본: 접힌 상태 */
+.nav__items {
+  max-height: 0;
+  overflow: scroll;
+  opacity: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin: 0;
+  font-size: 1.25rem;
+  transition:
+    max-height 0.6s ease-in-out,
+    opacity 0.4s ease-in-out,
+    padding 0.4s ease-in-out;
+  will-change: max-height, opacity, padding;
+}
+
+/* ✅ 체크박스가 활성화되면 펼침 */
+.nav__toggle:checked + .nav__sub-title + .nav__items {
+  max-height: 300px; /* 충분히 큰 값 (내용에 따라 조정) */
+  opacity: 1;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+/* ✅ 서브 카테고리 아이템 */
+.nav__items li {
+  position: relative;
+  font-size: 1rem;
+  padding-left: 1em;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+/* ✅ hover 효과 */
+.nav__items li:hover {
+  background-color: rgba(0, 0, 0, 0.15);
+  color: $primary-color;
+  border-radius: 4px;
+}
+
+/* ✅ 링크 스타일 */
+.nav__items li a {
+  display: inline-block;
+  position: relative;
+  z-index: 10;
+  padding: 0.3em;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ✅ 링크 hover 시 */
+.nav__items li a:hover {
+  background-color: transparent;
+  color: $primary-color;
+}
+
+/* ✅ 숫자 표시 */
+.nav__items li .taxonomy__count {
+  font-size: 12px;
+  color: gray;
+  margin-left: 5px;
+}
+
+/* ✅ 색상 블록 표시 */
+.nav__items li a {
+  position: relative;
+  padding-left: 1.2em;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    background-color: $border-color;
+    transform: translateY(-50%);
+    border-radius: 2px;
+  }
+}
+
+/* ✅ 카테고리 간격 */
+.nav__list ul {
+  margin-bottom: 1em;
+  max-width: 200px;
+}
+
+/* ✅ 반응형 설정 (선택 사항) */
+@include breakpoint(max-width $large - 1px) {
+  .nav__list input:checked ~ .nav__items {
+    max-height: 9999px;
+    opacity: 1;
+    transform: translate(0, 0);
+    overflow: visible;
+    margin-top: 1em;
+    transition: 0.5s ease-in-out;
+  }
+
+  .nav__list .nav__items {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    z-index: 10;
+    transition: 0.3s ease-in-out;
+    transform: translate(0, 10%);
+  }
+}
+  
+  /*
+       Table of contents navigation
+       ========================================================================== */
+  
+  .toc {
+    font-family: $sans-serif-narrow;
+    color: $gray;
+    background-color: $background-color;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    -webkit-box-shadow: $box-shadow;
+    box-shadow: $box-shadow;
+  
+    .nav__title {
+      color: #fff;
+      font-size: $type-size-6;
+      background: $primary-color;
+      border-start-start-radius: $border-radius;
+      border-start-end-radius: $border-radius;
+    }
+  
+    // Scrollspy marks toc items as .active when they are in focus
+    .active a {
+      @include yiq-contrasted($active-color);
+    }
+  }
+  
+  .toc__menu {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    list-style: none;
+    font-size: $type-size-6;
+  
+    @include breakpoint($large) {
+      font-size: $type-size-7;
+    }
+  
+    a {
+      display: block;
+      padding: 0.25rem 0.75rem;
+      color: $muted-text-color;
+      font-weight: bold;
+      line-height: 1.5;
+      border-bottom: 1px solid $border-color;
+  
+      &:hover {
+        color: $text-color;
+      }
+    }
+  
+    li ul > li a {
+      padding-inline-start: 1.25rem;
+      font-weight: normal;
+    }
+  
+    li ul li ul > li a {
+      padding-inline-start: 1.75rem;
+    }
+  
+    li ul li ul li ul > li a {
+      padding-inline-start: 2.25rem;
+    }
+  
+    li ul li ul li ul li ul > li a {
+      padding-inline-start: 2.75rem;
+    }
+  
+    li ul li ul li ul li ul li ul > li a {
+      padding-inline-start: 3.25rem;
+    }
+  }
