@@ -28,25 +28,6 @@ docs:
       - title: "Learning_SQL"
         url: /docs/SQL/Learning_SQL/
 
-  - title: "Front"
-    children:
-      - title: "HTML_CSS"
-        url: /docs/Front/HTML_CSS/
-
-  - title: "Back"
-    children:
-      - title: "Rust"
-        url: /docs/Back/Rust/
-      - title: "JAVA"
-        url: /docs/Back/JAVA/
-      - title: "JavaScript"
-        url: /docs/Back/JavaScript/
-
-  - title: "Security"
-    children:
-      - title: "Security"
-        url: /docs/Security/Security/
-
   - title: "Web_Crawling"
     children:
       - title: "BeautifulSoup"
@@ -61,22 +42,10 @@ docs:
       - title: "DL"
         url: /docs/ML-DL/DL/
 
-  - title: "PySide6"
-    children:
-      - title: "Widget"
-        url: /docs/PySide6/Widget/
-
   - title: "Statistics"
     children:
       - title: "For_Data"
         url: /docs/Statistics/For_Data/
-
-  - title: "PM"
-    children:
-      - title: "Data_Literacy"
-        url: /docs/PM/Data_Literacy/
-      - title: "Product_Data"
-        url: /docs/PM/Product_Data/
 
   - title: "Git"
     children:
